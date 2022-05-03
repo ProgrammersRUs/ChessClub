@@ -24,7 +24,7 @@ public class Member {
     @NotNull
     private String phoneNr;
     @NotNull
-    private LocalDate age;
+    private String age;
     @NotNull
     private String address;
 
@@ -68,11 +68,11 @@ public class Member {
         this.phoneNr = phoneNr;
     }
 
-    public LocalDate getAge() {
+    public String getAge() {
         return age;
     }
 
-    public void setAge(LocalDate age) {
+    public void setAge(String age) {
         this.age = age;
     }
 

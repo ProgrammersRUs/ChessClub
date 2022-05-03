@@ -20,7 +20,7 @@ public class MemberController {
     MemberService memberService;
 
     //CREATE
-    @GetMapping("/createMember")
+    @PostMapping("/createMember")
     @ResponseStatus(HttpStatus.CREATED)
     public Member postMember(@RequestBody Member member) {
         return memberService.saveMember(member);
