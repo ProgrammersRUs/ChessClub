@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -23,7 +24,7 @@ public class Member {
     @NotNull
     private String phoneNr;
     @NotNull
-    private Date age;
+    private LocalDate age;
     @NotNull
     private String address;
 
@@ -67,11 +68,11 @@ public class Member {
         this.phoneNr = phoneNr;
     }
 
-    public Date getAge() {
+    public LocalDate getAge() {
         return age;
     }
 
-    public void setAge(Date age) {
+    public void setAge(LocalDate age) {
         this.age = age;
     }
 
