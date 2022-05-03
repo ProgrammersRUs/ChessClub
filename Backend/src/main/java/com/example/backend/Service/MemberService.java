@@ -32,7 +32,7 @@ public class MemberService {
         return memberRepository.findAll();
     }
 
-    public void deleteMember(Member member) {
-        memberRepository.delete(member);
+    public void deleteMember(int id) {
+        memberRepository.deleteById(id);
     }
 }

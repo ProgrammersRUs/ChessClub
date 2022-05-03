@@ -50,11 +50,12 @@ public class MemberController {
         }
     }
 
+    //DELETE
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<String> deleteMember(@RequestBody Member member) {
+    public ResponseEntity<String> deleteMember(@PathVariable int id) {
         try {
-            memberService.deleteMember(member);
-            return new ResponseEntity<>("Member Deleted with id: " + member.getMemberId(), HttpStatus.OK);
+            memberService.deleteMember(id);
+            return new ResponseEntity<>("Member Deleted with id: " + id, HttpStatus.OK);
         } catch (ResourceNotFoundException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
