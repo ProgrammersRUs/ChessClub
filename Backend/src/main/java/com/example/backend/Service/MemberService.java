@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class MemberService {
@@ -19,8 +20,12 @@ public class MemberService {
         return member;
     }
 
-    public Member getSingleMember(int id) {
-        return memberRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Member not found"));
+    public Member getMemberById(int id){
+        return memberRepository.findById(id).get();
+    }
+
+    public Optional<Member> findById(int id) {
+        return memberRepository.findById(id);
     }
 
     public List<Member> getAllMembers(){
