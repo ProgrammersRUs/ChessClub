@@ -1,13 +1,12 @@
 package com.example.backend.Entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.sun.istack.NotNull;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.time.LocalDate;
-import java.util.Date;
 
 @Entity
 public class Member {
@@ -16,17 +15,17 @@ public class Member {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int memberId;
     @NotNull
-    private String firstName;
+    private String memberFirstName;
     @NotNull
-    private String lastName;
+    private String memberLastName;
     @NotNull
-    private String email;
+    private String memberEmail;
     @NotNull
-    private String phoneNr;
+    private String memberPhoneNr;
+    @NotNull @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-dd-MM")
+    private String memberAge;
     @NotNull
-    private String age;
-    @NotNull
-    private String address;
+    private String memberAddress;
 
     public int getMemberId() {
         return memberId;
@@ -36,51 +35,51 @@ public class Member {
         this.memberId = memberId;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getMemberFirstName() {
+        return memberFirstName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setMemberFirstName(String firstName) {
+        this.memberFirstName = firstName;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getMemberLastName() {
+        return memberLastName;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setMemberLastName(String lastName) {
+        this.memberLastName = lastName;
     }
 
-    public String getEmail() {
-        return email;
+    public String getMemberEmail() {
+        return memberEmail;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setMemberEmail(String email) {
+        this.memberEmail = email;
     }
 
-    public String getPhoneNr() {
-        return phoneNr;
+    public String getMemberPhoneNr() {
+        return memberPhoneNr;
     }
 
-    public void setPhoneNr(String phoneNr) {
-        this.phoneNr = phoneNr;
+    public void setMemberPhoneNr(String phoneNr) {
+        this.memberPhoneNr = phoneNr;
     }
 
-    public String getAge() {
-        return age;
+    public String getMemberAge() {
+        return memberAge;
     }
 
-    public void setAge(String age) {
-        this.age = age;
+    public void setMemberAge(String age) {
+        this.memberAge = age;
     }
 
-    public String getAddress() {
-        return address;
+    public String getMemberAddress() {
+        return memberAddress;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setMemberAddress(String address) {
+        this.memberAddress = address;
     }
 }
