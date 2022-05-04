@@ -23,7 +23,7 @@ public class InitData implements CommandLineRunner {
         member.setFirstName("Johnny");
         member.setLastName("Depp");
         member.setPhoneNr("42042069");
-        member.setAge(LocalDate.of(1998,5,18));
+        member.setAge("24");
         member.setAddress("This adress is lit 54");
         member.setEmail("This@Mail.com");
         memberService.saveMember(member);

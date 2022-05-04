@@ -1,43 +1,36 @@
-function out(message){
-    console.log(message)
-}
-
 let memberForm
 
 document.addEventListener('DOMContentLoaded', createFormEventListener)
 
-function createFormEventListener(){
+function createFormEventListener() {
     memberForm = document.getElementById('newMember')
-    memberForm.addEventListener('submit', formHandleSubmit)
+    memberForm.addEventListener('submit', handleFormSubmit)
 }
 
-async function formHandleSubmit(registerData){
-    registerData.preventDefault();
-    const form = registerData.currentTarget;
+async function handleFormSubmit(event) {
+    event.preventDefault();
+    const form = event.currentTarget;
     const url = form.action;
 
-    try{
+    try {
         const formData = new FormData(form);
-        if (validateMemberData(registerData)){
-            await postFormDataAsJson(url, formData)
-        }
-    }catch (err){
-        alert(err.message)
-        out(err);
+        await postFormDataAsJson(url, formData);
+
+    } catch (err) {
+        alert(err.message);
     }
 }
 
-function validateMemberData(registerData){
-alert("Insert validation here")
+function validateMemberData(data) {
+    if (data.get("firstName") === "" || data.get('lastName') === "") {
+        return null
+    } else return data
+
 }
 
-
-//Er ikke sikker på jeg egentligt forstår denne her men den har virket for det før - August
 async function postFormDataAsJson(url, formData) {
-    out(formData.entries());
-    const plainFormData = Object.fromEntries(formData.entries());
-    out(plainFormData);
 
+    const plainFormData = Object.fromEntries(formData.entries());
     const formDataJsonString = JSON.stringify(plainFormData);
 
     const fetchOptions = {
@@ -49,8 +42,9 @@ async function postFormDataAsJson(url, formData) {
     const response = await fetch(url, fetchOptions);
     if (!response) {
         const errorMessage = await response.text();
+        console.log(errorMessage)
         throw new Error(errorMessage);
-    }
 
-    return response.json();
+    }
+    return response;
 }
