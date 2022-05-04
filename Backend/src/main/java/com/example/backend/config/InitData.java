@@ -6,9 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import java.sql.Date;
-import java.time.LocalDate;
-
 @Component
 public class InitData implements CommandLineRunner {
 
@@ -20,12 +17,12 @@ public class InitData implements CommandLineRunner {
 
         Member member = new Member();
 
-        member.setFirstName("Johnny");
-        member.setLastName("Depp");
-        member.setPhoneNr("42042069");
-        member.setAge("24");
-        member.setAddress("This adress is lit 54");
-        member.setEmail("This@Mail.com");
+        member.setMemberFirstName("Johnny");
+        member.setMemberLastName("Depp");
+        member.setMemberPhoneNr("42042069");
+        member.setMemberAge("18/05/1998");
+        member.setMemberAddress("This adress is lit 54");
+        member.setMemberEmail("This@Mail.com");
         memberService.saveMember(member);
 
 
