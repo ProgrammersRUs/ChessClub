@@ -5,11 +5,14 @@ import com.example.backend.Exception.ResourceNotFoundException;
 import com.example.backend.Repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Stream;
 
-@Component
+@Service
 public class MemberService {
 
     @Autowired
@@ -17,10 +20,24 @@ public class MemberService {
 
     public Member saveMember(Member member) {
         memberRepository.save(member);
+        validateMemberInfo(member);
         return member;
     }
 
-    public Member getMemberById(int id){
+    public Member validateMemberInfo(Member member) {
+        try {
+            if (member.getMemberFirstName() == "" || member.getMemberLastName() == "" || member.getMemberEmail() == ""
+                    || member.getMemberAddress() == "" || member.getMemberPhoneNr() == "" || member.getMemberAge() == "") {
+                memberRepository.deleteById(member.getMemberId());
+            }
+        } catch (Exception e) {
+            System.out.println(e + "Medlem blev ikke oprettet");
+        }
+        return member;
+
+    }
+
+    public Member getMemberById(int id) {
         return memberRepository.findById(id).get();
     }
 
@@ -28,7 +45,7 @@ public class MemberService {
         return memberRepository.findById(id);
     }
 
-    public List<Member> getAllMembers(){
+    public List<Member> getAllMembers() {
         return memberRepository.findAll();
     }
 
