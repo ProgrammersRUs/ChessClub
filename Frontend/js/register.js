@@ -42,7 +42,24 @@ async function postFormDataAsJson(url, formData) {
     const fetchOptions = {
         method: "POST",
         headers: {"Content-Type": "application/json"},
-        body: formDataJsonString
+        body: {
+            user:{
+                password: plainFormData.mail,
+                email: plainFormData.userEmail
+
+            },
+            member:{
+                firstName: plainFormData.memberFirstName,
+                lastName: plainFormData.memberFirstName,
+                phoneNr: plainFormData.memberPhoneNr,
+                address: plainFormData.memberAdress,
+                age: plainFormData.memberAge
+
+
+            }
+
+
+        }
     };
 
     const response = await fetch(url, fetchOptions);

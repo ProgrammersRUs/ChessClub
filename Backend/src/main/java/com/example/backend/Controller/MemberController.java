@@ -1,6 +1,7 @@
 package com.example.backend.Controller;
 
 import com.example.backend.Entity.Member;
+import com.example.backend.Entity.User;
 import com.example.backend.Exception.ResourceNotFoundException;
 import com.example.backend.JSonWrapper.MemberUserWrapper;
 import com.example.backend.Service.MemberService;
@@ -28,7 +29,8 @@ public class MemberController {
     //CREATE
     @PostMapping("/createMember")
     @ResponseStatus(HttpStatus.CREATED)
-    public Member postMember(@RequestBody Member member) {
+    public Member postMember(@RequestBody Member member, @RequestBody User user) {
+        userService.saveUser(user);
         return memberService.saveMember(member);
     }
 

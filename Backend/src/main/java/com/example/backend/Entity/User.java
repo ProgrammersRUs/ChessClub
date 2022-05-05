@@ -3,7 +3,6 @@ package com.example.backend.Entity;
 import javax.persistence.*;
 
 @Entity
-
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -12,6 +11,15 @@ public class User {
     private String userPassword;
     private boolean adminStatus;
 
+    User(String userEmail, String userPassword){
+        this.userEmail = userEmail;
+        this.userPassword = userPassword;
+        adminStatus = false;
+    }
+
+    public User() {
+
+    }
 
     public int getId() {
         return id;
