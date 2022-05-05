@@ -1,7 +1,7 @@
 import Component from '../lib/Component.js'
 
 const navbarTemplate = (state) => `
-<nav class="navbar sticky-top navbar-expand-md navbar-dark bg-primary">
+<div class="navbar sticky-top navbar-expand-md navbar-dark bg-primary">
     <div class="container-fluid">
         <a class="navbar-brand" href="/">
             <img style="max-height: 50px; max-width: 50px" src="../img/Haslev%20og%20Faxe%20Skakklub%20-logos_black.png"
@@ -35,7 +35,7 @@ const navbarTemplate = (state) => `
             </ul>
         </div>
     </div>
-</nav>
+</div>
 `;
 
 export const NavbarComponent = new Component('navbar', {
@@ -53,8 +53,8 @@ export const NavbarComponent = new Component('navbar', {
             href: '../medlemskab.html'
         },
         3: {
-            name: 'Om klubben',
-            href: '../history.html'
+            name: 'Registrer',
+            href: '../register.html'
         },
         4: {
             name: 'Kontakt os',
