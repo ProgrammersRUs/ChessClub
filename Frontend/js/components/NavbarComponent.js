@@ -1,7 +1,7 @@
 import Component from '../lib/Component.js'
 
 const navbarTemplate = (state) => `
-<nav class="navbar sticky-top navbar-expand-md navbar-dark bg-primary">
+<div class="navbar sticky-top navbar-expand-md navbar-dark bg-primary">
     <div class="container-fluid">
         <a class="navbar-brand" href="/">
             <img style="max-height: 50px; max-width: 50px" src="${state.logoSrc}"
@@ -18,7 +18,7 @@ const navbarTemplate = (state) => `
             </ul>
         </div>
     </div>
-</nav>
+</div>
 `;
 
 function renderLinks(links) {
