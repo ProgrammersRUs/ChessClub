@@ -4,7 +4,7 @@ const navbarTemplate = (state) => `
 <nav class="navbar sticky-top navbar-expand-md navbar-dark bg-primary">
     <div class="container-fluid">
         <a class="navbar-brand" href="/">
-            <img style="max-height: 50px; max-width: 50px" src="${state.logosrc}"
+            <img style="max-height: 50px; max-width: 50px" src="${state.logoSrc}"
                  alt="..">
         </a>
         <a class="navbar-brand" href="/">${state.name}</a>
@@ -21,41 +21,21 @@ const navbarTemplate = (state) => `
 </nav>
 `;
 
-function renderLinks(links){
+function renderLinks(links) {
     return links.map(link =>
-                `
+        `
                     <li class="nav-item">
                         <a class="nav-link" href="${link.href}">${link.name}</a>
                     </li>
                 `
-            ).join('');
+    ).join('');
 
 }
 
 export const NavbarComponent = new Component('navbar', {
-    name: 'Haslev og Faxe skakklub',
-    logosrc: '../img/Haslev%20og%20Faxe%20Skakklub%20-logos_black.png',
-    links: [{
-                    name: 'Events',
-            href: '../events.html'
-        },
-        {
-            name: 'Om Klubben',
-            href: '../history.html'
-        },
-        {
-            name: 'Medlemskab',
-            href: '../medlemskab.html'
-        },
-        {
-            name: 'Kontakt os',
-            href: '../contact2.html'
-        },
-        {
-            name: 'Sponserer',
-            href: '../sponser.html'
-        }
-    ]
-},navbarTemplate);
+    name: config.club.name,
+    logoSrc: config.club.logoSrc,
+    links: config.navbarData.navItems
+}, navbarTemplate);
 
 export default NavbarComponent;
