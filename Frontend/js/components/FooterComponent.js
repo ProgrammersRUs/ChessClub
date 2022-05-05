@@ -12,14 +12,14 @@ const footerTemplate = (state) => `
         <div class="row">
             <div class="col-6 ">
                 <div class="mb-2 text-center">
-                <h5>${state.klubber[0].name}</h5>
-                <p>${state.klubber[0].address}</p>
+                <h5>${state.location[0].name}</h5>
+                <p>${state.location[0].address}</p>
                 </div>
             </div>
             <div class="col-6 ">
                 <div class="mb-2 text-center">
-                    <h5>${state.klubber[1].name}</h5>
-                    <p>${state.klubber[1].address}</p>
+                    <h5>${state.location[1].name}</h5>
+                    <p>${state.location[1].address}</p>
                 </div>
             </div>
         </div>
@@ -29,18 +29,9 @@ const footerTemplate = (state) => `
 `;
 
 const FooterComponent = new Component('footer', {
-    name: 'Haslev og Faxe Skakklub',
-    year: new Date().getFullYear(),
-    klubber: {
-        0: {
-            name: "Haslev Skakklub",
-            address: 'Søndergade 12, 4690 Haslev'
-        },
-        1: {
-            name: "Faxe Skakklub",
-            address: 'Præstøvej 2A, 4640 Faxe'
-        }
-    }
+    name: config.club.name,
+    year: config.club.copyrightYear,
+    location: config.locations
 }, footerTemplate)
 
 

@@ -1,7 +1,8 @@
 const config = {
     club: {
         name: 'Haslev og Faxe skakklub',
-        logoSrc: '../img/Haslev%20og%20Faxe%20Skakklub%20-logos_black.png'
+        logoSrc: '../img/Haslev%20og%20Faxe%20Skakklub%20-logos_black.png',
+        copyrightYear: 2022
     },
     navbarData: {
         navItems: [
@@ -26,5 +27,15 @@ const config = {
                 href: '../sponser.html'
             }
         ]
-    }
+    },
+    locations: [
+        {
+            name: "Haslev Skakklub",
+            address: 'Søndergade 12, 4690 Haslev'
+        },
+        {
+            name: "Faxe Skakklub",
+            address: 'Præstøvej 2A, 4640 Faxe'
+        }
+    ]
 }
