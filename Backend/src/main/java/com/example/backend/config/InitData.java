@@ -21,7 +21,10 @@ public class InitData implements CommandLineRunner {
     public void run(String... args) throws Exception {
 
         User user = new User();
+        user.setUserEmail("This@Mail.com");
+        user.setUserPassword("123");
         userService.saveUser(user);
+
 
         Member member = new Member();
         member.setUser(user);
@@ -30,7 +33,6 @@ public class InitData implements CommandLineRunner {
         member.setMemberPhoneNr("42042069");
         member.setMemberAge("18/05/1998");
         member.setMemberAddress("This adress is lit 54");
-        member.setMemberEmail("This@Mail.com");
         memberService.saveMember(member);
 
 

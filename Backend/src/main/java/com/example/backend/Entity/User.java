@@ -10,6 +10,7 @@ public class User {
     private int id;
     private String userEmail;
     private String userPassword;
+    private boolean adminStatus;
 
 
     public int getId() {

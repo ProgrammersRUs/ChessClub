@@ -34,13 +34,6 @@ async function handleFormSubmit(event) {
     }
 }
 
-function validateMemberData(data) {
-    if (data.get("firstName") === "" || data.get('lastName') === "") {
-        return null
-    } else return data
-
-}
-
 async function postFormDataAsJson(url, formData) {
 
     const plainFormData = Object.fromEntries(formData.entries());

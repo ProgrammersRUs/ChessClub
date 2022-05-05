@@ -20,14 +20,12 @@ public class MemberService {
 
     public Member saveMember(Member member) {
         memberRepository.save(member);
-        validateMemberInfo(member);
         return member;
     }
 
     public Member validateMemberInfo(Member member) {
         try {
-            if (member.getMemberFirstName() == "" || member.getMemberLastName() == "" || member.getMemberEmail() == ""
-                    || member.getMemberAddress() == "" || member.getMemberPhoneNr() == "" || member.getMemberAge() == "") {
+            if (member.getMemberFirstName() == "" || member.getMemberLastName() == "" || member.getMemberAddress() == "" || member.getMemberPhoneNr() == "" || member.getMemberAge() == "") {
                 memberRepository.deleteById(member.getMemberId());
             }
         } catch (Exception e) {

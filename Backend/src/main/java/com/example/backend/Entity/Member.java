@@ -19,18 +19,15 @@ public class Member {
     @NotNull
     private User user;
 
-    @NotNull
     private String memberFirstName;
-    @NotNull
+
     private String memberLastName;
-    @NotNull
-    private String memberEmail;
-    @NotNull
+
     private String memberPhoneNr;
-    @NotNull
+
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-dd-MM")
     private String memberAge;
-    @NotNull
+
     private String memberAddress;
 
 
@@ -65,14 +62,6 @@ public class Member {
 
     public void setMemberLastName(String lastName) {
         this.memberLastName = lastName;
-    }
-
-    public String getMemberEmail() {
-        return memberEmail;
-    }
-
-    public void setMemberEmail(String email) {
-        this.memberEmail = email;
     }
 
     public String getMemberPhoneNr() {
