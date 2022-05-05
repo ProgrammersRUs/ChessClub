@@ -1,12 +1,10 @@
 package com.example.backend.Entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.sun.istack.NotNull;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Member {
@@ -14,6 +12,13 @@ public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int memberId;
+
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    @JsonBackReference
+    @NotNull
+    private User user;
+
     @NotNull
     private String memberFirstName;
     @NotNull
@@ -22,10 +27,12 @@ public class Member {
     private String memberEmail;
     @NotNull
     private String memberPhoneNr;
-    @NotNull @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-dd-MM")
+    @NotNull
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-dd-MM")
     private String memberAge;
     @NotNull
     private String memberAddress;
+
 
     public int getMemberId() {
         return memberId;
@@ -34,6 +41,15 @@ public class Member {
     public void setMemberId(int memberId) {
         this.memberId = memberId;
     }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
 
     public String getMemberFirstName() {
         return memberFirstName;
