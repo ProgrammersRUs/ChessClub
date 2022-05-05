@@ -29,9 +29,10 @@ public class MemberController {
     //CREATE
     @PostMapping("/createMember")
     @ResponseStatus(HttpStatus.CREATED)
-    public Member postMember(@RequestBody Member member, @RequestBody User user) {
-        userService.saveUser(user);
-        return memberService.saveMember(member);
+    public Member postMember(@RequestBody MemberUserWrapper memberUserWrapper) {
+        //memberUserWrapper.getMember().setUser(userService.saveUser(memberUserWrapper.getUser()));
+        userService.saveUser(memberUserWrapper.getUser());
+        return memberService.saveMember(memberUserWrapper.getMember());
     }
 
     //READ

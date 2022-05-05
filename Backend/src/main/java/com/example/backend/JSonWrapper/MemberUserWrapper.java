@@ -4,8 +4,8 @@ import com.example.backend.Entity.Member;
 import com.example.backend.Entity.User;
 
 public class MemberUserWrapper {
-    private Member member;
     private User user;
+    private Member member;
 
     public Member getMember() {
         return member;
