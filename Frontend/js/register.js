@@ -38,31 +38,30 @@ async function postFormDataAsJson(url, formData) {
 
     const plainFormData = Object.fromEntries(formData.entries());
     const formDataJsonString = JSON.stringify(plainFormData);
+    let wrapper = {
+        user:{
+            userPassword: plainFormData.userPassword,
+            userEmail: plainFormData.userEmail
 
+        },
+        member:{
+            memberFirstName: plainFormData.memberFirstName,
+            memberLastName: plainFormData.memberFirstName,
+            memberPhoneNr: plainFormData.memberPhoneNr,
+            memberAddress: plainFormData.memberAdress,
+            memberAge: plainFormData.memberAge
+        }
+
+
+    }
     const fetchOptions = {
         method: "POST",
         headers: {"Content-Type": "application/json"},
-        body: {
-            user:{
-                password: plainFormData.mail,
-                email: plainFormData.userEmail
+        body: JSON.stringify(wrapper)
+    }
+    ;
 
-            },
-            member:{
-                firstName: plainFormData.memberFirstName,
-                lastName: plainFormData.memberFirstName,
-                phoneNr: plainFormData.memberPhoneNr,
-                address: plainFormData.memberAdress,
-                age: plainFormData.memberAge
-
-
-            }
-
-
-        }
-    };
-
-    const response = await fetch(url, fetchOptions);
+    const response = await fetch(url,fetchOptions );
     if (!response) {
         const errorMessage = await response.text();
         console.log(errorMessage)
