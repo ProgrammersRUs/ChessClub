@@ -4,7 +4,7 @@ const footerTemplate = (state) => `
 <div class="container">
 <div class="row">
     <div class="col-lg-6 order-last order-lg-first">
-        <p class="float-right"><a href="/#">Tilbage til toppen</a></p>
+        <p class="float-right"><a href="#">Tilbage til toppen</a></p>
         <p>© ${state.year} ${state.name}· <a href="/privatliv.html">Privacy</a> · <a
             href="/legal.html">Terms</a></p>
     </div>
