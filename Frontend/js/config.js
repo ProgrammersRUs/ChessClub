@@ -26,6 +26,11 @@ const config = {
                 name: 'Sponserer',
                 href: '../sponser.html'
             }
+            ,
+            {
+                name: 'Medlems Oversigt',
+                href: '../memberoverview.html'
+            }
         ]
     },
     locations: [
