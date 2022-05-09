@@ -20,4 +20,7 @@ public class UserService {
         return userRepository.findById(id).get();
     }
 
+  public User validateLogin(String email, String password) {
+        return userRepository.findByUserEmailAndUserPassword(email, password);
+  }
 }
