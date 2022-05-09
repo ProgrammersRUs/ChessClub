@@ -42,5 +42,12 @@ const config = {
             name: "Faxe Skakklub",
             address: 'Præstøvej 2A, 4640 Faxe'
         }
-    ]
+    ],
+    endpoints:{
+        member:{
+            root: 'http://localhost:8080/',
+            getAll: 'member/all-members'
+        }
+
+    }
 }

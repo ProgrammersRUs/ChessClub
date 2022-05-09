@@ -7,7 +7,7 @@ const navbar = new ElementObject('navbar');
 navbar.addComponent(new NavbarComponent());
 
 const memberOverview = new ElementObject('overview');
-memberOverview.addComponent(MemberOverviewComponent);
+memberOverview.addComponent(new MemberOverviewComponent(await fetch(config.endpoints.member.root+config.endpoints.member.getAll).then(response => response.json())));
 
 const footer = new ElementObject('footer');
 footer.addComponent(new FooterComponent());

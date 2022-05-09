@@ -1,12 +1,13 @@
 import Component from '../lib/Component.js'
 
 class MemberOverviewComponent extends Component {
-    async constructor() {
+    member = 'http://localhost:8080/member/all-members';
+    constructor(members) {
         let state = {
-            members: await fetchMember()
+            members: members
         }
         super("memberOverview", state, (state) => `
-<div class="container">
+<div class="container" style="min-height: 100vh">
     <div class="row">
         <div class="col-md-12">
             <div class="card">
