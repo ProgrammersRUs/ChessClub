@@ -19,18 +19,18 @@ public class LoginController {
   @Autowired
   UserService userService;
 
-    @RequestMapping(value = "login", method = RequestMethod.POST)
-    public User login(
-        @RequestParam("email") String email,
-        @RequestParam("password") String password,
-        HttpSession session,
-        ModelMap modelMap) {
-      if(email.equalsIgnoreCase("email")) {
-        session.setAttribute("email", email);
+    @GetMapping("/login")
+    public String login(@RequestParam("email") String email, @RequestParam("password") String password, WebRequest webRequest) {
+      System.out.println("vi er i login");
+      String userEmail = webRequest.getParameter(email);
+      String userPassword = webRequest.getParameter(password);
+      User user = userService.validateLogin(userEmail, userPassword);
+      System.out.println(user + " user test her");
+      if(user != null) {
         System.out.println("Johnny has logged in 8D");
-        return userService.validateLogin(email, password);
+        return "index";
       } else {
-        modelMap.put("error", "Invalid Account");
+        System.out.println("error, Invalid Account");
         return null; //exception?
       }
     }
