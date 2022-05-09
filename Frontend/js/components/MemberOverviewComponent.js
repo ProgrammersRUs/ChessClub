@@ -1,6 +1,11 @@
 import Component from '../lib/Component.js'
 
-const memberOverviewTemplate = (state) => `
+class MemberOverviewComponent extends Component {
+    async constructor() {
+        let state = {
+            members: await fetchMember()
+        }
+        super("memberOverview", state, (state) => `
 <div class="container">
     <div class="row">
         <div class="col-md-12">
@@ -20,7 +25,7 @@ const memberOverviewTemplate = (state) => `
                             <th scope="col" class="border-0 text-uppercase font-medium">Adresse</th>
                         </thead>
                         <tbody>
-                       ${renderMember(state.members)}
+                            ${this.renderMember(state.members)}
                         </tbody>
                     </table>
                 </div>
@@ -28,10 +33,12 @@ const memberOverviewTemplate = (state) => `
         </div>
     </div>
 </div>
-`;
+`);
 
-function renderMember(members) {
-    return members.map(member => `<tr>
+    }
+
+    renderMember(members) {
+        return members.map(member => `<tr>
                             <td class="pl-4">${member.memberId}</td>
                             <td>
                                 <h5 class="">${member.memberFirstName} ${member.memberLastName}</h5>
@@ -59,8 +66,8 @@ function renderMember(members) {
                                 <button type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i class="fa fa-edit"></i> </button>
                             </td>
                         </tr>`).join('');
-}
+    }
 
-export const MemberOverviewComponent = new Component('memberoverview', {members: await fetchMember()}, memberOverviewTemplate);
+}
 
 export default MemberOverviewComponent;
