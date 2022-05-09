@@ -34,25 +34,34 @@ async function handleFormSubmit(event) {
     }
 }
 
-function validateMemberData(data) {
-    if (data.get("firstName") === "" || data.get('lastName') === "") {
-        return null
-    } else return data
-
-}
-
 async function postFormDataAsJson(url, formData) {
 
     const plainFormData = Object.fromEntries(formData.entries());
     const formDataJsonString = JSON.stringify(plainFormData);
+    let wrapper = {
+        user:{
+            userPassword: plainFormData.userPassword,
+            userEmail: plainFormData.userEmail
 
+        },
+        member:{
+            memberFirstName: plainFormData.memberFirstName,
+            memberLastName: plainFormData.memberFirstName,
+            memberPhoneNr: plainFormData.memberPhoneNr,
+            memberAddress: plainFormData.memberAdress,
+            memberAge: plainFormData.memberAge
+        }
+
+
+    }
     const fetchOptions = {
         method: "POST",
         headers: {"Content-Type": "application/json"},
-        body: formDataJsonString
-    };
+        body: JSON.stringify(wrapper)
+    }
+    ;
 
-    const response = await fetch(url, fetchOptions);
+    const response = await fetch(url,fetchOptions );
     if (!response) {
         const errorMessage = await response.text();
         console.log(errorMessage)
