@@ -5,19 +5,24 @@ import com.example.backend.Repository.MemberRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.TestConfiguration;
+import org.springframework.context.annotation.Import;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@RunWith(SpringRunner.class)
 @DataJpaTest
+@Import(MemberService.class)
 class MemberServiceTest {
 
     @Autowired
-    MemberRepository memberRepository;
+    MemberService memberRepository;
 
     @BeforeEach
     void beforeEach(){
@@ -30,9 +35,9 @@ class MemberServiceTest {
 
         Member member = new Member();
 
-        memberRepository.save(member);
+        memberRepository.saveMember(member);
 
-        Member savedMember = memberRepository.getById(1);
+        Member savedMember = memberRepository.findById(2).get();
 
         System.out.println(savedMember + " " + member);
 
@@ -43,9 +48,9 @@ class MemberServiceTest {
     void getMemberById() {
         Member testUser = new Member();
 
-        memberRepository.save(testUser);
+        memberRepository.saveMember(testUser);
 
-        Member foundID = memberRepository.getById(testUser.getMemberId());
+        Member foundID = memberRepository.getMemberById(testUser.getMemberId());
 
         assertEquals(foundID.getMemberId(),testUser.getMemberId());
     }
