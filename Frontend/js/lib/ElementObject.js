@@ -1,3 +1,5 @@
+import TwoColumnComponent from "../components/TwoColumnComponent.js";
+
 export class ElementObject{
     constructor(selector) {
         this.element = document.querySelector(`#${selector}`);
@@ -14,6 +16,7 @@ export class ElementObject{
             let mergedViews = '';
             Object.keys(this.components).forEach(key => {
                 mergedViews += this.components[key].view();
+
             });
             this.element.innerHTML = mergedViews;
         }

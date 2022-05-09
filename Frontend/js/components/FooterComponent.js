@@ -1,6 +1,14 @@
 import Component from "../lib/Component.js";
 
-const footerTemplate = (state) => `
+
+class FooterComponent extends Component {
+    constructor() {
+        let state = {
+            name: config.club.name,
+            year: config.club.copyrightYear,
+            location: config.locations
+        }
+        super("footer", state, (state) => `
 <div class="container">
 <div class="row">
     <div class="col-lg-6 order-last order-lg-first">
@@ -26,13 +34,9 @@ const footerTemplate = (state) => `
     </div>
 </div>
 </div>
-`;
+`);
 
-const FooterComponent = new Component('footer', {
-    name: config.club.name,
-    year: config.club.copyrightYear,
-    location: config.locations
-}, footerTemplate)
-
+    }
+}
 
 export default FooterComponent;
