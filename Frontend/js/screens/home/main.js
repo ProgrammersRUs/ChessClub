@@ -6,7 +6,7 @@ import TextComponent from "../../components/TextComponent.js";
 import ImageComponent from "../../components/ImageComponent.js";
 
 const navbar = new ElementObject('navbar');
-navbar.addComponent(NavbarComponent);
+navbar.addComponent(new NavbarComponent());
 
 const body = new ElementObject('test');
 
