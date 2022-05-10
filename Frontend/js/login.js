@@ -1,4 +1,4 @@
-const user = 'http://localhost:8081/login';
+const user = 'http://localhost:8080/login';
 
 document.addEventListener('DOMContentLoaded', createFormEventListener)
 
@@ -37,14 +37,20 @@ async function handleFormSubmit(event) { //AUGUST OG SILKE VIL GERNE HAVE DEN FO
 async function postUserValidationAsJson(url, formData) {
     const plainFormData = Object.fromEntries(formData.entries());
 
-    let body = {
-        user:{
+    let user = {
             userEmail: plainFormData.userEmail,
             userPassword: plainFormData.userPassword
-        }
     }
 
-    const response = await fetch(url);
+    let options = {
+        method: 'GET',
+        headers: {"Content-Type": "application/json"},
+        mode: 'no-cors',
+        body: JSON.stringify(user)
+
+    }
+
+    const response = await fetch(url, options);
     if (!response) {
         const errorMessage = await response.text();
         console.log(errorMessage)

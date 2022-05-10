@@ -3,29 +3,25 @@ package com.example.backend.Controller;
 import com.example.backend.Entity.User;
 import com.example.backend.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.request.WebRequest;
 
 
-@Controller
+@RestController
 @CrossOrigin
-
+@RequestMapping("")
 public class LoginController {
 
   @Autowired
   UserService userService;
 
     @GetMapping("/login")
-    public String login(@RequestParam("email") String email, @RequestParam("password") String password, WebRequest webRequest) {
+    public User login(@RequestBody User user) {
       System.out.println("vi er i login");
-      String userEmail = webRequest.getParameter(email);
-      String userPassword = webRequest.getParameter(password);
-      User user = userService.validateLogin(userEmail, userPassword);
+      User verifiedUser = userService.validateLogin(user.getUserEmail(), user.getUserPassword());
       System.out.println(user + " user test her");
       if(user != null) {
         System.out.println("Johnny has logged in 8D");
-        return "index";
+        return verifiedUser;
       } else {
         System.out.println("error, Invalid Account");
         return null; //exception?
