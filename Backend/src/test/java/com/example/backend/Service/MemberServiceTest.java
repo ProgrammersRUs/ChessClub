@@ -28,6 +28,7 @@ class MemberServiceTest {
     @Test
     void saveMember() {
 
+
         Member member = new Member();
 
         memberService.saveMember(member);
