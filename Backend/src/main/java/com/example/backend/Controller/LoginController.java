@@ -4,28 +4,36 @@ import com.example.backend.Entity.User;
 import com.example.backend.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.WebRequest;
 
 
 @RestController
 @CrossOrigin
-@RequestMapping("")
+@RequestMapping("/login")
 public class LoginController {
 
   @Autowired
   UserService userService;
 
-    @GetMapping("/login")
-    public User login(@RequestBody User user) {
-      System.out.println("vi er i login");
-      User verifiedUser = userService.validateLogin(user.getUserEmail(), user.getUserPassword());
-      System.out.println(user + " user test her");
-      if(user != null) {
-        System.out.println("Johnny has logged in 8D");
-        return verifiedUser;
-      } else {
-        System.out.println("error, Invalid Account");
-        return null; //exception?
+    @GetMapping("/login/{email}+{password}")
+    public User login(@PathVariable String email, @PathVariable String password) {
+      if(email !=null){
+        User verifiedUser = userService.validateLogin(email,password);
+        System.out.println(verifiedUser + " user test her");
+        if(verifiedUser != null) {
+          System.out.println("Johnny has logged in 8D");
+          return verifiedUser;
+        } else {
+          System.out.println("error, Invalid Account");
+          return null; //exception?
+        }
       }
+      return null;
+    }
+
+    @GetMapping("/get1user")
+  public User get1User(){
+      return userService.findUser(1);
     }
 
     /*
