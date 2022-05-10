@@ -24,7 +24,7 @@ class NextEventComponent extends Component{
 
             </div>
             <div class="col-4">
-               <picture class="lateral-picture d-none d-sm-block mw-100 position-relative overflow-hidden w-auto" style=" max-height: 240px;">
+               <picture class="d-none d-sm-block mw-100 position-relative overflow-hidden w-auto" style="max-height: 240px;">
                   <img style="max-height: 100%; max-width: 100%;" src="https://via.placeholder.com/400x400/FFB6C1/000000" alt="https://via.placeholder.com/400x400/FFB6C1/000000">
                </picture>
             </div>
