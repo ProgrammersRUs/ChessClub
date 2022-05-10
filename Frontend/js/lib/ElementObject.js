@@ -15,6 +15,7 @@ export class ElementObject{
         if(this.components) {
             let mergedViews = '';
             Object.keys(this.components).forEach(key => {
+                console.log(this.components[key]);
                 mergedViews += this.components[key].view();
 
             });
