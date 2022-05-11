@@ -53,7 +53,8 @@ const config = {
         cms: {
             root: 'http://localhost:8089/',
             subPoint: {
-                allNews: 'news/all-news'
+                allNews: 'news/all-news',
+                allSponsers: 'sponsor/get-all'
             }
 
         }

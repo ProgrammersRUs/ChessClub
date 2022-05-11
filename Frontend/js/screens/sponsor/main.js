@@ -19,7 +19,7 @@ let sponsors = [
     }
 ]
 
-let sponsorC = new SponsorComponent(sponsors);
+let sponsorC = new SponsorComponent(await fetch(config.endpoints.cms.root + config.endpoints.cms.subPoint.allSponsers).then(response => response.json()));
 
 const body = new ElementObject('body');
 body.addComponent(sponsorC)
