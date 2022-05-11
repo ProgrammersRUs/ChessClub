@@ -7,10 +7,10 @@ class TwoColumnComponent extends Component{
             right: component2.view(),
         }
         super(name, state, (state) => `
-        <section class="about mb-2">
+        <section class="about mb-1 mt-1">
              <div class="container">
-                 <div class="row">
-                      <div class="col-lg-6"> <div>${state.left}</div>
+                 <div class="row d-block d-md-flex">
+                      <div class="col-lg-6 "> ${state.left}
                   </div> 
                        <div class="col-lg-6 pt-4 pt-lg-0"><div>${state.right}</div>
                   </div>
