@@ -1,7 +1,13 @@
 import Component from '../lib/Component.js'
 
-const memberOverviewTemplate = (state) => `
-<div class="container">
+class MemberOverviewComponent extends Component {
+    member = 'http://localhost:8080/member/all-members';
+    constructor(members) {
+        let state = {
+            members: members
+        }
+        super("memberOverview", state, (state) => `
+<div class="container" style="min-height: 100vh">
     <div class="row">
         <div class="col-md-12">
             <div class="card">
@@ -20,7 +26,7 @@ const memberOverviewTemplate = (state) => `
                             <th scope="col" class="border-0 text-uppercase font-medium">Adresse</th>
                         </thead>
                         <tbody>
-                       ${renderMember(state.members)}
+                            ${this.renderMember(state.members)}
                         </tbody>
                     </table>
                 </div>
@@ -28,10 +34,12 @@ const memberOverviewTemplate = (state) => `
         </div>
     </div>
 </div>
-`;
+`);
 
-function renderMember(members) {
-    return members.map(member => `<tr>
+    }
+
+    renderMember(members) {
+        return members.map(member => `<tr>
                             <td class="pl-4">${member.memberId}</td>
                             <td>
                                 <h5 class="">${member.memberFirstName} ${member.memberLastName}</h5>
@@ -59,8 +67,8 @@ function renderMember(members) {
                                 <button type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i class="fa fa-edit"></i> </button>
                             </td>
                         </tr>`).join('');
-}
+    }
 
-export const MemberOverviewComponent = new Component('memberoverview', {members: await fetchMember()}, memberOverviewTemplate);
+}
 
 export default MemberOverviewComponent;

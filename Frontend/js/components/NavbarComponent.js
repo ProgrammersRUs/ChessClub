@@ -1,6 +1,13 @@
 import Component from '../lib/Component.js'
 
-const navbarTemplate = (state) => `
+class NavbarComponent extends Component{
+    constructor() {
+        let state = {
+            name: config.club.name,
+            logoSrc: config.club.logoSrc,
+            links: config.navbarData.navItems
+        }
+        super("navbar", state, (state) => `
 <div class="navbar sticky-top navbar-expand-md navbar-dark bg-primary">
     <div class="container-fluid">
         <a class="navbar-brand" href="/">
@@ -14,28 +21,24 @@ const navbarTemplate = (state) => `
         </button>
         <div class="collapse navbar-collapse" id="navbarContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-2">
-                ${renderLinks(state.links)}
+                ${this.renderLinks(state.links)}
             </ul>
         </div>
     </div>
 </div>
-`;
+`);
+    }
 
-function renderLinks(links) {
-    return links.map(link =>
-        `
+    renderLinks(links) {
+        return links.map(link =>
+            `
                     <li class="nav-item">
                         <a class="nav-link" href="${link.href}">${link.name}</a>
                     </li>
                 `
-    ).join('');
+        ).join('');
 
+    }
 }
-
-export const NavbarComponent = new Component('navbar', {
-    name: config.club.name,
-    logoSrc: config.club.logoSrc,
-    links: config.navbarData.navItems
-}, navbarTemplate);
 
 export default NavbarComponent;

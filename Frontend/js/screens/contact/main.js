@@ -3,10 +3,10 @@ import NavbarComponent from '../../components/NavbarComponent.js';
 import FooterComponent from "../../components/FooterComponent.js";
 
 const navbar = new ElementObject('navbar');
-navbar.addComponent(NavbarComponent);
+navbar.addComponent(new NavbarComponent());
 
 const footer = new ElementObject('footer');
-footer.addComponent(FooterComponent);
+footer.addComponent(new FooterComponent());
 
 navbar.updateDOM();
 footer.updateDOM();
