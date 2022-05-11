@@ -1,3 +1,9 @@
 .myWrapper{
     height: 100vh; !important;
 }
+
+@media (max-width: 767.98px) {
+    .mx-w-1003 {
+        max-width: 100% !important;
+    }
+}
