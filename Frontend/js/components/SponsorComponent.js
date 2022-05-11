@@ -6,7 +6,6 @@ import TwoColumnComponent from "./TwoColumnComponent.js";
 
 class SponsorComponent extends Component{
     constructor(sponsors) {
-        console.log(sponsors)
         super('sponsors', sponsors, (state) =>
             `
             <div class="container min-vh-100">
