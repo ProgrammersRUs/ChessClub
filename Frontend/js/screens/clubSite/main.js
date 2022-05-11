@@ -1,10 +1,10 @@
 import ElementObject from "../../lib/ElementObject.js";
 import NavbarComponent from "../../components/NavbarComponent.js";
 import FooterComponent from "../../components/FooterComponent.js";
-import GoogleCalanderComponent from "../../components/GoogleCalanderComponent.js";
+import GoogleCalenderComponent from "../../components/GoogleCalanderComponent.js";
 import TwoColumnComponent from "../../components/TwoColumnComponent.js";
-import NextEventComponent from "../../components/NextEventComponent.js";
-import EventGridComponent from "../../components/EventGridComponent.js";
+import ClubSiteComponent from "../../components/ClubSiteComponent.js";
+
 
 
 const navbar = new ElementObject('navbar');
@@ -13,27 +13,7 @@ const body = new ElementObject('body');
 navbar.addComponent(new NavbarComponent());
 footer.addComponent(new FooterComponent());
 
-/*
 const ChessWebAPI = "https://api.chess.com/pub/club/skak-faxe-kommune"
-
-function fetchChessApi() {
-    return fetch(ChessWebAPI).then(response => response.json());
-}
-
-async function displayClubName(data){
-    const clubName = await data
-    const clubnamediv = document.getElementById('club-name')
-    const club = clubName.name
-    clubnamediv.innerText = club
-    console.log(club)
-}
-
-displayClubName(fetchChessApi())
-
- */
-
-const ChessWebAPI = "https://api.chess.com/pub/club/skak-faxe-kommune"
-
 
 function fetchChessApi() {
     return fetch(ChessWebAPI).then(response => response.json());
@@ -45,7 +25,7 @@ const data = await fetchChessApi()
 let test = {
     title: data.name,
     location: config.locations[0],
-    date: "30/02-1920",
+    members: data.members_count,
     description: "Fedt Event Fedt Event Fedt Event Fedt Event Fedt Event Fedt Event Fedt Event Fedt Event Fedt Event Fedt Event Fedt Event Fedt Event Fedt Event Fedt Event Fedt Event Fedt Event Fedt Event Fedt Event Fedt Event Fedt Event ",
     href: "/",
     imgSrc: ''
@@ -63,37 +43,13 @@ let test = {
             <p id="admins">admin</p>
  */
 
-let test2 = [
-    {
-        title: 'Lørdags Skak',
-        date: "20-02-3025",
-        body: 'Wow wow wowowowowowowow'
-    },
-    {
-        title: 'Torsdags Skak',
-        date: "20-02-4567",
-        body: 'Test test test'
-    },
-    {
-        title: 'Juleskak',
-        date: "20-02-9999",
-        body: 'Verner og Åge spiller'
-    },
-    {
-        title: 'Udlandsskak',
-        date: "20-02-2050",
-        body: 'Grand Master turnering for 2k ratede spillere'
-    }
-]
 
-let eventGrid = new EventGridComponent(test2);
-let nextComponent = new NextEventComponent(test);
-let calender = new GoogleCalanderComponent('400px', '100%');
+let nextComponent = new ClubSiteComponent(test);
+let calender = new GoogleCalenderComponent('400px', '100%');
 console.log(calender.view())
 let top = new TwoColumnComponent('top',nextComponent,calender);
 
 body.addComponent(top);
-body.addComponent(eventGrid);
 
 
 navbar.updateDOM();
