@@ -20,11 +20,11 @@ const config = {
             },
             {
                 name: 'Kontakt os',
-                href: '../html/contact2.html'
+                href: '../html/contact.html'
             },
             {
                 name: 'Sponserer',
-                href: '../html/sponser.html'
+                href: '../html/sponsor.html'
             }
             ,
             {

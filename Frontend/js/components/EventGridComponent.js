@@ -28,7 +28,7 @@ class EventGridComponent extends Component {
        <div class="col-md-3 mb-1 h-100" onclick="location.href='/'" style="cursor: pointer">
             <div class="border border-primary rounded h-100">
                 <div class="row d-none d-md-flex">
-                    <img class="img-fluid" src="${this.#selectimg(state.img)}" alt="Club Logo">                    
+                    <img class="img-fluid" src="${this.imageFallback(state.img)}" alt="Club Logo">                    
                 </div>
                 <div class="row">
                     <div class="col-6 text-start" >
@@ -50,13 +50,7 @@ class EventGridComponent extends Component {
         return events.map(event => eventTemplate(event)).join('')
     }
 
-    #selectimg(img) {
-        if (img == undefined) {
-            return config.club.logoSrc;
-        }
-        return img;
 
-    }
 }
 
 export default EventGridComponent
