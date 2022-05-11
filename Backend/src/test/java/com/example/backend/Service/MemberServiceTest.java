@@ -33,7 +33,7 @@ class MemberServiceTest {
 
         memberService.saveMember(member);
 
-        Member savedMember = memberService.findById(2).get();
+        Member savedMember = memberService.getMemberById(2);
 
         System.out.println(savedMember + " " + member);
 

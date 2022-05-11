@@ -10,10 +10,10 @@ function fetchNews() {
 
 function renderNews(news) {
     return news.map(news => `
-<div class="card col-sm m-1" style="height: 10rem;">
+<div class="card col-sm m-1" style="height: 10rem; background-color: rgba(217, 226, 249, 0.3);">
   <div class="card-body">
-    <h5 class="card-title">${news.localDate}</h5>
-    <h6 class="card-subtitle mb-2 text-muted">${news.newsHeader}</h6>
+    <h5 class="card-title">${news.newsHeader}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">Sidste opdateret: ${news.localDate}</h6>
     <p class="card-text">${news.newsBody}</p>
     <a href="#" class="card-link">Gå til nyhed</a>
   </div>
