@@ -6,19 +6,6 @@ import SponsorComponent from "../../components/SponsorComponent.js";
 const navbar = new ElementObject('navbar');
 navbar.addComponent(new NavbarComponent());
 
-let sponsors = [
-    {
-        name:'Din Tøjmand',
-        imgSrc: '',
-        description: "Siden 1886 har Din Tøjmand sponsoreret klubberne"
-    },
-    {
-        name:'Netto',
-        imgSrc: 'https://www.netto.dk/images/netto_logo-2019--no-circle.svg',
-        description: "På hjørnet af hovedgaden ligger Netto, altid med gode tilbud til folket"
-    }
-]
-
 let sponsorC = new SponsorComponent(await fetch(config.endpoints.cms.root + config.endpoints.cms.subPoint.allSponsers).then(response => response.json()));
 
 const body = new ElementObject('body');
