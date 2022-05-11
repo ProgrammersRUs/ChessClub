@@ -43,10 +43,19 @@ const config = {
             address: 'Præstøvej 2A, 4640 Faxe'
         }
     ],
-    endpoints:{
-        member:{
+    endpoints: {
+        member: {
             root: 'http://localhost:8080/',
-            getAll: 'member/all-members'
+            subPoint: {
+                getAll: 'member/all-members'
+            }
+        },
+        cms: {
+            root: 'http://localhost:8089/',
+            subPoint: {
+                allNews: 'news/all-news'
+            }
+
         }
 
     }

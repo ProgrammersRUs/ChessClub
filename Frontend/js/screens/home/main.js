@@ -4,6 +4,8 @@ import FooterComponent from "../../components/FooterComponent.js";
 import twoColumnComponent from "../../components/TwoColumnComponent.js";
 import TextComponent from "../../components/TextComponent.js";
 import ImageComponent from "../../components/ImageComponent.js";
+import NewsComponent from "../../components/NewsComponent.js";
+import FrontPageNewsWrapperComponent from "../../components/FrontPageNewsWrapperComponent.js";
 
 const navbar = new ElementObject('navbar');
 navbar.addComponent(new NavbarComponent());
@@ -17,12 +19,14 @@ let about = new TextComponent("about", "Om os", `<p
             incididunt ut labore et dolore magna aliqua.</p>`);
 
 let column1 = new twoColumnComponent('1', about, image1);
+let frontPageNews = new FrontPageNewsWrapperComponent(NewsComponent);
+body.addComponent(frontPageNews)
 body.addComponent(column1);
 
 const footer = new ElementObject('footer');
 footer.addComponent(new FooterComponent());
 
 
-body.updateDOM();
 navbar.updateDOM();
 footer.updateDOM();
+body.updateDOM();

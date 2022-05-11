@@ -1,7 +1,6 @@
 import Component from '../lib/Component.js'
 
 class MemberOverviewComponent extends Component {
-    member = 'http://localhost:8080/member/all-members';
     constructor(members) {
         let state = {
             members: members

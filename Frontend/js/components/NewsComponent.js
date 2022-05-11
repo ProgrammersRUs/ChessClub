@@ -5,7 +5,7 @@ ${renderNews(state.news)}
 `;
 
 function fetchNews() {
-    return fetch('http://localhost:8080/news/all-news').then(response => response.json());
+    return fetch(config.endpoints.cms.root+config.endpoints.cms.subPoint.allNews).then(response => response.json());
 }
 
 function renderNews(news) {
