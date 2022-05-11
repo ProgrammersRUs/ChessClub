@@ -1,5 +1,7 @@
+import ElementObject from "../../lib/ElementObject.js";
 import NavbarComponent from "../../components/NavbarComponent.js";
 import FooterComponent from "../../components/FooterComponent.js";
+import GoogleCalanderComponent from "../../components/GoogleCalanderComponent.js";
 import TwoColumnComponent from "../../components/TwoColumnComponent.js";
 import NextEventComponent from "../../components/NextEventComponent.js";
 import EventGridComponent from "../../components/EventGridComponent.js";
@@ -11,6 +13,26 @@ const body = new ElementObject('body');
 navbar.addComponent(new NavbarComponent());
 footer.addComponent(new FooterComponent());
 
+/*
+const ChessWebAPI = "https://api.chess.com/pub/club/skak-faxe-kommune"
+
+function fetchChessApi() {
+    return fetch(ChessWebAPI).then(response => response.json());
+}
+
+async function displayClubName(data){
+    const clubName = await data
+    const clubnamediv = document.getElementById('club-name')
+    const club = clubName.name
+    clubnamediv.innerText = club
+    console.log(club)
+}
+
+displayClubName(fetchChessApi())
+
+ */
+
+
 let test = {
     title: "Test",
     location: config.locations[0],
@@ -19,6 +41,18 @@ let test = {
     href: "/",
     imgSrc: ''
 }
+
+/*
+ <div class="col-md-6">
+            <h2 class="featurette-heading" id="club-name">test<span class="text-muted"></span></h2>
+            <br>
+            <p id="club-origin">since:</p>
+            <p id="member-amount">Antal medlemmer</p>
+            <p id="avg-rating">Average rating</p>
+            <p id="last-activity"> sidste aktivitet</p>
+            <p id="join">join</p>
+            <p id="admins">admin</p>
+ */
 
 let test2 = [
     {
