@@ -17,6 +17,7 @@ class TwoColumnComponent extends Component{
                     </div>
             </div>
         </section>
+        <hr class="featurette-divider">
         `)
     }
 }
