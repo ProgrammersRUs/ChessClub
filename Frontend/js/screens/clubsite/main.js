@@ -39,18 +39,11 @@ function fetchChessApi() {
     return fetch(ChessWebAPI).then(response => response.json());
 }
 
-async function displayClubName(){
-    const clubName = await fetchChessApi()
-    const clubnamediv = document.getElementById('club-name')
-    const club = clubName.name
-    alert(club)
-    return club;
 
-}
-
+const data = await fetchChessApi()
 
 let test = {
-    title: await displayClubName(),
+    title: data.name,
     location: config.locations[0],
     date: "30/02-1920",
     description: "Fedt Event Fedt Event Fedt Event Fedt Event Fedt Event Fedt Event Fedt Event Fedt Event Fedt Event Fedt Event Fedt Event Fedt Event Fedt Event Fedt Event Fedt Event Fedt Event Fedt Event Fedt Event Fedt Event Fedt Event ",
