@@ -8,28 +8,28 @@ const config = {
         navItems: [
             {
                 name: 'Events',
-                href: '../events.html'
+                href: '../html/events.html'
             },
             {
                 name: 'Om Klubben',
-                href: '../history.html'
+                href: '../html/history.html'
             },
             {
                 name: 'Medlemskab',
-                href: '../medlemskab.html'
+                href: '../html/medlemskab.html'
             },
             {
                 name: 'Kontakt os',
-                href: '../contact2.html'
+                href: '../html/contact2.html'
             },
             {
                 name: 'Sponserer',
-                href: '../sponser.html'
+                href: '../html/sponser.html'
             }
             ,
             {
                 name: 'Medlems Oversigt',
-                href: '../memberoverview.html'
+                href: '../html/memberoverview.html'
             }
         ]
     },
