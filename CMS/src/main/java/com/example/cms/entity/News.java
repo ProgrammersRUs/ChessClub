@@ -17,6 +17,7 @@ public class News {
     private String newsHeader;
     private String newsBody;
     private String imageUrl;
+    private String href;
     private boolean isDisplayed;
 
 
@@ -68,4 +69,11 @@ public class News {
         isDisplayed = displayed;
     }
 
+    public String getHref() {
+        return href;
+    }
+
+    public void setHref(String href) {
+        this.href = href;
+    }
 }
