@@ -20,11 +20,11 @@ const config = {
             },
             {
                 name: 'Kontakt os',
-                href: '../html/contact2.html'
+                href: '../html/contact.html'
             },
             {
                 name: 'Sponserer',
-                href: '../html/sponser.html'
+                href: '../html/sponsor.html'
             }
             ,
             {
@@ -53,7 +53,8 @@ const config = {
         cms: {
             root: 'http://localhost:8089/',
             subPoint: {
-                allNews: 'news/all-news'
+                allNews: 'news/all-news',
+                allSponsers: 'sponsor/get-all'
             }
 
         }
