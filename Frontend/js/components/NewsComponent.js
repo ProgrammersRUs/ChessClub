@@ -24,5 +24,6 @@ function renderNews(news) {
 
 const NewsComponent = new Component('news', {news: await fetchNews()}, newsTemplate)
 
+document.getElementById('flexSwitchCheckChecked').addEventListener("change", () => console.log(document.getElementById('flexSwitchCheckChecked').checked) )
 
 export default NewsComponent;
