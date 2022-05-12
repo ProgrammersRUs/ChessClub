@@ -13,7 +13,7 @@ newsForm.addComponent(new AddNewsComponent('derp'));
 const footer = new ElementObject('footer');
 footer.addComponent(FooterComponent);
 
-navbar.updateDOM();
 newsForm.updateDOM();
+navbar.updateDOM();
 footer.updateDOM();
 
