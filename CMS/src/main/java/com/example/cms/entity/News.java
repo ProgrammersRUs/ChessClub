@@ -5,7 +5,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.time.LocalDate;
-import java.util.Optional;
 
 @Entity
 public class News {
@@ -13,7 +12,7 @@ public class News {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int newsId;
-    private LocalDate localDate;
+    private LocalDate creationDate;
     private String newsHeader;
     private String newsBody;
     private String imageUrl;
@@ -25,12 +24,12 @@ public class News {
         return newsId;
     }
 
-    public LocalDate getLocalDate() {
-        return localDate;
+    public LocalDate getCreationDate() {
+        return creationDate;
     }
 
-    public void setLocalDate(LocalDate localDate) {
-        this.localDate = localDate;
+    public void setCreationDate(LocalDate localDate) {
+        this.creationDate = localDate;
     }
 
     public String getNewsHeader() {
