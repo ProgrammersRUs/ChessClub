@@ -36,18 +36,18 @@ class NewsTableComponent extends Component {
                                 <td>${news.creationDate}</td>
                                 <td class="accordion-item col-2">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                            data-bs-target="#collapse${count}" aria-expanded="true"
-                                            aria-controls="collapse${count}"> Se mere
+                                            data-bs-target="#collapse${news.newsId}" aria-expanded="true"
+                                            aria-controls="collapse${news.newsId}"> Se mere
                                     </button>
                                 </td>
                             </tr>
-                            <tr id="collapse${count}" class="accordion-collapse collapse"
+                            <tr id="collapse${news.newsId}" class="accordion-collapse collapse"
                                 aria-labelledby="headingOne1" data-bs-parent="#accordionExample">
                                 <td class="accordion-body col-4">
                                     ${news.newsBody}<
                                 </td>
                             </tr>
-                            ${count++}
+                
            
 `
         ).join('')
