@@ -1,9 +1,9 @@
 import ElementObject from "../../lib/ElementObject.js";
 import NavbarComponent from "../../components/NavbarComponent.js";
 import FooterComponent from "../../components/FooterComponent.js";
-import GoogleCalenderComponent from "../../components/GoogleCalanderComponent.js";
 import TwoColumnComponent from "../../components/TwoColumnComponent.js";
 import ClubSiteComponent from "../../components/ClubSiteComponent.js";
+import TournamentComponent from "../../components/TournamentComponent.js";
 
 
 
@@ -30,15 +30,19 @@ const data = await fetchChessApi()
 
 
 
-let test = {
-    silke : data.club_id,
+let clubBody = {
     title: data.name,
     origin: data.created,
     avgRating: data.average_daily_rating,
     membersCount: data.members_count,
-    href: data.join_request,
+    href: data.join_request
+}
+
+let tournamentBody = {
+    title: data.name,
     matches: matchData.in_progress
 }
+
 
 /*
  <div class="col-md-6">
@@ -53,10 +57,9 @@ let test = {
  */
 
 
-let nextComponent = new ClubSiteComponent(test);
-let calender = new GoogleCalenderComponent('400px', '100%');
-console.log(calender.view())
-let top = new TwoColumnComponent('top',nextComponent,calender);
+let clubComponent = new ClubSiteComponent(clubBody);
+let tournamentComponent = new TournamentComponent(tournamentBody);
+let top = new TwoColumnComponent('top',clubComponent, tournamentComponent);
 
 body.addComponent(top);
 
