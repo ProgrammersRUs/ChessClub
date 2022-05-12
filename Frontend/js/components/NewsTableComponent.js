@@ -9,6 +9,25 @@ class NewsTableComponent extends Component {
         super('news', state, (state) =>
             `
 
+            <div className="row mx-w-1003">
+                <div className="container-fluid">
+                    <table className="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Overskrift</th>
+                            <th scope="col">Dato oprettet:</th>
+                            <th scope="col"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+            ${this.renderNews(state.news)}
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
                          <div class="row mx-w-1003">
                     <div class="container-fluid">
                         <table class="table">
