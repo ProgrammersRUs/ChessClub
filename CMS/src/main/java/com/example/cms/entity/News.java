@@ -17,6 +17,8 @@ public class News {
     private String newsHeader;
     private String newsBody;
     private String imageUrl;
+    private boolean isDisplayed;
+
 
     public int getNewsId() {
         return newsId;
@@ -53,4 +55,17 @@ public class News {
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
+
+    public void setNewsId(int newsId) {
+        this.newsId = newsId;
+    }
+
+    public boolean isDisplayed() {
+        return isDisplayed;
+    }
+
+    public void setDisplayed(boolean displayed) {
+        isDisplayed = displayed;
+    }
+
 }
