@@ -3,6 +3,7 @@ import Component from "../lib/Component.js";
 class ClubSiteComponent extends Component {
     constructor(event) {
         let state = {
+            August: event.silke,
             title: event.title,
             origin: event.origin,
             membersCount: event.membersCount,
@@ -17,7 +18,7 @@ class ClubSiteComponent extends Component {
          <div class="row h-75">
             <div class="col-sm-8 h-100">
                  <strong>${state.title}</strong>
-  
+                <p>${state.August}</p>
                 <p>antal medlemmer: ${state.membersCount}</p>
                 <p>oprettet: ${state.origin}</p>
                 <p>Genemsnittelige Rating: ${state.avgRating}</p>
@@ -28,29 +29,28 @@ class ClubSiteComponent extends Component {
       
       
  <table class="table">
-   <thead class="thead-dark">
-    <tr>
-      <th scope="col">Se live</th>
-      <th scope="col">Hold 1</th>
-      <th scope="col">Spiller mod</th>
-      <th scope="col">Hold 2</th>
-    </tr>
-  </thead>
+    <thead class="thead-dark">
+        <tr>
+           <th scope="col">Se live</th>
+           <th scope="col">Hold 1</th>
+           <th scope="col">Spiller mod</th>
+           <th scope="col">Hold 2</th>
+         </tr>
+     </thead>
   <tbody>
     <tr>
       <th scope="row"><a href="https://www.chess.com/tournament/chess-championship-under-1500-1/${state.id}">test</a></th>
-      <td>${state.matches[0].name}</td>
-      <td>vs</td>
-      <td>${state.title}</td>
-   
-    </tr>
-    <tr>
-      <th scope="row"><a href="">test</a></th>
-      <td>${state.matches[1].name}</td>
-      <td>vs</td>
-      <td>${state.title}</td>
-      <!--Epoch time kan omregnes i javascript -->
-      <td>${state.matches[1].start_time}</td>
+        <td>${state.matches[0].name}</td>
+        <td>vs</td>
+        <td>${state.title}</td>
+      </tr>
+       <tr>
+        <th scope="row"><a href="">test</a></th>
+        <td>${state.matches[1].name}</td>
+        <td>vs</td>
+        <td>${state.title}</td>
+        <!--Epoch time kan omregnes i javascript -->
+        <td>${state.matches[1].start_time}</td>
     </tr>
     <tr>
       <th scope="row"><a href="">test</a></th>

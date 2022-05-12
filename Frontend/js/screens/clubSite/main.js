@@ -31,16 +31,13 @@ const data = await fetchChessApi()
 
 
 let test = {
+    silke : data.club_id,
     title: data.name,
     origin: data.created,
     avgRating: data.average_daily_rating,
     membersCount: data.members_count,
     href: data.join_request,
     matches: matchData.in_progress
-}
-
-let brackets = {
-
 }
 
 /*
