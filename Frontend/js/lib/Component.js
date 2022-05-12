@@ -8,6 +8,14 @@ export class Component{
         return this.template(this.state);
     }
 
+    imageFallback(img) {
+        if (img == undefined || img == '') {
+            return config.club.logoSrc;
+        }
+        return img;
+
+    }
+
 }
 
 export default Component;
