@@ -1,11 +1,13 @@
 import Component from "../lib/Component.js";
 
-const newsTemplate = (state) => `
+const newsTemplate = (state) => console.log(state)`
 ${renderNews(state.news)}
 `;
 
+console.log(fetchNews())
+
 function fetchNews() {
-    return fetch('http://localhost:8080/news/all-news').then(response => response.json());
+    return fetch('http://localhost:8081/news/all-news').then(response => response.json());
 }
 
 function renderNews(news) {

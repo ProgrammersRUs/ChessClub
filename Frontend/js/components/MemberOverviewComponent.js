@@ -57,7 +57,7 @@ class MemberOverviewComponent extends Component {
                                 <span class="text-muted">${member.memberAddress}</span><br>
                             </td>
                             <td>
-                                <select class="form-control category-select">
+                                <select class="form-control category-select" id="${member.memberId}">
                                     <option>User</option>
                                     <option>Admin</option>
                                 </select>

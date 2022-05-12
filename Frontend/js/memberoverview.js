@@ -5,6 +5,29 @@ function fetchMember() {
     return fetch(member).then(response => response.json());
 }
 
+const userStatus = document.getElementById("userStatus")
+
+function selectUserStatus() {
+    console.log(userStatus)
+    userStatus.addEventListener('select', postUserStatus(userStatus))
+}
+selectUserStatus()
+
+async function postUserStatus(userStatus) {
+    const plainStatusData = Object.fromEntries(userStatus.entries());
+
+    const url = 'http://localhost:8080/update/' + plainStatusData.id
+
+    const response = await fetch(url);
+    if (!response) {
+        const errorMessage = await response.text();
+        console.log(errorMessage)
+        throw new Error(errorMessage);
+    }
+    console.log(response)
+    return response;
+}
+
 addTableOverview(member)
     .catch(err => console.error(err));
 

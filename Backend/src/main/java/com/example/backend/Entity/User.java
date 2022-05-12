@@ -1,5 +1,7 @@
 package com.example.backend.Entity;
 
+import jdk.jfr.BooleanFlag;
+
 import javax.persistence.*;
 
 @Entity
@@ -9,6 +11,15 @@ public class User {
     private int id;
     private String userEmail;
     private String userPassword;
+
+    public boolean isAdminStatus() {
+        return adminStatus;
+    }
+
+    public void setAdminStatus(boolean adminStatus) {
+        this.adminStatus = adminStatus;
+    }
+    @BooleanFlag
     private boolean adminStatus;
 
     User(String userEmail, String userPassword){
