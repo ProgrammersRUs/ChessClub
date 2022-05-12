@@ -14,21 +14,33 @@ navbar.addComponent(new NavbarComponent());
 footer.addComponent(new FooterComponent());
 
 const ChessWebAPI = "https://api.chess.com/pub/club/skak-faxe-kommune"
+const Tournaments = "https://api.chess.com/pub/club/new-mexico-chess-players/matches"
 
 function fetchChessApi() {
     return fetch(ChessWebAPI).then(response => response.json());
 }
 
+function fetchMatches(){
+    return fetch(Tournaments).then(response => response.json());
+}
 
+const matchData = await fetchMatches()
 const data = await fetchChessApi()
+//Skal nok refaktoreres
+
+
 
 let test = {
     title: data.name,
-    location: config.locations[0],
-    members: data.members_count,
-    description: "Fedt Event Fedt Event Fedt Event Fedt Event Fedt Event Fedt Event Fedt Event Fedt Event Fedt Event Fedt Event Fedt Event Fedt Event Fedt Event Fedt Event Fedt Event Fedt Event Fedt Event Fedt Event Fedt Event Fedt Event ",
-    href: "/",
-    imgSrc: ''
+    origin: data.created,
+    avgRating: data.average_daily_rating,
+    membersCount: data.members_count,
+    href: data.join_request,
+    matches: matchData.in_progress
+}
+
+let brackets = {
+
 }
 
 /*

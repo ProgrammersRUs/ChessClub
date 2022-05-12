@@ -1,46 +1,69 @@
 import Component from "../lib/Component.js";
 
-class ClubSiteComponent extends Component{
+class ClubSiteComponent extends Component {
     constructor(event) {
         let state = {
             title: event.title,
-            location: event.location,
-            body: event.description,
+            origin: event.origin,
+            membersCount: event.membersCount,
+            avgRating: event.avgRating,
+            members: event.members,
             link: event.href,
-            img: event.imgSrc
+            matches: event.matches,
         }
         super('nextEvent', state, (state) =>
             `
       <div class="mb-2 border border-primary rounded h-100">
          <div class="row h-75">
             <div class="col-sm-8 h-100">
-          
-                  <strong>${state.title}</strong>
-               </p>
-               <p>${state.body}</p>
-
+                 <strong>${state.title}</strong>
+  
+                <p>antal medlemmer: ${state.membersCount}</p>
+                <p>oprettet: ${state.origin}</p>
+                <p>Genemsnittelige Rating: ${state.avgRating}</p>
+                <a href="${state.link}"><button type="button" class="btn btn-primary">Join vores online klub</button></a>
             </div>
-            <div class="col-4">
-               <picture class="d-none d-sm-block mw-100 position-relative overflow-hidden w-auto" style="max-height: 240px;">
-                  <img style="max-height: 100%; max-width: 100%;" src="https://via.placeholder.com/400x400/FFB6C1/000000" alt="https://via.placeholder.com/400x400/FFB6C1/000000">
-               </picture>
-            </div>
-         </div>
-                     <div class="row h-25">
-                <div class="col-md-8">
-                    <p>${state.location.name}</p>
-                    <p>${state.location.address}</p>                
-                </div>
-                <div class="col-md-4">
-                    <div class="w-100 h-100 btn"><a href="${state.link}" class=" btn-primary btn-sm">Læs mere</a>
-               </div>
-                </div>
-            </div>
+         </div>     
       </div>
-                        
+      
+      
+ <table class="table">
+   <thead class="thead-dark">
+    <tr>
+      <th scope="col">Se live</th>
+      <th scope="col">Hold 1</th>
+      <th scope="col">Spiller mod</th>
+      <th scope="col">Hold 2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row"><a href="https://www.chess.com/tournament/chess-championship-under-1500-1/${state.id}">test</a></th>
+      <td>${state.matches[0].name}</td>
+      <td>vs</td>
+      <td>${state.title}</td>
+   
+    </tr>
+    <tr>
+      <th scope="row"><a href="">test</a></th>
+      <td>${state.matches[1].name}</td>
+      <td>vs</td>
+      <td>${state.title}</td>
+      <!--Epoch time kan omregnes i javascript -->
+      <td>${state.matches[1].start_time}</td>
+    </tr>
+    <tr>
+      <th scope="row"><a href="">test</a></th>
+      <td>${state.matches[2].name}</td>
+      <td>vs</td>
+      <td>${state.title}</td>
+    </tr>
+  </tbody>
+</table>       
             `
         );
     }
 
 }
+
 export default ClubSiteComponent
