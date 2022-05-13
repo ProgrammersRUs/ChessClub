@@ -5,8 +5,31 @@ function fetchMember() {
     return fetch(member).then(response => response.json());
 }
 
-addTableOverview(member)
-    .catch(err => console.error(err));
+async function postUserStatus(user, userStatus) {
+    console.log(user, userStatus.value)
+    const url = 'http://localhost:8080/user/update-status'
+
+    let status = userStatus.value == 'Admin' ? true : false;
+    const options = {
+        method: 'PUT',
+        body: JSON.stringify({id: user, adminStatus: status}),
+        headers: {
+            'Content-type': 'application/json'
+        }
+    }
+
+    const response = await fetch(url, options);
+    if (!response) {
+        const errorMessage = await response.text();
+        console.log(errorMessage)
+        throw new Error(errorMessage);
+    }
+    console.log(response)
+    return response;
+}
+
+//addTableOverview(member)
+// .catch(err => console.error(err));
 
 async function addTableOverview() {
     const members = await fetchMember();

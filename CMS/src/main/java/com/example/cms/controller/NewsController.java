@@ -1,0 +1,50 @@
+package com.example.cms.controller;
+
+import com.example.cms.entity.News;
+import com.example.cms.service.NewsService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Optional;
+
+@RestController
+@CrossOrigin
+@RequestMapping("news")
+public class NewsController {
+
+    @Autowired
+    NewsService newsService;
+
+    @PostMapping("/new")
+    @ResponseStatus(HttpStatus.CREATED)
+    public News postNews(@RequestBody News news) {
+        return newsService.addNew(news);
+    }
+
+    @GetMapping("/{id}")
+    public News findById(@PathVariable int id) {
+        return newsService.getNewsById(id);
+    }
+
+    @GetMapping("/all-news")
+    public List<News> getAllNews() {
+        return newsService.getAllNews();
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<News> updateTask(@PathVariable int id, @RequestBody News task){
+        Optional<News> optTask = newsService.findByisOpt(id);
+        if (optTask.isPresent()){
+            newsService.addNew(task);
+            return  new ResponseEntity<>(task, HttpStatus.OK);
+        } else {
+            News newsNotFound = new News();
+            newsNotFound.setNewsHeader("No task with id: " + id);
+            return  new ResponseEntity<>(task, HttpStatus.NOT_FOUND);
+        }
+    }
+
+}

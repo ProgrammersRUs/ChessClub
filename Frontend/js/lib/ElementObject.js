@@ -3,20 +3,19 @@ import TwoColumnComponent from "../components/TwoColumnComponent.js";
 export class ElementObject{
     constructor(selector) {
         this.element = document.querySelector(`#${selector}`);
-        this.components = {}
+        this.components = []
         console.log("we got one" + selector);
     }
 
     addComponent(component){
-        this.components[component.name] = component;
+        this.components.push(component);
     }
 
     updateDOM(){
         if(this.components) {
             let mergedViews = '';
-            Object.keys(this.components).forEach(key => {
-                console.log(this.components[key]);
-                mergedViews += this.components[key].view();
+            this.components.forEach(component => {
+                mergedViews += component.view();
 
             });
             this.element.innerHTML = mergedViews;

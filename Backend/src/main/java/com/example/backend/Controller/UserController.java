@@ -6,7 +6,10 @@ import com.example.backend.JSonWrapper.MemberUserWrapper;
 import com.example.backend.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @RestController
 @CrossOrigin
@@ -23,7 +26,16 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public User findUserById(int id){
+    public User findUserById(@PathVariable int id){
         return userService.findUser(id);
+    }
+
+    @PutMapping("/update-status")
+    public User updateStatus(@RequestBody User user) {
+       User updateUser = userService.findUser(user.getId());
+       if (updateUser != null) {
+           updateUser = userService.saveUserStatus(updateUser, user.isAdminStatus());
+           return updateUser;
+       } return null;
     }
 }

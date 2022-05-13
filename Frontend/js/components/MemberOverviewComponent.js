@@ -1,7 +1,6 @@
 import Component from '../lib/Component.js'
 
 class MemberOverviewComponent extends Component {
-    member = 'http://localhost:8080/member/all-members';
     constructor(members) {
         let state = {
             members: members
@@ -57,7 +56,7 @@ class MemberOverviewComponent extends Component {
                                 <span class="text-muted">${member.memberAddress}</span><br>
                             </td>
                             <td>
-                                <select class="form-control category-select">
+                                <select class="form-control category-select" onchange="postUserStatus(${member.memberId}, this)">
                                     <option>User</option>
                                     <option>Admin</option>
                                 </select>

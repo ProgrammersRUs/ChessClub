@@ -7,7 +7,9 @@ const navbar = new ElementObject('navbar');
 navbar.addComponent(NavbarComponent);
 
 const news = new ElementObject('news');
-news.addComponent(NewsComponent);
+news.addComponent(new NewsComponent(await
+    fetch(config.endpoints.cms.root+config.endpoints.cms.subPoint.allNews).then(response => response.json()).then()));
+
 
 
 const footer = new ElementObject('footer');
