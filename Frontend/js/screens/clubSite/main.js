@@ -20,8 +20,15 @@ function fetchChessApi() {
     return fetch(ChessWebAPI).then(response => response.json());
 }
 
-function fetchMatches(){
-    return fetch(Tournaments).then(response => response.json());
+async function fetchMatches(){
+    const matches = await fetch(Tournaments).then(response => response.json());
+    matches.games.forEach(async game=>{
+        game.white= await fetch(game.white).then(response => response.json());
+        game.black= await fetch(game.black).then(response => response.json());
+
+    })
+    console.log(matches)
+    return matches
 }
 
 const matchData = await fetchMatches()
@@ -39,8 +46,7 @@ let clubBody = {
 }
 
 let tournamentBody = {
-    players: matchData.games,
-    username: matchData.players
+    players: matchData.games
 }
 
 

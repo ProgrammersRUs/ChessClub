@@ -1,11 +1,19 @@
 import Component from "../lib/Component.js";
 
+/*
+      let splitWhitePlayerURL = players[0].white.split("/").getLast [1];
+        let splitBlackPlayerURL = state.players[0].black.split("player/") [1];
+        console.log(splitBlackPlayerURL)
+
+ */
+
 class TournamentComponent extends Component {
     constructor(event) {
         let state = {
             players: event.players,
             username: event.username
         }
+
         super('nextEvent', state, (state) =>
             `
   
@@ -25,24 +33,23 @@ class TournamentComponent extends Component {
       </tr>
        <tr>
         <th scope="row"><a href="">test</a></th>
-        <td>${state.username[0].username}</td>
+        <td>${state.players[0].white).username}</td>
         <td>vs</td>
-        <td>${state.players[0].black}+"/"+${state.username.username}</td>
+        <td>${this.getUser(state.players[0].black)}</td>
         <!--Epoch time kan omregnes i javascript -->
         <!-- <td>${state.players[0].start_time}</td> -->
     </tr>
     <tr>
       <th scope="row"><a href="">test</a></th>
-      <td>${state.username[1].username}</td>
+      <td>${state.players[0].white}</td>
       <td>vs</td>
-      <td>${state.username[2].username}</td>
+      <td>${state.players[0].black}</td>
     </tr>
   </tbody>
 </table>
             `
         );
     }
-
 }
 
 export default TournamentComponent
