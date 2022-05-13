@@ -6,7 +6,7 @@ import NewsTableComponent from "../../components/NewsTableComponent.js";
 import TwoRowComponent from "../../components/TwoRowComponent.js";
 
 const navbar = new ElementObject('navbar');
-navbar.addComponent(NavbarComponent);
+navbar.addComponent(new NavbarComponent());
 
 const newsForm = new ElementObject('post-news');
 
@@ -20,7 +20,7 @@ let top = new TwoRowComponent('post-news',news1,news2);
 newsForm.addComponent(top)
 
 const footer = new ElementObject('footer');
-footer.addComponent(FooterComponent);
+footer.addComponent(new FooterComponent());
 
 newsForm.updateDOM();
 news1.addEventliseenter()
