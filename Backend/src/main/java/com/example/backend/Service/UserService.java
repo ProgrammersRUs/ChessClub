@@ -20,8 +20,8 @@ public class UserService {
         return userRepository.findById(id).get();
     }
 
-    public User saveUserStatus(User user) {
-        user.setAdminStatus(true);
+    public User saveUserStatus(User user, boolean status) {
+        user.setAdminStatus(status);
         userRepository.save(user);
         return user;
     }

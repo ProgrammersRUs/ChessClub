@@ -5,20 +5,20 @@ function fetchMember() {
     return fetch(member).then(response => response.json());
 }
 
-const userStatus = document.getElementById("userStatus")
+async function postUserStatus(user, userStatus) {
+    console.log(user, userStatus.value)
+    const url = 'http://localhost:8080/user/update-status'
 
-function selectUserStatus() {
-    console.log(userStatus)
-    userStatus.addEventListener('select', postUserStatus(userStatus))
-}
-selectUserStatus()
+    let status = userStatus.value == 'Admin' ? true : false;
+    const options = {
+        method: 'PUT',
+        body: JSON.stringify({id: user, adminStatus: status}),
+        headers: {
+            'Content-type': 'application/json'
+        }
+    }
 
-async function postUserStatus(userStatus) {
-    const plainStatusData = Object.fromEntries(userStatus.entries());
-
-    const url = 'http://localhost:8080/update/' + plainStatusData.id
-
-    const response = await fetch(url);
+    const response = await fetch(url, options);
     if (!response) {
         const errorMessage = await response.text();
         console.log(errorMessage)
@@ -28,8 +28,8 @@ async function postUserStatus(userStatus) {
     return response;
 }
 
-addTableOverview(member)
-    .catch(err => console.error(err));
+//addTableOverview(member)
+// .catch(err => console.error(err));
 
 async function addTableOverview() {
     const members = await fetchMember();

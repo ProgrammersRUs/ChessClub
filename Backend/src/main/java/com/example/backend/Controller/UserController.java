@@ -30,12 +30,12 @@ public class UserController {
         return userService.findUser(id);
     }
 
-    @PutMapping("/update/{id}")
-    public User updateStatus(@PathVariable int id) {
-       User user = userService.findUser(id);
-       if (user != null) {
-           user = userService.saveUserStatus(user);
-           return user;
+    @PutMapping("/update-status")
+    public User updateStatus(@RequestBody User user) {
+       User updateUser = userService.findUser(user.getId());
+       if (updateUser != null) {
+           updateUser = userService.saveUserStatus(updateUser, user.isAdminStatus());
+           return updateUser;
        } return null;
     }
 }
