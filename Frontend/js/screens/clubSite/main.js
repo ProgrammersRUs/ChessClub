@@ -14,7 +14,7 @@ navbar.addComponent(new NavbarComponent());
 footer.addComponent(new FooterComponent());
 
 const ChessWebAPI = "https://api.chess.com/pub/club/skak-faxe-kommune"
-const Tournaments = "https://api.chess.com/pub/club/new-mexico-chess-players/matches"
+const Tournaments = "https://api.chess.com/pub/tournament/testisdabest/1/1"
 
 function fetchChessApi() {
     return fetch(ChessWebAPI).then(response => response.json());
@@ -39,8 +39,8 @@ let clubBody = {
 }
 
 let tournamentBody = {
-    title: data.name,
-    matches: matchData.in_progress
+    players: matchData.games,
+    username: matchData.players
 }
 
 
