@@ -19,7 +19,8 @@ let about = new TextComponent("about", "Om os", `<p
             incididunt ut labore et dolore magna aliqua.</p>`);
 
 let column1 = new twoColumnComponent('1', about, image1);
-let frontPageNews = new FrontPageNewsWrapperComponent(NewsComponent);
+let frontPageNews = new FrontPageNewsWrapperComponent(new NewsComponent(await
+    fetch(config.endpoints.cms.root+config.endpoints.cms.subPoint.allNews).then(response => response.json())));
 body.addComponent(frontPageNews)
 body.addComponent(column1);
 

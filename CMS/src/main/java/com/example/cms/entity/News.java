@@ -1,10 +1,13 @@
 package com.example.cms.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.time.LocalDate;
+import java.util.Optional;
 
 @Entity
 public class News {
@@ -12,21 +15,24 @@ public class News {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int newsId;
-    private LocalDate localDate;
+    private LocalDate creationDate;
     private String newsHeader;
     private String newsBody;
     private String imageUrl;
+    private String href;
+
+
 
     public int getNewsId() {
         return newsId;
     }
 
-    public LocalDate getLocalDate() {
-        return localDate;
+    public LocalDate getCreationDate() {
+        return creationDate;
     }
 
     public void setLocalDate(LocalDate localDate) {
-        this.localDate = localDate;
+        this.creationDate = localDate;
     }
 
     public String getNewsHeader() {
@@ -51,5 +57,17 @@ public class News {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public void setNewsId(int newsId) {
+        this.newsId = newsId;
+    }
+
+    public String getHref() {
+        return href;
+    }
+
+    public void setHref(String href) {
+        this.href = href;
     }
 }

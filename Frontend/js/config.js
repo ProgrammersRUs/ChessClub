@@ -31,6 +31,11 @@ const config = {
                 name: 'Medlems Oversigt',
                 href: '../html/memberoverview.html'
             }
+            ,
+            {
+                name: 'Admin',
+                href: '../html/cms-page.html'
+            }
         ]
     },
     locations: [
