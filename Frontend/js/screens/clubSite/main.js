@@ -16,15 +16,16 @@ footer.addComponent(new FooterComponent());
 const ChessWebAPI = "https://api.chess.com/pub/club/skak-faxe-kommune"
 const Tournaments = "https://api.chess.com/pub/tournament/testisdabest/1/1"
 
-function fetchChessApi() {
-    return fetch(ChessWebAPI).then(response => response.json());
+async function fetchChessApi() {
+
+    return await fetch(ChessWebAPI).then(response => response.json());
 }
 
 async function fetchMatches(){
     const matches = await fetch(Tournaments).then(response => response.json());
     matches.games.forEach(async game=>{
-        game.white= await fetch(game.white).then(response => response.json());
         game.black= await fetch(game.black).then(response => response.json());
+        game.white= await fetch(game.white).then(response => response.json());
 
     })
     console.log(matches)
@@ -49,18 +50,6 @@ let tournamentBody = {
     players: matchData.games
 }
 
-
-/*
- <div class="col-md-6">
-            <h2 class="featurette-heading" id="club-name">test<span class="text-muted"></span></h2>
-            <br>
-            <p id="club-origin">since:</p>
-            <p id="member-amount">Antal medlemmer</p>
-            <p id="avg-rating">Average rating</p>
-            <p id="last-activity"> sidste aktivitet</p>
-            <p id="join">join</p>
-            <p id="admins">admin</p>
- */
 
 
 let clubComponent = new ClubSiteComponent(clubBody);

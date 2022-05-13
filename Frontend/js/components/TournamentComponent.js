@@ -33,9 +33,9 @@ class TournamentComponent extends Component {
       </tr>
        <tr>
         <th scope="row"><a href="">test</a></th>
-        <td>${state.players[0].white).username}</td>
+        <td>${state.players[0].white.username}</td>
         <td>vs</td>
-        <td>${this.getUser(state.players[0].black)}</td>
+        <td>${state.players[0].black.username}${console.log("we did it")}</td>
         <!--Epoch time kan omregnes i javascript -->
         <!-- <td>${state.players[0].start_time}</td> -->
     </tr>
