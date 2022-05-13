@@ -56,7 +56,7 @@ class MemberOverviewComponent extends Component {
                                 <span class="text-muted">${member.memberAddress}</span><br>
                             </td>
                             <td>
-                                <select class="form-control category-select">
+                                <select class="form-control category-select" onchange="postUserStatus(${member.memberId}, this)">
                                     <option>User</option>
                                     <option>Admin</option>
                                 </select>

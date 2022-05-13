@@ -10,8 +10,6 @@ class NewsComponent extends Component{
             this.renderNews(state.news));
     }
 
-
-
  renderNews(news) {
     return news.map(news => `
 <div class="card col-sm m-1" style="height: 10rem; background-color: rgba(217, 226, 249, 0.3);">

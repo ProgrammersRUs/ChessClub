@@ -1,5 +1,7 @@
 package com.example.backend.Entity;
 
+import jdk.jfr.BooleanFlag;
+
 import javax.persistence.*;
 
 @Entity
@@ -17,7 +19,6 @@ public class User {
     public void setAdminStatus(boolean adminStatus) {
         this.adminStatus = adminStatus;
     }
-
     private boolean adminStatus;
 
     User(String userEmail, String userPassword){

@@ -20,6 +20,12 @@ public class UserService {
         return userRepository.findById(id).get();
     }
 
+    public User saveUserStatus(User user, boolean status) {
+        user.setAdminStatus(status);
+        userRepository.save(user);
+        return user;
+    }
+
     public User validateLogin(String email, String password) {
         return userRepository.findByUserEmailAndUserPassword(email, password);
     }
