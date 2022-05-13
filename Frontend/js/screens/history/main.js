@@ -6,7 +6,7 @@ const navbar = new ElementObject('navbar');
 navbar.addComponent(new NavbarComponent());
 
 const footer = new ElementObject('footer');
-footer.addComponent(new NavbarComponent());
+footer.addComponent(new FooterComponent());
 
 navbar.updateDOM();
 footer.updateDOM();

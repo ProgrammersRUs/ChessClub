@@ -7,7 +7,7 @@ class ImageComponent extends Component {
             alt: altSrc
         }
         super(name, state, (state) => `
-            <img src="${state.src}" class="img-fluid"
+            <img src="${this.imageFallback(state.src)}" class="img-fluid"
                                        alt="${state.alt}">
 
 `);

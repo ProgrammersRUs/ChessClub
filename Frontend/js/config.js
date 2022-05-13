@@ -20,16 +20,21 @@ const config = {
             },
             {
                 name: 'Kontakt os',
-                href: '../html/contact2.html'
+                href: '../html/contact.html'
             },
             {
                 name: 'Sponserer',
-                href: '../html/sponser.html'
+                href: '../html/sponsor.html'
             }
             ,
             {
                 name: 'Medlems Oversigt',
                 href: '../html/memberoverview.html'
+            }
+            ,
+            {
+                name: 'Admin',
+                href: '../html/cms-page.html'
             }
         ]
     },
@@ -43,10 +48,20 @@ const config = {
             address: 'Præstøvej 2A, 4640 Faxe'
         }
     ],
-    endpoints:{
-        member:{
+    endpoints: {
+        member: {
             root: 'http://localhost:8080/',
-            getAll: 'member/all-members'
+            subPoint: {
+                getAll: 'member/all-members'
+            }
+        },
+        cms: {
+            root: 'http://localhost:8089/',
+            subPoint: {
+                allNews: 'news/all-news',
+                allSponsers: 'sponsor/get-all'
+            }
+
         }
 
     }

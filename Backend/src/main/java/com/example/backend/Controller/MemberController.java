@@ -50,7 +50,7 @@ public class MemberController {
     @PutMapping("/update/{id}")
     public ResponseEntity<Member> updateMember(@PathVariable int id, @RequestBody Member member) {
         Optional<Member> optionalMember = memberService.findById(id);
-        if (optionalMember.isPresent()) {
+        if(optionalMember.isPresent()) {
             memberService.saveMember(member);
             return new ResponseEntity<>(member, HttpStatus.OK);
         } else {

@@ -19,7 +19,6 @@ public class User {
     public void setAdminStatus(boolean adminStatus) {
         this.adminStatus = adminStatus;
     }
-    @BooleanFlag
     private boolean adminStatus;
 
     User(String userEmail, String userPassword){
