@@ -1,6 +1,27 @@
-const config = {
+const ChessWebAPI = "https://api.chess.com/pub/club/skak-faxe-kommune"
+
+
+function fetchChessApi() {
+    return fetch(ChessWebAPI).then(response => response.json());
+}
+
+async function displayClubName(){
+    const clubName = await fetchChessApi()
+    const clubnamediv = document.getElementById('club-name')
+    const club = clubName.name
+    clubnamediv.innerText = club
+    console.log(club)
+    return clubName;
+
+}
+
+displayClubName(fetchChessApi());
+
+
+/*
+const config = (displayClubName) => {
     club: {
-        name: 'Haslev og Faxe skakklubber',
+        name: 'Haslev og Faxe skakklub',
         logoSrc: '../img/Haslev%20og%20Faxe%20Skakklub%20-logos_black.png',
         copyrightYear: 2022
     },
@@ -20,21 +41,16 @@ const config = {
             },
             {
                 name: 'Kontakt os',
-                href: '../html/contact.html'
+                href: '../html/contact2.html'
             },
             {
                 name: 'Sponserer',
-                href: '../html/sponsor.html'
+                href: '../html/sponser.html'
             }
             ,
             {
                 name: 'Medlems Oversigt',
                 href: '../html/memberoverview.html'
-            }
-            ,
-            {
-                name: 'Admin',
-                href: '../html/cms-page.html'
             }
         ]
     },
@@ -48,21 +64,13 @@ const config = {
             address: 'Præstøvej 2A, 4640 Faxe'
         }
     ],
-    endpoints: {
-        member: {
+    endpoints:{
+        member:{
             root: 'http://localhost:8080/',
-            subPoint: {
-                getAll: 'member/all-members'
-            }
-        },
-        cms: {
-            root: 'http://localhost:8089/',
-            subPoint: {
-                allNews: 'news/all-news',
-                allSponsers: 'sponsor/get-all'
-            }
-
+            getAll: 'member/all-members'
         }
 
     }
 }
+
+ */
