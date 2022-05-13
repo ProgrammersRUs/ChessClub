@@ -7,10 +7,10 @@ class TwoRowComponent extends Component{
             bottom: component2.view(),
         }
         super(name, state, (state) => `
-        <section class="mb-1 mt-1">
-             <div class="container">
-                 <div class="row d-block d-md-flex">
-                      <div class=""> ${state.top}
+        <section class="mb-1 mt-1" >
+             <div class="container h-100">
+                 <div class="row d-block d-md-flex" style="height: 18rem">
+                      <div class="container-fluid"> ${state.top}
                       </div> 
                   </div>
                   <div class="row d-block d-md-flex">

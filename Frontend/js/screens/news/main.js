@@ -8,7 +8,7 @@ navbar.addComponent(NavbarComponent);
 
 const news = new ElementObject('news');
 news.addComponent(new NewsComponent(await
-    fetch(config.endpoints.cms.root+config.endpoints.cms.subPoint.allNews).then(response => response.json())));
+    fetch(config.endpoints.cms.root+config.endpoints.cms.subPoint.allNews).then(response => response.json()).then()));
 
 
 

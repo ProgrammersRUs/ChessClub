@@ -1,10 +1,13 @@
 package com.example.cms.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.time.LocalDate;
+import java.util.Optional;
 
 @Entity
 public class News {
@@ -28,7 +31,7 @@ public class News {
         return creationDate;
     }
 
-    public void setCreationDate(LocalDate localDate) {
+    public void setLocalDate(LocalDate localDate) {
         this.creationDate = localDate;
     }
 
@@ -59,7 +62,6 @@ public class News {
     public void setNewsId(int newsId) {
         this.newsId = newsId;
     }
-
 
     public String getHref() {
         return href;
