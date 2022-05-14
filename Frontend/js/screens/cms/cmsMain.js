@@ -27,14 +27,8 @@ cmsLayout.updateDOM();
 
 
 document.getElementById('news-link').addEventListener('click', async () => {
-        const newsForm = new ElementObject('cms-content');
-
         let news1 = new AddNewsComponent();
         await news1.refreshPage()
-
-        newsForm.addComponent(top)
-        newsForm.updateDOM();
-        news1.addEventliseenter()
     }
 )
 

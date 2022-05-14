@@ -81,15 +81,14 @@ class AddNewsComponent extends Component{
     async refreshPage(){
         const newsForm = new ElementObject('cms-content');
 
-        let news1 = new AddNewsComponent();
-        let news2 = new NewsTableComponent(await
+        let cmsBottom = new NewsTableComponent(await
             fetch(config.endpoints.cms.root + config.endpoints.cms.subPoint.allNews).then(response => response.json()));
-        document.getElementById('cms-content-header').innerText = news1.name;
+        document.getElementById('cms-content-header').innerText = this.name;
 
-        let top = new TwoRowComponent('what this name for', news1, news2);
-        newsForm.addComponent(top)
+        let cmsBody = new TwoRowComponent('what this name for', this, cmsBottom);
+        newsForm.addComponent(cmsBody)
         newsForm.updateDOM();
-        news1.addEventliseenter()
+        this.addEventliseenter()
     }
 }
 
