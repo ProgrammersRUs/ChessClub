@@ -1,4 +1,7 @@
 import Component from "../../lib/Component.js";
+import ElementObject from "../../lib/ElementObject.js";
+import NewsTableComponent from "./NewsTableComponent.js";
+import TwoRowComponent from "../TwoRowComponent.js";
 
 class AddNewsComponent extends Component{
 
@@ -43,6 +46,7 @@ class AddNewsComponent extends Component{
 
         button.addEventListener("click", async() => {
             await postNews(url)
+            await this.refreshPage()
         })
 
         async function postNews(url) {
@@ -72,6 +76,20 @@ class AddNewsComponent extends Component{
             return response;
 
         }
+    }
+
+    async refreshPage(){
+        const newsForm = new ElementObject('cms-content');
+
+        let news1 = new AddNewsComponent();
+        let news2 = new NewsTableComponent(await
+            fetch(config.endpoints.cms.root + config.endpoints.cms.subPoint.allNews).then(response => response.json()));
+        document.getElementById('cms-content-header').innerText = news1.name;
+
+        let top = new TwoRowComponent('what this name for', news1, news2);
+        newsForm.addComponent(top)
+        newsForm.updateDOM();
+        news1.addEventliseenter()
     }
 }
 

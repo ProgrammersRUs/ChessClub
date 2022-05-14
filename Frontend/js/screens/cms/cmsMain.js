@@ -30,11 +30,8 @@ document.getElementById('news-link').addEventListener('click', async () => {
         const newsForm = new ElementObject('cms-content');
 
         let news1 = new AddNewsComponent();
-        let news2 = new NewsTableComponent(await
-            fetch(config.endpoints.cms.root + config.endpoints.cms.subPoint.allNews).then(response => response.json()));
-        document.getElementById('cms-content-header').innerText = news1.name;
+        await news1.refreshPage()
 
-        let top = new TwoRowComponent('what this name for', news1, news2);
         newsForm.addComponent(top)
         newsForm.updateDOM();
         news1.addEventliseenter()
