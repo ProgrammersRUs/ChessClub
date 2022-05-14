@@ -35,15 +35,15 @@ public class NewsController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<News> updateTask(@PathVariable int id, @RequestBody News task){
-        Optional<News> optTask = newsService.findByisOpt(id);
-        if (optTask.isPresent()){
-            newsService.addNew(task);
-            return  new ResponseEntity<>(task, HttpStatus.OK);
+    public ResponseEntity<News> updateNews(@PathVariable int id, @RequestBody News news){
+        Optional<News> optNews = newsService.findByisOpt(id);
+        if (optNews.isPresent()){
+            newsService.addNew(news);
+            return  new ResponseEntity<>(news, HttpStatus.OK);
         } else {
             News newsNotFound = new News();
-            newsNotFound.setNewsHeader("No task with id: " + id);
-            return  new ResponseEntity<>(task, HttpStatus.NOT_FOUND);
+            newsNotFound.setNewsHeader("No news with id: " + id);
+            return  new ResponseEntity<>(news, HttpStatus.NOT_FOUND);
         }
     }
 
