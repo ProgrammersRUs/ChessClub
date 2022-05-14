@@ -14,11 +14,11 @@ class CmsComponent extends Component{
         <div class="border-end bg-white" id="sidebar-wrapper">
             <div class="sidebar-heading border-bottom bg-light">Kontrol panel</div>
             <div class="list-group list-group-flush">
-                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Events</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" id="evnt-link">Events</a>
                 <a class="list-group-item list-group-item-action list-group-item-light p-3" id="news-link">Nyheder</a>
-                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Medlems
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" id="members-link">Medlems
                     oversigt</a>
-                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Sponsorer</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" id="sponsor-link">Sponsorer</a>
             </div>
         </div>
 
@@ -27,7 +27,7 @@ class CmsComponent extends Component{
             <!-- Top navigation-->
             <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
                 <div class="container-fluid">
-                    <h4 class="toast-header" style="font-size: xxx-large">Admin</h4>
+                    <h4 class="toast-header" style="font-size: xxx-large" id="cms-content-header">Admin</h4>
                 </div>
             </nav>
 
