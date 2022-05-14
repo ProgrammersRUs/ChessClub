@@ -23,11 +23,14 @@ class AddNewsComponent extends Component{
                         <span class="input-group-text ">Nyheds tekst: </span>
                         <textarea id="newsBody" class="form-control" aria-label="With textarea"></textarea>
                     </div>
-                    <div class="container-fluid">
-                            <button type="button" class="btn btn-primary" id="submitNews">Opret Nyhed</button>
+                    <div class="row">
+                    <div class="container">
+                    <button type="button" class="btn btn-primary" id="submitNews">Opret Nyhed</button>
                               <div class="form-check form-switch float-end">
                         <label class="form-check-label" for="flexSwitchCheckChecked">Publicer nyhed</label>
                         <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                    </div>
+                           
                     </div>
                     </div>
             

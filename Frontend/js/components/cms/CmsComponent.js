@@ -9,7 +9,7 @@ class CmsComponent extends Component{
 
         super('cms-layout', state, (state)=>
             `
-    <div class="d-flex myWrapper" id="wrapper">
+    <div class="d-md-flex myWrapper" id="wrapper">
         <!-- Sidebar-->
         <div class="border-end bg-white" id="sidebar-wrapper">
             <div class="sidebar-heading border-bottom bg-light">Kontrol panel</div>
