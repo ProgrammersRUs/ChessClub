@@ -30,4 +30,8 @@ public class NewsService {
     public Optional<News> findByisOpt(int id) {
         return newsRepository.findById(id);
     }
+
+    public void deleteNews(int id) {
+        newsRepository.deleteById(id);
+    }
 }

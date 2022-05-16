@@ -34,6 +34,8 @@ public class NewsController {
         return newsService.getAllNews();
     }
 
+
+
     @PutMapping("/{id}")
     public ResponseEntity<News> updateNews(@PathVariable int id, @RequestBody News news){
         Optional<News> optNews = newsService.findByisOpt(id);
@@ -45,6 +47,17 @@ public class NewsController {
             newsNotFound.setNewsHeader("No news with id: " + id);
             return  new ResponseEntity<>(news, HttpStatus.NOT_FOUND);
         }
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> deleteNews(@PathVariable int id) {
+        try {
+            newsService.deleteNews(id);
+            return new ResponseEntity<>("Member Deleted with id: " + id, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
+
     }
 
 }

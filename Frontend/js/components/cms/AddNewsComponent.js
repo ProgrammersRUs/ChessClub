@@ -28,7 +28,7 @@ class AddNewsComponent extends Component{
                     <button type="button" class="btn btn-primary" id="submitNews">Opret Nyhed</button>
                               <div class="form-check form-switch float-end">
                         <label class="form-check-label" for="flexSwitchCheckChecked">Publicer nyhed</label>
-                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked">
+                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
                     </div>
                            
                     </div>
@@ -41,7 +41,7 @@ class AddNewsComponent extends Component{
 `);
     }
 
-    addEventliseenter() {
+    addEventlisenterToContent() {
         const url = 'http://localhost:8089/news/new'
         const button = document.getElementById('submitNews')
 
@@ -85,6 +85,9 @@ class AddNewsComponent extends Component{
             return response;
 
         }
+
+
+
     }
 
     async refreshPage(){
@@ -97,7 +100,8 @@ class AddNewsComponent extends Component{
         let cmsBody = new TwoRowComponent('what this name for', this, cmsBottom);
         newsForm.addComponent(cmsBody)
         newsForm.updateDOM();
-        this.addEventliseenter()
+        cmsBottom.addEventListenerDelete()
+        this.addEventlisenterToContent()
     }
 }
 
