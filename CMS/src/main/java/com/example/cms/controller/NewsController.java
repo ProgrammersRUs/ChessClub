@@ -49,7 +49,7 @@ public class NewsController {
         }
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteNews(@PathVariable int id) {
         try {
             newsService.deleteNews(id);

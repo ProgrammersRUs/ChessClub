@@ -97,7 +97,7 @@ class AddNewsComponent extends Component{
         let cmsBody = new TwoRowComponent('what this name for', this, cmsBottom);
         newsForm.addComponent(cmsBody)
         newsForm.updateDOM();
-        cmsBottom.addEventListenerDelete()
+        cmsBottom.addEventListenersNewsTable()
         this.addEventlisenterToContent()
     }
 }

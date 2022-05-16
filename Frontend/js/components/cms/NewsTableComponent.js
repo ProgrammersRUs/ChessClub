@@ -39,7 +39,6 @@ class NewsTableComponent extends Component {
     renderNews(news) {
 
 
-
         return news.map(news => `
                             <tr>
                                 <td id="newsId${news.newsId}"class="d-none">${news.newsId}</td>
@@ -53,8 +52,8 @@ class NewsTableComponent extends Component {
                                 </td>
                                 <td class="col-md-2">
                                 <button id="deleteNews${news.newsId}" type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i class="fa fa-trash"></i> </button>
-                                <button type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i class="fa fa-edit"></i> </button>
-                                <button type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i ${this.isActiveNews(news)}></i> </button>
+                                <button  type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i class="fa fa-edit"></i> </button>
+                                <button id="updateNewsStatus${news.newsId}"  type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i ${this.isActiveNews(news)}></i> </button>
                             </td>
                             </tr>
                             <tr id="collapse${news.newsId}" class="accordion-collapse collapse"
@@ -68,7 +67,6 @@ class NewsTableComponent extends Component {
         ).join('')
 
 
-
     }
 
     isActiveNews(news) {
@@ -80,30 +78,35 @@ class NewsTableComponent extends Component {
     }
 
 
-    addEventListenerDelete() {
+    addEventListenersNewsTable() {
 
-        this.state.news.forEach( news =>{
+        const url = 'http://localhost:8089/news/'
+        this.state.news.forEach(news => {
 
-            const button = document.getElementById('deleteNews'+news.newsId)
+            const buttonDelete = document.getElementById('deleteNews' + news.newsId)
+            const buttonUpdateStatus = document.getElementById('updateNewsStatus' + news.newsId)
+            console.log(buttonUpdateStatus)
 
-            button.addEventListener("click", async()=>{
+            buttonDelete.addEventListener("click", async () => {
                 await deleteNews(news)
+                await new AddNewsComponent().refreshPage()
+            })
+
+            buttonUpdateStatus.addEventListener("click", async () => {
+                await updateNewsStatus(news)
                 await new AddNewsComponent().refreshPage()
             })
         })
 
 
-        async  function deleteNews(news){
-
-
-            const url = 'http://localhost:8089/news/delete/'+news.newsId
+        async function deleteNews(news) {
 
             const fetchOptions = {
                 method: "DELETE",
                 headers: {"Content-Type": "application/json"},
             };
 
-            const response = await fetch(url, fetchOptions);
+            const response = await fetch(url + news.newsId, fetchOptions);
 
             if (!response) {
                 const errorMessage = await response.text();
@@ -113,7 +116,45 @@ class NewsTableComponent extends Component {
             }
         }
 
+        async function updateNewsStatus(news) {
+
+            if (news.isActive == 1) {
+                news.isActive = 0
+            }
+            else if (news.isActive == 0) {
+                news.isActive = 1
+            }
+
+            console.log(news.isActive)
+
+            let body = {
+                newsId: news.newsId,
+                newsHeader: news.newsHeader,
+                newsBody:news.newsBody,
+                creationDate: news.creationDate,
+                href: news.href,
+                imageUrl: news.imageUrl,
+                isActive: news.isActive
+            }
+
+            console.log(body)
+            const fetchOptions = {
+                method: "PUT",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(body)
+            };
+            const response = await fetch(url + news.newsId, fetchOptions);
+
+            if (!response) {
+                const errorMessage = await response.text();
+                console.log(errorMessage)
+                throw new Error(errorMessage);
+
+            }
         }
+
+
+    }
 
 
 }
