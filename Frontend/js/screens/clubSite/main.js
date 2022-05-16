@@ -22,17 +22,14 @@ async function fetchChessApi() {
 
 async function fetchMatches() {
     const matches = await fetch(Tournaments).then(response => response.json());
-    console.log(matches)
-    let count = 0;
+
     for (const game of matches.games) {
-        console.log(game)
-        console.log(count++)
         if (!game.end_time) {
             game.black = await fetch(game.black).then(response => response.json());
             game.white = await fetch(game.white).then(response => response.json());
         }
     }
-    console.log(matches)
+
     return matches
 }
 
