@@ -1,4 +1,4 @@
-import Component from "../lib/Component.js";
+import Component from "../../lib/Component.js";
 
 class NewsTableComponent extends Component {
 
@@ -14,7 +14,6 @@ class NewsTableComponent extends Component {
                     <table class="table">
                         <thead>
                         <tr>
-                            <th scope="col">#</th>
                             <th scope="col">Overskrift</th>
                             <th scope="col">Dato oprettet:</th>
                             <th scope="col"></th>
@@ -47,7 +46,7 @@ class NewsTableComponent extends Component {
                             </tr>
                             <tr id="collapse${news.newsId}" class="accordion-collapse collapse"
                                 aria-labelledby="headingOne1" data-bs-parent="#accordionExample">
-                                <td class="accordion-body col-4">
+                                <td class="accordion-body" colspan="3">
                                     ${news.newsBody}<
                                 </td>
                             </tr>
