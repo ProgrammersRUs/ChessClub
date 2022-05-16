@@ -3,11 +3,10 @@ import NavbarComponent from '../../components/NavbarComponent.js';
 import FooterComponent from "../../components/FooterComponent.js";
 import CmsComponent from "../../components/cms/CmsComponent.js";
 import AddNewsComponent from "../../components/cms/AddNewsComponent.js";
-import NewsTableComponent from "../../components/cms/NewsTableComponent.js";
 import TwoRowComponent from "../../components/TwoRowComponent.js";
 import MemberOverviewComponent from "../../components/MemberOverviewComponent.js";
-import SponsorComponent from "../../components/SponsorComponent.js";
 import AddSponsorComponent from "../../components/cms/AddSponsorComponent.js";
+import SponsorTableComponent from "../../components/cms/SponsorTableComponent.js";
 
 const navbar = new ElementObject('navbar');
 navbar.addComponent(new NavbarComponent());
@@ -47,7 +46,7 @@ document.getElementById('sponsor-link').addEventListener('click', async () => {
 
 
         let sponsor = new AddSponsorComponent();
-        let sponsorC = new SponsorComponent(await fetch(config.endpoints.cms.root + config.endpoints.cms.subPoint.allSponsers).then(response => response.json()));
+        let sponsorC = new SponsorTableComponent(await fetch(config.endpoints.cms.root + config.endpoints.cms.subPoint.allSponsers).then(response => response.json()));
 
         document.getElementById('cms-content-header').innerText = sponsor.name;
 

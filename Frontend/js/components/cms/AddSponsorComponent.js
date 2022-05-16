@@ -11,12 +11,12 @@ class AddNewSponsorComponent extends Component {
                 <div class="card-body">
                   
                     <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">Overskrift: </span>
+                        <span class="input-group-text" id="basic-addon1">Navn: </span>
                         <input id="sponsor-header" type="text" class="form-control" placeholder="" aria-label=""
                                aria-describedby="basic-addon1">
                     </div>
                     <div class="input-group h-50">
-                        <span class="input-group-text ">Nyheds tekst: </span>
+                        <span class="input-group-text ">Sponsor tekst: </span>
                         <textarea id="sponsor-body" class="form-control" aria-label="With textarea"></textarea>
                     </div>
                                <div class="row">
