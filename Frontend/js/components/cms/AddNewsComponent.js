@@ -45,7 +45,6 @@ class AddNewsComponent extends Component{
         const url = 'http://localhost:8089/news/new'
         const button = document.getElementById('submitNews')
 
-        console.log(button)
 
         button.addEventListener("click", async() => {
             await postNews(url)
@@ -68,8 +67,6 @@ class AddNewsComponent extends Component{
                 newsBody: newsBody,
                 isActive: isActive
             }
-            console.log(body)
-
             const fetchOptions = {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},

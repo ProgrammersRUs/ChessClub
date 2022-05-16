@@ -1,4 +1,5 @@
 import Component from "../../lib/Component.js";
+import AddNewsComponent from "./AddNewsComponent.js";
 
 class NewsTableComponent extends Component {
 
@@ -82,12 +83,12 @@ class NewsTableComponent extends Component {
     addEventListenerDelete() {
 
         this.state.news.forEach( news =>{
-            console.log(news)
 
             const button = document.getElementById('deleteNews'+news.newsId)
 
             button.addEventListener("click", async()=>{
                 await deleteNews(news)
+                await new AddNewsComponent().refreshPage()
             })
         })
 
@@ -113,9 +114,6 @@ class NewsTableComponent extends Component {
         }
 
         }
-
-
-
 
 
 }
