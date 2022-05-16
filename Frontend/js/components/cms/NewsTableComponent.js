@@ -17,6 +17,7 @@ class NewsTableComponent extends Component {
                             <th scope="col">Overskrift</th>
                             <th scope="col">Dato oprettet:</th>
                             <th scope="col"></th>
+                            <th scope="col"></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -43,6 +44,11 @@ class NewsTableComponent extends Component {
                                             aria-controls="collapse${news.newsId}"> Se mere
                                     </button>
                                 </td>
+                                <td class="col-md-2">
+                                <button type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i class="fa fa-trash"></i> </button>
+                                <button type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i class="fa fa-edit"></i> </button>
+                                <button type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i ${this.isActiveNews(news)}></i> </button>
+                            </td>
                             </tr>
                             <tr id="collapse${news.newsId}" class="accordion-collapse collapse"
                                 aria-labelledby="headingOne1" data-bs-parent="#accordionExample">
@@ -54,6 +60,14 @@ class NewsTableComponent extends Component {
            
 `
         ).join('')
+    }
+
+    isActiveNews(news){
+        if (news.isActive == true){
+            return 'class="fa fa-eye"'
+        }else {
+            return 'class="fa fa-eye-slash"'
+        }
     }
 }
 

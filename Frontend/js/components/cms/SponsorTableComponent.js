@@ -19,7 +19,7 @@ class SponsorTableComponent extends Component {
                         </tr>
                         </thead>
                         <tbody>
-            ${this.renderNews(state.sponor)}
+            ${this.renderSponsor(state.sponor)}
                         </tbody>
                     </table>
                 </div>
@@ -31,15 +31,20 @@ class SponsorTableComponent extends Component {
     }
 
 
-    renderNews(sponsor) {
+    renderSponsor(sponsor) {
         return sponsor.map(s => `
                             <tr>
                                 <td>${s.name}</td>
-                                <td class="accordion-item col-2">
+                                <td class="accordion-item col-3">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                             data-bs-target="#collapse${s.id}" aria-expanded="true"
                                             aria-controls="collapse${s.id}"> Se mere
                                     </button>
+                                </td>
+                                <td class="col-md-2">
+                                    <button type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i class="fa fa-trash"></i> </button>
+                                    <button type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i class="fa fa-edit"></i> </button>
+       
                                 </td>
                             </tr>
                             <tr id="collapse${s.id}" class="accordion-collapse collapse"
@@ -53,7 +58,10 @@ class SponsorTableComponent extends Component {
 `
         ).join('')
     }
+
 }
+
+
 
 //document.getElementById('flexSwitchCheckChecked').addEventListener("change", () => console.log(document.getElementById('flexSwitchCheckChecked').checked) )
 

@@ -28,7 +28,7 @@ class AddNewsComponent extends Component{
                     <button type="button" class="btn btn-primary" id="submitNews">Opret Nyhed</button>
                               <div class="form-check form-switch float-end">
                         <label class="form-check-label" for="flexSwitchCheckChecked">Publicer nyhed</label>
-                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked">
                     </div>
                            
                     </div>
@@ -55,12 +55,18 @@ class AddNewsComponent extends Component{
         async function postNews(url) {
             const newsHeader = document.getElementById('newsHeader').value
             const newsBody = document.getElementById('newsBody').value
-            console.log(newsBody)
+            const newsIsActive = document.getElementById('flexSwitchCheckChecked')
+            let isActive = 0
+
+            if (newsIsActive.checked){
+                isActive = 1
+            }
 
             let body = {
                 creationDate: new Date().toLocaleDateString('en-CA'),
                 newsHeader: newsHeader,
-                newsBody: newsBody
+                newsBody: newsBody,
+                isActive: isActive
             }
             console.log(body)
 
