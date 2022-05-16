@@ -37,7 +37,7 @@ class AddNewSponsorComponent extends Component{
     }
 
     addEventliseenter() {
-        const url = 'http://localhost:8089/sponsor/new'
+        const url = 'https://cmsbackend420.azurewebsites.net/sponsor/new'
         const button = document.getElementById('submitSponsor')
 
         button.addEventListener("click", async() => {
