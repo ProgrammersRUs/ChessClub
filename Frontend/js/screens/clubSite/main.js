@@ -6,7 +6,6 @@ import ClubSiteComponent from "../../components/ClubSiteComponent.js";
 import TournamentComponent from "../../components/TournamentComponent.js";
 
 
-
 const navbar = new ElementObject('navbar');
 const footer = new ElementObject('footer');
 const body = new ElementObject('body');
@@ -21,12 +20,17 @@ async function fetchChessApi() {
     return await fetch(ChessWebAPI).then(response => response.json());
 }
 
-async function fetchMatches(){
+async function fetchMatches() {
     const matches = await fetch(Tournaments).then(response => response.json());
+    console.log(matches)
+    let count = 0;
     for (const game of matches.games) {
-        game.black = await fetch(game.black).then(response => response.json());
-        game.white= await fetch(game.white).then(response => response.json());
-
+        console.log(game)
+        console.log(count++)
+        if (!game.end_time) {
+            game.black = await fetch(game.black).then(response => response.json());
+            game.white = await fetch(game.white).then(response => response.json());
+        }
     }
     console.log(matches)
     return matches
@@ -35,7 +39,6 @@ async function fetchMatches(){
 const matchData = await fetchMatches()
 const data = await fetchChessApi()
 //Skal nok refaktoreres
-
 
 
 let clubBody = {
@@ -51,10 +54,9 @@ let tournamentBody = {
 }
 
 
-
 let clubComponent = new ClubSiteComponent(clubBody);
 let tournamentComponent = new TournamentComponent(tournamentBody);
-let top = new TwoColumnComponent('top',clubComponent, tournamentComponent);
+let top = new TwoColumnComponent('top', clubComponent, tournamentComponent);
 
 body.addComponent(top);
 
