@@ -12,12 +12,16 @@ class MemberComponent extends Component {
             `
             <section id="members" class="mb-1 mt-1">
  
-        <h3 class="mb-2">Mød medlemmerne</h3>
         <div class="d-flex justify-content-center">
-        
+        <h3 class="mb-2">Mød medlemmerne</h3>
+        <br>
+        <br>
+        </div> <!-- flyt den her linje ned under renderMembers og slet den næste linje, for at 
+        få "Mød medlemmerne" tilbage ud i venstre side-->
+         <div class="d-flex justify-content-center">
    ${this.renderMembers(state.month)}
    
-</div>
+
 </section>
       `)
     }
