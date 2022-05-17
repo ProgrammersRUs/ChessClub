@@ -41,8 +41,9 @@ class AddNewsComponent extends Component{
 `);
     }
 
-    addEventlisenterToContent() {
-        const url = 'http://localhost:8089/news/new'
+
+    addEventliseenter() {
+        const url = 'https://cmsbackend420.azurewebsites.net/news/new'
         const button = document.getElementById('submitNews')
 
 
