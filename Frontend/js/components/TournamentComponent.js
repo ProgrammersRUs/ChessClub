@@ -22,7 +22,7 @@ class TournamentComponent extends Component {
      </thead>
   <tbody>
   ${this.renderTournament(state.games)}
-</tbody>tbody>
+</tbody>
 </table>
 
   
@@ -32,24 +32,16 @@ class TournamentComponent extends Component {
   
   renderTournament(games) {
 
-  return games.map(games => `      
+  return games.map(games => `   
+   <table class="table">   
+    <thead class="thead-dark">
        <tr>
-        <th scope="row"><a href="${games.white.username}">Gå til kamp</a></th>
+        <th><a href="${games.url}">Gå til kamp</a></th>
         <td>${games.white.username}</td>
         <td>vs</td>
-        <td>${games.white.username}</td>
+        <td>${games.black.username}</td>
     </tr>
-    
-    
-    
-    
-    <tr>
-      <th scope="row"><a href="${games.url}">Gå til kamp</a></th>
-      <td>${games.white.username}</td>
-      <td>vs</td>
-      <td>${games.black.username}</td>
-    </tr>
-  </tbody>
+    </thead>
 </table>
  
             `
