@@ -102,7 +102,10 @@ class NewsTableComponent extends Component {
         async function deleteNews(news) {
 
             let body = {
-                user: JSON.parse(sessionStorage.getItem('user'))
+                user: JSON.parse(sessionStorage.getItem('user')),
+                news: {
+                    newsId:news.newsId
+                }
             }
 
             const fetchOptions = {

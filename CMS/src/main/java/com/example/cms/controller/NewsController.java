@@ -1,14 +1,12 @@
 package com.example.cms.controller;
 
 import com.example.cms.entity.News;
-import com.example.cms.model.User;
 import com.example.cms.service.NewsService;
 import com.example.cms.service.UserService;
 import com.example.cms.wrapper.UserNewsWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -68,10 +66,10 @@ public class NewsController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteNews(@PathVariable int id, @RequestBody User user) {
-        if (user != null) {
-            System.out.println(user.getUserEmail() + " : "+user.getId() + ": "+ user.isAdminStatus());
-            boolean access = userService.validateAdmin(user);
+    public ResponseEntity<String> deleteNews(@PathVariable int id, @RequestBody UserNewsWrapper userNewsWrapper) {
+        if (userNewsWrapper.getUser() != null) {
+            System.out.println(userNewsWrapper.getUser().getUserEmail() + " : "+userNewsWrapper.getUser().getId() + ": "+ userNewsWrapper.getUser().isAdminStatus());
+            boolean access = userService.validateAdmin(userNewsWrapper.getUser());
             System.out.println(access);
             if (!access) {
                 return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
