@@ -34,10 +34,12 @@ class MemberComponent extends Component {
                        
                                 </div>
                             </div>
+                            <div class="container">
                             <h5>${month.username}</h5>
                            <!-- <p>Rating: 1253</p>-->
                             <p>${month.joined}</p>
                         </div>
+                    </div>
                     </div>
           
 `
