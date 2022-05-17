@@ -38,7 +38,7 @@ public class FrontPageController {
     return frontPageService.getFrontPageById(id);
   }
 
-  @GetMapping("/all-fronpages")
+  @GetMapping("/all-frontnpages")
   public List<FrontPage> getAllFrontPages() {
     return frontPageService.getAllFrontPages();
   }
