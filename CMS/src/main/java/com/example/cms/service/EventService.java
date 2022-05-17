@@ -1,7 +1,7 @@
-package com.example.backend.Service;
+package com.example.cms.service;
 
-import com.example.backend.Entity.Event;
-import com.example.backend.Repository.EventRepository;
+import com.example.cms.entity.Event;
+import com.example.cms.repository.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

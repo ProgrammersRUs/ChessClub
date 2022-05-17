@@ -1,8 +1,8 @@
-package com.example.backend.Controller;
+package com.example.cms.controller;
 
 
-import com.example.backend.Entity.Event;
-import com.example.backend.Service.EventService;
+import com.example.cms.entity.Event;
+import com.example.cms.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
