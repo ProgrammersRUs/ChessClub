@@ -23,11 +23,14 @@ class AddNewsComponent extends Component{
                         <span class="input-group-text ">Nyheds tekst: </span>
                         <textarea id="newsBody" class="form-control" aria-label="With textarea"></textarea>
                     </div>
-                    <div class="container-fluid">
-                            <button type="button" class="btn btn-primary" id="submitNews">Opret Nyhed</button>
+                    <div class="row">
+                    <div class="container">
+                    <button type="button" class="btn btn-primary" id="submitNews">Opret Nyhed</button>
                               <div class="form-check form-switch float-end">
                         <label class="form-check-label" for="flexSwitchCheckChecked">Publicer nyhed</label>
                         <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                    </div>
+                           
                     </div>
                     </div>
             
@@ -38,11 +41,11 @@ class AddNewsComponent extends Component{
 `);
     }
 
+
     addEventliseenter() {
         const url = 'https://cmsbackend420.azurewebsites.net/news/new'
         const button = document.getElementById('submitNews')
 
-        console.log(button)
 
         button.addEventListener("click", async() => {
             await postNews(url)
@@ -52,15 +55,19 @@ class AddNewsComponent extends Component{
         async function postNews(url) {
             const newsHeader = document.getElementById('newsHeader').value
             const newsBody = document.getElementById('newsBody').value
-            console.log(newsBody)
+            const newsIsActive = document.getElementById('flexSwitchCheckChecked')
+            let isActive = 0
+
+            if (newsIsActive.checked){
+                isActive = 1
+            }
 
             let body = {
                 creationDate: new Date().toLocaleDateString('en-CA'),
                 newsHeader: newsHeader,
-                newsBody: newsBody
+                newsBody: newsBody,
+                isActive: isActive
             }
-            console.log(body)
-
             const fetchOptions = {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
@@ -76,6 +83,9 @@ class AddNewsComponent extends Component{
             return response;
 
         }
+
+
+
     }
 
     async refreshPage(){
@@ -88,7 +98,8 @@ class AddNewsComponent extends Component{
         let cmsBody = new TwoRowComponent('what this name for', this, cmsBottom);
         newsForm.addComponent(cmsBody)
         newsForm.updateDOM();
-        this.addEventliseenter()
+        cmsBottom.addEventListenersNewsTable()
+        this.addEventlisenterToContent()
     }
 }
 

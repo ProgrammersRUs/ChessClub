@@ -1,31 +1,30 @@
 import Component from "../../lib/Component.js";
 
-class AddNewSponsorComponent extends Component{
+class AddNewSponsorComponent extends Component {
 
     constructor() {
-        let state = {
+        let state = {}
 
-        }
-
-        super('Sponsor', state, (state)=>
+        super('Sponsor', state, (state) =>
             `<div class="row mx-w-100 h-100">
             <div class="card col-sm m-1" style="background-color: rgba(217, 226, 249, 0.3);">
                 <div class="card-body">
                   
                     <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">Overskrift: </span>
+                        <span class="input-group-text" id="basic-addon1">Navn: </span>
                         <input id="sponsor-header" type="text" class="form-control" placeholder="" aria-label=""
                                aria-describedby="basic-addon1">
                     </div>
                     <div class="input-group h-50">
-                        <span class="input-group-text ">Nyheds tekst: </span>
+                        <span class="input-group-text ">Sponsor tekst: </span>
                         <textarea id="sponsor-body" class="form-control" aria-label="With textarea"></textarea>
                     </div>
-                    <div class="container-fluid">
-                            <button type="button" class="btn btn-primary" id="submitSponsor">Tilføj Sponsor Nyhed</button>
+                               <div class="row">
+                    <div class="container">
+                    <button type="button" class="btn btn-primary" id="submitSponsor">Opret Sponsor</button>
                               <div class="form-check form-switch float-end">
-                        <label class="form-check-label" for="flexSwitchCheckChecked">Publicer nyhed</label>
-                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                            </div>
+                           
                     </div>
                     </div>
             
@@ -40,7 +39,7 @@ class AddNewSponsorComponent extends Component{
         const url = 'https://cmsbackend420.azurewebsites.net/sponsor/new'
         const button = document.getElementById('submitSponsor')
 
-        button.addEventListener("click", async() => {
+        button.addEventListener("click", async () => {
             await postSponsor(url)
         })
 
@@ -58,7 +57,7 @@ class AddNewSponsorComponent extends Component{
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(body)
             };
-            const response = await fetch(url,fetchOptions );
+            const response = await fetch(url, fetchOptions);
             if (!response) {
                 const errorMessage = await response.text();
                 console.log(errorMessage)
