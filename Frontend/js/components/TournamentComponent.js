@@ -41,12 +41,14 @@ class TournamentComponent extends Component {
         <td>vs</td>
         <td>${games.black.username}</td>
     </tr>
+       
     </thead>
 </table>
  
             `
 
-      );
+      ).join('')
+
   }
 }
 
