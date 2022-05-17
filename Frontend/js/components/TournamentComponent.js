@@ -14,10 +14,10 @@ class TournamentComponent extends Component {
 <table class="table">
     <thead class="thead-dark">
         <tr>
-           <th scope="col" class="col-md-3 col-sm-3 col-3">Se live</th>
-           <th scope="col" class="col-md-3 col-sm-3 col-3">Hvid</th>
-           <th scope="col" class="col-md-3 col-sm-3 col-3">vs</th>
-           <th scope="col" class="col-md-3 col-sm-3 col-3">Sort</th>
+           <th class="col-md-3 col-sm-3 col-3">Se live</th>
+           <th class="col-md-3 col-sm-3 col-3">Hvid</th>
+           <th class="col-md-3 col-sm-3 col-3">vs</th>
+           <th class="col-md-3 col-sm-3 col-3">Sort</th>
          </tr>
      </thead>
   <tbody>
