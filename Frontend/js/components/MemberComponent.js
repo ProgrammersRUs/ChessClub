@@ -11,23 +11,13 @@ class MemberComponent extends Component {
 
         super('nextEvent', state, (state) =>
             `
-            <section id="members" class="members d-none d-lg-block mb-2 bg-light">
-    <div class="container"> 
-       <div class="carousel slide" id="memberCarousel" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                <div style="display: inline-block">
+            <section id="members" class="mb-1 mt-1">
+ 
+              
         <h3 class="mb-2">Mød medlemmerne</h3>
-         <div class="row">
-        
-        
-                  ${this.renderMembers(state.month)}
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
+        <div class="d-flex justify-content-center">
+   ${this.renderMembers(state.month)}
+
 </section>
       `)
     }
@@ -36,9 +26,9 @@ class MemberComponent extends Component {
 
         return month.map(month => `
 
-     
-                   
-                        <div class="col-lg-4 text-center mb-2">
+      
+                     <div style="display: inline-block">
+                        <div class="col-lg-12 pt-4 pt-lg-0 ">
                             <div class="d-flex justify-content-center">
                                 <div style="height: 100px; width: 100px; background-color: green; border-radius: 25rem">
                        
@@ -48,25 +38,9 @@ class MemberComponent extends Component {
                            <!-- <p>Rating: 1253</p>-->
                             <p>${month.joined}</p>
                         </div>
-                   
-                 
                     </div>
-                </div>
-                
-                <div class="carousel-item">
-                
-               
-                
-                    <div class="row">
-                    
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-  <!--  </div>
-</section>
-      -->  `
+          
+`
         ).join('');
     }
 
