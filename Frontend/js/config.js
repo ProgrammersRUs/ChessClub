@@ -59,7 +59,10 @@ const config = {
             root: 'https://cmsbackend420.azurewebsites.net/',
             subPoint: {
                 allNews: 'news/all-news',
-                allSponsers: 'sponsor/get-all'
+                allSponsers: 'sponsor/get-all',
+                postNews: 'news/new',
+                postSponsor: 'sponsor/new',
+                deleteNews: 'news/'
             }
 
         }

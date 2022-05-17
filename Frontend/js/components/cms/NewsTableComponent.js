@@ -80,7 +80,7 @@ class NewsTableComponent extends Component {
 
     addEventListenersNewsTable() {
 
-        const url = 'http://localhost:8089/news/'
+        const url = config.endpoints.cms.root + config.endpoints.cms.subPoint.deleteNews;
         this.state.news.forEach(news => {
 
             const buttonDelete = document.getElementById('deleteNews' + news.newsId)

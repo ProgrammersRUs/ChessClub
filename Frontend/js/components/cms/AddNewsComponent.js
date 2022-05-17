@@ -43,7 +43,7 @@ class AddNewsComponent extends Component{
 
 
     addEventliseenter() {
-        const url = 'https://cmsbackend420.azurewebsites.net/news/new'
+        const url = config.endpoints.cms.root+config.endpoints.cms.subPoint.postNews
         const button = document.getElementById('submitNews')
 
 
