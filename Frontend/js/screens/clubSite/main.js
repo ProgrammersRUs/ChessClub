@@ -15,6 +15,7 @@ footer.addComponent(new FooterComponent());
 const ChessWebAPI = "https://api.chess.com/pub/club/skak-faxe-kommune"
 const Tournaments = "https://api.chess.com/pub/tournament/testisdabest/1/1"
 
+
 async function fetchChessApi() {
 
     return await fetch(ChessWebAPI).then(response => response.json());

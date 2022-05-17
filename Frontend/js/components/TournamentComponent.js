@@ -1,17 +1,11 @@
 import Component from "../lib/Component.js";
 
-/*
-      let splitWhitePlayerURL = players[0].white.split("/").getLast [1];
-        let splitBlackPlayerURL = state.players[0].black.split("player/") [1];
-        console.log(splitBlackPlayerURL)
-
- */
-
 class TournamentComponent extends Component {
     constructor(event) {
         let state = {
             players: event.players,
-            username: event.username
+            username: event.username,
+            urls: event.url
         }
 
         super('nextEvent', state, (state) =>
@@ -28,11 +22,11 @@ class TournamentComponent extends Component {
      </thead>
   <tbody>
     <tr>
-      <th scope="row"><a href="https://www.chess.com/tournament/testisdabest</a></th>
+      
       
       </tr>
        <tr>
-        <th scope="row"><a href="">test</a></th>
+        <th scope="row"><a href="${state.players[0].url}">Gå til kamp</a></th>
         <td>${state.players[0].white.username}</td>
         <td>vs</td>
         <td>${state.players[0].black.username}</td>
@@ -40,10 +34,10 @@ class TournamentComponent extends Component {
         <!-- <td>${state.players[0].start_time}</td> -->
     </tr>
     <tr>
-      <th scope="row"><a href="">test</a></th>
-      <td>${state.players[0].white}</td>
+      <th scope="row"><a href="${state.players[1].url}">Gå til kamp</a></th>
+      <td>${state.players[1].white.username}</td>
       <td>vs</td>
-      <td>${state.players[0].black}</td>
+      <td>${state.players[1].black.username}</td>
     </tr>
   </tbody>
 </table>
