@@ -3,7 +3,7 @@ import Component from "../lib/Component.js";
 class TournamentComponent extends Component {
     constructor(event) {
         let state = {
-            players: event.players,
+            games: event.games,
             username: event.username,
             urls: event.url
         }
@@ -21,29 +21,41 @@ class TournamentComponent extends Component {
          </tr>
      </thead>
   <tbody>
-    <tr>
-      
-      
-      </tr>
+  ${this.renderTournament(state.games)}
+</tbody>tbody>
+</table>
+
+  
+  `)
+  
+  }
+  
+  renderTournament(games) {
+
+  return games.map(games => `      
        <tr>
-        <th scope="row"><a href="${state.players[0].url}">Gå til kamp</a></th>
-        <td>${state.players[0].white.username}</td>
+        <th scope="row"><a href="${games.white.username}">Gå til kamp</a></th>
+        <td>${games.white.username}</td>
         <td>vs</td>
-        <td>${state.players[0].black.username}</td>
-        <!--Epoch time kan omregnes i javascript -->
-        <!-- <td>${state.players[0].start_time}</td> -->
+        <td>${games.white.username}</td>
     </tr>
+    
+    
+    
+    
     <tr>
-      <th scope="row"><a href="${state.players[1].url}">Gå til kamp</a></th>
-      <td>${state.players[1].white.username}</td>
+      <th scope="row"><a href="${games.url}">Gå til kamp</a></th>
+      <td>${games.white.username}</td>
       <td>vs</td>
-      <td>${state.players[1].black.username}</td>
+      <td>${games.black.username}</td>
     </tr>
   </tbody>
 </table>
+ 
             `
-        );
-    }
+
+      );
+  }
 }
 
 export default TournamentComponent

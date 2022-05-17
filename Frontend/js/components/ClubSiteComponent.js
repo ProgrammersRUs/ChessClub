@@ -14,8 +14,6 @@ class ClubSiteComponent extends Component {
             link: event.href
         }
 
-       // const date = new Date(origin);
-
         let timestamp = state.origin
         let date = new Date(timestamp * 1000);
         let month = date.getMonth();
@@ -31,8 +29,6 @@ class ClubSiteComponent extends Component {
                  <strong>${state.title}</strong>
                  <p></p>
                  
-                 
-           
                 <p>Nuværende antal medlemmer: ${state.membersCount}</p>
                 <p>Dato oprettet på Chess.com: ${formatedTime}</p>
                 <p>Genemsnittelig rating i klubben på Chess.com: ${state.avgRating}</p>
