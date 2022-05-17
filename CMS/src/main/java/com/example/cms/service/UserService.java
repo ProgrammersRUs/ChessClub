@@ -7,7 +7,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.WebClientException;
 
 @Service
-public class UserService {
+public class UserService implements IUserService {
 
     private WebClient userClient;
     private String userValidationEndpoint;
