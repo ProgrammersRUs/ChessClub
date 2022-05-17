@@ -101,10 +101,16 @@ class NewsTableComponent extends Component {
 
         async function deleteNews(news) {
 
+            let body = {
+                user: JSON.parse(sessionStorage.getItem('user'))
+            }
+
             const fetchOptions = {
-                method: "DELETE",
-                headers: {"Content-Type": "application/json"},
-            };
+                    method: "DELETE",
+                    headers: {"Content-Type": "application/json"},
+                    body: JSON.stringify(body)
+                }
+            ;
 
             const response = await fetch(url + news.newsId, fetchOptions);
 
@@ -120,8 +126,7 @@ class NewsTableComponent extends Component {
 
             if (news.isActive == 1) {
                 news.isActive = 0
-            }
-            else if (news.isActive == 0) {
+            } else if (news.isActive == 0) {
                 news.isActive = 1
             }
 
@@ -130,7 +135,7 @@ class NewsTableComponent extends Component {
             let body = {
                 newsId: news.newsId,
                 newsHeader: news.newsHeader,
-                newsBody:news.newsBody,
+                newsBody: news.newsBody,
                 creationDate: news.creationDate,
                 href: news.href,
                 imageUrl: news.imageUrl,

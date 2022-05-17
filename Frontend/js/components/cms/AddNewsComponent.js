@@ -3,14 +3,12 @@ import ElementObject from "../../lib/ElementObject.js";
 import NewsTableComponent from "./NewsTableComponent.js";
 import TwoRowComponent from "../TwoRowComponent.js";
 
-class AddNewsComponent extends Component{
+class AddNewsComponent extends Component {
 
     constructor() {
-        let state = {
+        let state = {}
 
-        }
-
-        super('Nyheder', state, (state)=>
+        super('Nyheder', state, (state) =>
             `<div class="row mx-w-100 h-100">
             <div class="card col-sm m-1" style="background-color: rgba(217, 226, 249, 0.3);">
                 <div class="card-body">
@@ -42,12 +40,12 @@ class AddNewsComponent extends Component{
     }
 
 
-    addEventliseenter() {
-        const url = config.endpoints.cms.root+config.endpoints.cms.subPoint.postNews
+    addEventlisenterToContent() {
+        const url = config.endpoints.cms.root + config.endpoints.cms.subPoint.postNews
         const button = document.getElementById('submitNews')
 
 
-        button.addEventListener("click", async() => {
+        button.addEventListener("click", async () => {
             await postNews(url)
             await this.refreshPage()
         })
@@ -58,22 +56,25 @@ class AddNewsComponent extends Component{
             const newsIsActive = document.getElementById('flexSwitchCheckChecked')
             let isActive = 0
 
-            if (newsIsActive.checked){
+            if (newsIsActive.checked) {
                 isActive = 1
             }
 
             let body = {
-                creationDate: new Date().toLocaleDateString('en-CA'),
-                newsHeader: newsHeader,
-                newsBody: newsBody,
-                isActive: isActive
+                user: JSON.parse(sessionStorage.getItem("user")),
+                news: {
+                    creationDate: new Date().toLocaleDateString('en-CA'),
+                    newsHeader: newsHeader,
+                    newsBody: newsBody,
+                    isActive: isActive
+                }
             }
             const fetchOptions = {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(body)
             };
-            const response = await fetch(url,fetchOptions );
+            const response = await fetch(url, fetchOptions);
             if (!response) {
                 const errorMessage = await response.text();
                 console.log(errorMessage)
@@ -85,10 +86,9 @@ class AddNewsComponent extends Component{
         }
 
 
-
     }
 
-    async refreshPage(){
+    async refreshPage() {
         const newsForm = new ElementObject('cms-content');
 
         let cmsBottom = new NewsTableComponent(await
