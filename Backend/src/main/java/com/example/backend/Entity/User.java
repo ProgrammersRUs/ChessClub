@@ -21,6 +21,7 @@ public class User {
     public void setAdminStatus(boolean adminStatus) {
         this.adminStatus = adminStatus;
     }
+    @Column(columnDefinition = "BOOLEAN")
     private boolean adminStatus;
 
     User(String userEmail, String userPassword){
