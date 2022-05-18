@@ -44,6 +44,15 @@ let test2 = [
         body: 'Grand Master turnering for 2k ratede spillere'
     }
 ]
+let options = {
+    method:"POST",
+    headers:{"Content-Type": "application/json"},
+    body:JSON.stringify({id:1})
+}
+
+let data = await fetch(config.endpoints.member.root + "event/all-upcoming", options).then(responce => responce.json());
+console.log(data)
+//hent data fra cms om de events vi har fået retur
 
 let eventGrid = new EventGridComponent(test2);
 let nextComponent = new NextEventComponent(test);
