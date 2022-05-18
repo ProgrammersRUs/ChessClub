@@ -7,6 +7,7 @@ import MemberOverviewComponent from "../../components/MemberOverviewComponent.js
 import AddSponsorComponent from "../../components/cms/forms/AddSponsorComponent.js";
 import AddAboutUsComponent from "../../components/cms/forms/AddAboutUsComponent.js";
 import AddFronPageComponent from "../../components/cms/forms/AddFrontPageComponent.js";
+import AddContactUsComponent from "../../components/cms/forms/AddContactUsComponent.js";
 
 const navbar = new ElementObject('navbar');
 navbar.addComponent(new NavbarComponent());
@@ -55,4 +56,9 @@ document.getElementById('about-us-link').addEventListener('click', async () => {
 document.getElementById('frontpage-link').addEventListener('click', async () => {
     let frontPageComponent = new AddFronPageComponent();
     await frontPageComponent.refreshPage();
+})
+
+document.getElementById('contact-us-link').addEventListener('click', async () => {
+    let contactUsComponent = new AddContactUsComponent();
+    await contactUsComponent.refreshPage();
 })

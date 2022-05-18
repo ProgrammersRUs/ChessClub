@@ -68,7 +68,10 @@ const config = {
                 deleteAboutUs: 'about-page/',
                 postFrontPage:'front-page/new',
                 allFrontPages:'front-page/all-frontpages',
-                deleteFrontPage: 'front-page/'
+                deleteFrontPage: 'front-page/',
+                postContactUs: 'contact-us-page/new',
+                allContactUsPages:'contact-us-page/all-contactus-pages',
+                deleteContactUs: 'contact-us-page/',
             }
 
         }

@@ -6,7 +6,7 @@ class SponsorTableComponent extends Component {
         let state = {
             sponor: sponsor
         }
-        super('news', state, (state) =>
+        super('sponsor', state, (state) =>
             `
 
             <div class="row mx-w-1003">
