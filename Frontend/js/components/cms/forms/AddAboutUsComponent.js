@@ -1,7 +1,7 @@
 import Component from "../../../lib/Component.js";
 import ElementObject from "../../../lib/ElementObject.js";
-import NewsTableComponent from "../tables/NewsTableComponent.js";
 import TwoRowComponent from "../../TwoRowComponent.js";
+import AboutUsTableComponent from "../tables/AboutUsTableComponent.js";
 
 class AddAboutUsComponent extends Component {
 
@@ -62,11 +62,11 @@ class AddAboutUsComponent extends Component {
 
             let body = {
                 user: JSON.parse(sessionStorage.getItem("user")),
-                news: {
+                aboutPage: {
                     creationDate: new Date().toLocaleDateString('en-CA'),
                     header: aboutUsHeader,
                     body: aboutUsBody,
-                    imageUrl: "",
+                    imgUrl: "wrfwrg",
                     isActive: isActive
                 }
             }
@@ -85,15 +85,13 @@ class AddAboutUsComponent extends Component {
             return response;
 
         }
-
-
     }
 
     async refreshPage() {
         const aboutUsForm = new ElementObject('cms-content');
 
-        let cmsBottom = new NewsTableComponent(await
-            fetch(config.endpoints.cms.root + config.endpoints.cms.subPoint.allSponsers).then(response => response.json()));
+        let cmsBottom = new AboutUsTableComponent(await
+            fetch(config.endpoints.cms.root + config.endpoints.cms.subPoint.allAboutUs).then(response => response.json()));
         document.getElementById('cms-content-header').innerText = this.name;
 
         let cmsBody = new TwoRowComponent('what this name for', this, cmsBottom);

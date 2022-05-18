@@ -63,7 +63,8 @@ const config = {
                 postNews: 'news/new',
                 postSponsor: 'sponsor/new',
                 deleteNews: 'news/',
-                postAboutUs:'about-page/new'
+                postAboutUs:'about-page/new',
+                allAboutUs: 'about-page/all-about-pages'
             }
 
         }

@@ -3,11 +3,11 @@ import AddNewsComponent from "../forms/AddNewsComponent.js";
 
 class AboutUsTableComponent extends Component {
 
-    constructor(news) {
+    constructor(aboutUs) {
         let state = {
-            news: news
+            aboutUs: aboutUs
         }
-        super('news', state, (state) =>
+        super('aboutUs', state, (state) =>
             `
 
             <div class="row mx-w-1003">
@@ -22,7 +22,7 @@ class AboutUsTableComponent extends Component {
                         </tr>
                         </thead>
                         <tbody>
-            ${this.renderNews(state.news)}
+            ${this.renderNews(state.aboutUs)}
           
                         </tbody>
                     </table>
@@ -36,30 +36,31 @@ class AboutUsTableComponent extends Component {
     }
 
 
-    renderNews(news) {
+    renderNews(aboutUsList) {
 
 
-        return news.map(news => `
+        return aboutUsList.map(aboutUs => `
                             <tr>
-                                <td id="newsId${news.newsId}"class="d-none">${news.newsId}</td>
-                                <td>${news.newsHeader}</td>
-                                <td>${news.creationDate}</td>
+                                <td id="newsId${aboutUs.id}"class="d-none">${aboutUs.id}</td>
+                                <td>${aboutUs.header}</td>
+                                <td>${aboutUs.creationDate}</td>
                                 <td class="accordion-item col-2">
+                                
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                            data-bs-target="#collapse${news.newsId}" aria-expanded="true"
-                                            aria-controls="collapse${news.newsId}"> Se mere
+                                            data-bs-target="#collapse${aboutUs.id}" aria-expanded="true"
+                                            aria-controls="collapse${aboutUs.id}"> Se mere
                                     </button>
                                 </td>
                                 <td class="col-md-2">
-                                <button id="deleteNews${news.newsId}" type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i class="fa fa-trash"></i> </button>
+                                <button id="deleteNews${aboutUs.id}" type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i class="fa fa-trash"></i> </button>
                                 <button  type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i class="fa fa-edit"></i> </button>
-                                <button id="updateNewsStatus${news.newsId}"  type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i ${this.isActiveNews(news)}></i> </button>
+                                <button id="updateNewsStatus${aboutUs.id}"  type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i ${this.isActiveNews(aboutUs)}></i> </button>
                             </td>
                             </tr>
-                            <tr id="collapse${news.newsId}" class="accordion-collapse collapse"
+                            <tr id="collapse${aboutUs.id}" class="accordion-collapse collapse"
                                 aria-labelledby="headingOne1" data-bs-parent="#accordionExample">
                                 <td class="accordion-body" colspan="3">
-                                    ${news.newsBody}<
+                                    ${aboutUs.body}<
                                 </td>
                             </tr>
 
@@ -81,19 +82,19 @@ class AboutUsTableComponent extends Component {
     addEventListenersNewsTable() {
 
         const url = config.endpoints.cms.root + config.endpoints.cms.subPoint.deleteNews;
-        this.state.news.forEach(news => {
+        this.state.aboutUs.forEach(about => {
 
-            const buttonDelete = document.getElementById('deleteNews' + news.newsId)
-            const buttonUpdateStatus = document.getElementById('updateNewsStatus' + news.newsId)
+            const buttonDelete = document.getElementById('deleteNews' + about.id)
+            const buttonUpdateStatus = document.getElementById('updateNewsStatus' + about.id)
             console.log(buttonUpdateStatus)
 
             buttonDelete.addEventListener("click", async () => {
-                await deleteNews(news)
+                await deleteNews(about)
                 await new AddNewsComponent().refreshPage()
             })
 
             buttonUpdateStatus.addEventListener("click", async () => {
-                await updateNewsStatus(news)
+                await updateNewsStatus(about)
                 await new AddNewsComponent().refreshPage()
             })
         })
@@ -172,4 +173,4 @@ class AboutUsTableComponent extends Component {
 
 //document.getElementById('flexSwitchCheckChecked').addEventListener("change", () => console.log(document.getElementById('flexSwitchCheckChecked').checked) )
 
-export default NewsTableComponent;
+export default AboutUsTableComponent;

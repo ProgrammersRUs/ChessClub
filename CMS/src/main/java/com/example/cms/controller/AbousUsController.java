@@ -1,7 +1,11 @@
 package com.example.cms.controller;
 
 import com.example.cms.entity.AboutPage;
+import com.example.cms.entity.News;
 import com.example.cms.service.AboutPageService;
+import com.example.cms.service.UserService;
+import com.example.cms.wrapper.UserAboutPageWrapper;
+import com.example.cms.wrapper.UserNewsWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,10 +31,20 @@ public class AbousUsController {
   @Autowired
   AboutPageService aboutPageService;
 
+  @Autowired
+  UserService userService;
+
   @PostMapping("/new")
   @ResponseStatus(HttpStatus.CREATED)
-  public AboutPage postAboutPage(@RequestBody AboutPage aboutPage) {
-    return aboutPageService.addNew(aboutPage);
+  public ResponseEntity<AboutPage> postAboutPage(@RequestBody UserAboutPageWrapper userAboutPageWrapper) {
+    if(userAboutPageWrapper.getUser() != null){
+      if(!userService.validateUser(userAboutPageWrapper.getUser())){
+        return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+      }
+      AboutPage response = aboutPageService.addNew(userAboutPageWrapper.getAboutPage());
+      return new ResponseEntity<>(response, HttpStatus.CREATED);
+
+    }return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
   }
 
   @GetMapping("/{id}")
