@@ -1,5 +1,6 @@
 import Component from "../../../lib/Component.js";
 import AddNewsComponent from "../forms/AddNewsComponent.js";
+import AddAboutUsComponent from "../forms/AddAboutUsComponent.js";
 
 class AboutUsTableComponent extends Component {
 
@@ -22,7 +23,7 @@ class AboutUsTableComponent extends Component {
                         </tr>
                         </thead>
                         <tbody>
-            ${this.renderNews(state.aboutUs)}
+            ${this.renderAboutUsPosts(state.aboutUs)}
           
                         </tbody>
                     </table>
@@ -36,7 +37,7 @@ class AboutUsTableComponent extends Component {
     }
 
 
-    renderNews(aboutUsList) {
+    renderAboutUsPosts(aboutUsList) {
 
 
         return aboutUsList.map(aboutUs => `
@@ -54,7 +55,7 @@ class AboutUsTableComponent extends Component {
                                 <td class="col-md-2">
                                 <button id="deleteNews${aboutUs.id}" type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i class="fa fa-trash"></i> </button>
                                 <button  type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i class="fa fa-edit"></i> </button>
-                                <button id="updateNewsStatus${aboutUs.id}"  type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i ${this.isActiveNews(aboutUs)}></i> </button>
+                                <button id="updateNewsStatus${aboutUs.id}"  type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i ${this.isActivePost(aboutUs)}></i> </button>
                             </td>
                             </tr>
                             <tr id="collapse${aboutUs.id}" class="accordion-collapse collapse"
@@ -70,8 +71,8 @@ class AboutUsTableComponent extends Component {
 
     }
 
-    isActiveNews(news) {
-        if (news.isActive == true) {
+    isActivePost(post) {
+        if (post.isActive == true) {
             return 'class="fa fa-eye"'
         } else {
             return 'class="fa fa-eye-slash"'
@@ -79,33 +80,33 @@ class AboutUsTableComponent extends Component {
     }
 
 
-    addEventListenersNewsTable() {
+    addEventListenersPostsTable() {
 
         const url = config.endpoints.cms.root + config.endpoints.cms.subPoint.deleteNews;
         this.state.aboutUs.forEach(about => {
 
-            const buttonDelete = document.getElementById('deleteNews' + about.id)
-            const buttonUpdateStatus = document.getElementById('updateNewsStatus' + about.id)
+            const buttonDelete = document.getElementById('deletePost' + about.id)
+            const buttonUpdateStatus = document.getElementById('updatePostStatus' + about.id)
             console.log(buttonUpdateStatus)
 
             buttonDelete.addEventListener("click", async () => {
-                await deleteNews(about)
-                await new AddNewsComponent().refreshPage()
+                await deletePost(about)
+                await new AddAboutUsComponent().refreshPage()
             })
 
             buttonUpdateStatus.addEventListener("click", async () => {
-                await updateNewsStatus(about)
-                await new AddNewsComponent().refreshPage()
+                await updateStatusPost(about)
+                await new AddAboutUsComponent().refreshPage()
             })
         })
 
 
-        async function deleteNews(news) {
+        async function deletePost(post) {
 
             let body = {
                 user: JSON.parse(sessionStorage.getItem('user')),
-                news: {
-                    newsId: news.newsId
+                aboutPage: {
+                    id: post.id
                 }
             }
 
@@ -116,7 +117,7 @@ class AboutUsTableComponent extends Component {
                 }
             ;
 
-            const response = await fetch(url + news.newsId, fetchOptions);
+            const response = await fetch(url + post.id, fetchOptions);
 
             if (!response) {
                 const errorMessage = await response.text();
@@ -126,26 +127,25 @@ class AboutUsTableComponent extends Component {
             }
         }
 
-        async function updateNewsStatus(news) {
+        async function updateStatusPost(post) {
 
-            if (news.isActive == 1) {
-                news.isActive = 0
-            } else if (news.isActive == 0) {
-                news.isActive = 1
+            if (post.isActive == 1) {
+                post.isActive = 0
+            } else if (post.isActive == 0) {
+                post.isActive = 1
             }
 
-            console.log(news.isActive)
+            console.log(post.isActive)
 
             let body = {
                 user: JSON.parse(sessionStorage.getItem('user')),
-                news: {
-                    newsId: news.newsId,
-                    newsHeader: news.newsHeader,
-                    newsBody: news.newsBody,
-                    creationDate: news.creationDate,
-                    href: news.href,
-                    imageUrl: news.imageUrl,
-                    isActive: news.isActive
+                about: {
+                    id: post.id,
+                    creationDate: post.creationDate,
+                    header: post.header,
+                    body: post.body,
+                    imgUrl: post.imgUrl,
+                    isActive: post.isActive
                 }
             }
 
@@ -155,7 +155,7 @@ class AboutUsTableComponent extends Component {
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(body)
             };
-            const response = await fetch(url + news.newsId, fetchOptions);
+            const response = await fetch(url + post.id, fetchOptions);
 
             if (!response) {
                 const errorMessage = await response.text();
@@ -170,7 +170,4 @@ class AboutUsTableComponent extends Component {
 
 
 }
-
-//document.getElementById('flexSwitchCheckChecked').addEventListener("change", () => console.log(document.getElementById('flexSwitchCheckChecked').checked) )
-
 export default AboutUsTableComponent;

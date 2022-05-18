@@ -97,7 +97,7 @@ class AddAboutUsComponent extends Component {
         let cmsBody = new TwoRowComponent('what this name for', this, cmsBottom);
         aboutUsForm.addComponent(cmsBody)
         aboutUsForm.updateDOM();
-        cmsBottom.addEventListenersNewsTable()
+        cmsBottom.addEventListenersPostsTable()
         this.addEventlisenterToContent()
     }
 }
