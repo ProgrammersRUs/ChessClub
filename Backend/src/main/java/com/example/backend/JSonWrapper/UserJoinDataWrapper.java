@@ -2,7 +2,7 @@ package com.example.backend.JSonWrapper;
 
 import com.example.backend.Entity.User;
 
-public class UserJoinDateWrapper {
+public class UserJoinDataWrapper {
 
     private User user;
     private String name;

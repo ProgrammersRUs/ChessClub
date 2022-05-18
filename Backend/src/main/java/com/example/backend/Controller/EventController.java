@@ -5,7 +5,7 @@ import com.example.backend.Entity.Member;
 import com.example.backend.Entity.Registration;
 import com.example.backend.Entity.User;
 import com.example.backend.JSonWrapper.EventUserWrapper;
-import com.example.backend.JSonWrapper.UserJoinDateWrapper;
+import com.example.backend.JSonWrapper.UserJoinDataWrapper;
 import com.example.backend.Service.EventService;
 import com.example.backend.Service.MemberService;
 import com.example.backend.Service.UserService;
@@ -42,7 +42,7 @@ public class EventController {
 
 
     @PostMapping("/all-upcoming")
-    public List<Event> getAllUpcoming(@RequestBody User user){
+    public List<Event> getAllUpcoming(@RequestBody User user) {
         if (user.getId() == 0 || user == null) {
             return eventService.getAllUpcoming(false);
         }
@@ -64,7 +64,7 @@ public class EventController {
     }
 
     @PostMapping("/join/{eventId}")
-    public ResponseEntity<Registration> joinEvent(@PathVariable int eventId, @RequestBody UserJoinDateWrapper userJoinDateWrapper) {
+    public ResponseEntity<Registration> joinEvent(@PathVariable int eventId, @RequestBody UserJoinDataWrapper userJoinDateWrapper) {
         Optional<Event> optionalEvent = eventService.getEventById(eventId);
         System.out.println(optionalEvent.isPresent());
         if (optionalEvent.isPresent()) {
@@ -81,6 +81,21 @@ public class EventController {
             if (member.isPresent()) {
                 Registration response = eventService.joinEvent(event, member.get());
                 return new ResponseEntity<>(response, HttpStatus.CREATED);
+            }
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @PostMapping("/getRegistrations/{eventId}")
+    public ResponseEntity<List<Registration>> getRegistrationByEvent(@PathVariable int eventId, @RequestBody User user) {
+        Optional<Event> optionalEvent = eventService.getEventById(eventId);
+        if (optionalEvent.isPresent()) {
+            Event event = optionalEvent.get();
+            if (user == null || user.getId() == 0) {
+                return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+            }
+            if (userService.findUser(user.getId()).isAdminStatus() && user.isAdminStatus()) {
+                return new ResponseEntity<>(event.getRegistrations(), HttpStatus.OK);
             }
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
