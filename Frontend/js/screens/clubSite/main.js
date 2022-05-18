@@ -14,6 +14,7 @@ footer.addComponent(new FooterComponent());
 
 const ChessWebAPI = "https://api.chess.com/pub/club/skak-faxe-kommune"
 const Tournaments = "https://api.chess.com/pub/tournament/testisdabest/1/1"
+const TournamentsFacts = "https://api.chess.com/pub/tournament/testisdabest/"
 const Members = "https://api.chess.com/pub/club/skak-faxe-kommune/members"
 /*
 const MemberInfo = "https://api.chess.com/pub/player/{username}"
@@ -24,6 +25,10 @@ async function fetchMemberInfoApi() {
 return await fetch(MemberInfo).then(response => response.json());
 }
  */
+
+async function fetchTournamentsFacts() {
+    return await fetch(TournamentsFacts).then(response => response.json());
+}
 
 async function fetchChessApi() {
 
@@ -73,6 +78,7 @@ for (const member of memberList.monthly) {
 const matchData = await fetchMatches()
 const data = await fetchChessApi()
 const memberData = await fetchMembers()
+const tournamentData = await fetchTournamentsFacts()
 /*
 const memberInfoData = await fetchMemberInfo()
  */
@@ -97,7 +103,8 @@ let clubBody = {
 }
 
 let tournamentBody = {
-    games: matchData.games
+    games: matchData.games,
+    tournamentName: tournamentData.name
 }
 
 let memberBody = {

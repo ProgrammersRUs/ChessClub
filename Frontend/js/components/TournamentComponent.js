@@ -4,13 +4,14 @@ class TournamentComponent extends Component {
     constructor(event) {
         let state = {
             games: event.games,
+            tournamentName: event.tournamentName,
             username: event.username,
             urls: event.url
         }
 
         super('nextEvent', state, (state) =>
             `
-  
+  <h2>Igangværende turneringer</h2>
 <table class="table">
     <thead class="thead-dark">
         <tr>
