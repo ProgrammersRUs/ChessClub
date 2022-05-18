@@ -3,11 +3,10 @@ import NavbarComponent from '../../components/NavbarComponent.js';
 import FooterComponent from "../../components/FooterComponent.js";
 import CmsComponent from "../../components/cms/CmsComponent.js";
 import AddNewsComponent from "../../components/cms/forms/AddNewsComponent.js";
-import TwoRowComponent from "../../components/TwoRowComponent.js";
 import MemberOverviewComponent from "../../components/MemberOverviewComponent.js";
 import AddSponsorComponent from "../../components/cms/forms/AddSponsorComponent.js";
-import SponsorTableComponent from "../../components/cms/tables/SponsorTableComponent.js";
 import AddAboutUsComponent from "../../components/cms/forms/AddAboutUsComponent.js";
+import AddFronPageComponent from "../../components/cms/forms/AddFrontPageComponent.js";
 
 const navbar = new ElementObject('navbar');
 navbar.addComponent(new NavbarComponent());
@@ -49,7 +48,11 @@ document.getElementById('sponsor-link').addEventListener('click', async () => {
 
 )
 document.getElementById('about-us-link').addEventListener('click', async () => {
-    let sponsor = new AddAboutUsComponent();
-    await sponsor.refreshPage();
+    let aboutUsComponent = new AddAboutUsComponent();
+    await aboutUsComponent.refreshPage();
 })
 
+document.getElementById('frontpage-link').addEventListener('click', async () => {
+    let frontPageComponent = new AddFronPageComponent();
+    await frontPageComponent.refreshPage();
+})
