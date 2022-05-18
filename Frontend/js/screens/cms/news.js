@@ -1,8 +1,8 @@
 import ElementObject from '../../lib/ElementObject.js';
 import NavbarComponent from '../../components/NavbarComponent.js';
 import FooterComponent from "../../components/FooterComponent.js";
-import AddNewsComponent from "../../components/cms/AddNewsComponent.js"
-import NewsTableComponent from "../../components/cms/NewsTableComponent.js";
+import AddNewsComponent from "../../components/cms/forms/AddNewsComponent.js"
+import NewsTableComponent from "../../components/cms/tables/NewsTableComponent.js";
 import TwoRowComponent from "../../components/TwoRowComponent.js";
 
 const navbar = new ElementObject('navbar');

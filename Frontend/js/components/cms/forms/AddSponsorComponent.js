@@ -1,7 +1,7 @@
-import Component from "../../lib/Component.js";
-import ElementObject from "../../lib/ElementObject.js";
-import TwoRowComponent from "../TwoRowComponent.js";
-import SponsorTableComponent from "./SponsorTableComponent.js";
+import Component from "../../../lib/Component.js";
+import ElementObject from "../../../lib/ElementObject.js";
+import TwoRowComponent from "../../TwoRowComponent.js";
+import SponsorTableComponent from "../tables/SponsorTableComponent.js";
 
 class AddNewSponsorComponent extends Component {
 

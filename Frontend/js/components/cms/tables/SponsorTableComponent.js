@@ -1,4 +1,4 @@
-import Component from "../../lib/Component.js";
+import Component from "../../../lib/Component.js";
 
 class SponsorTableComponent extends Component {
 

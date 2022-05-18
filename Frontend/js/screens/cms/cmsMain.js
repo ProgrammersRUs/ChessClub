@@ -2,11 +2,12 @@ import ElementObject from '../../lib/ElementObject.js';
 import NavbarComponent from '../../components/NavbarComponent.js';
 import FooterComponent from "../../components/FooterComponent.js";
 import CmsComponent from "../../components/cms/CmsComponent.js";
-import AddNewsComponent from "../../components/cms/AddNewsComponent.js";
+import AddNewsComponent from "../../components/cms/forms/AddNewsComponent.js";
 import TwoRowComponent from "../../components/TwoRowComponent.js";
 import MemberOverviewComponent from "../../components/MemberOverviewComponent.js";
-import AddSponsorComponent from "../../components/cms/AddSponsorComponent.js";
-import SponsorTableComponent from "../../components/cms/SponsorTableComponent.js";
+import AddSponsorComponent from "../../components/cms/forms/AddSponsorComponent.js";
+import SponsorTableComponent from "../../components/cms/tables/SponsorTableComponent.js";
+import AddAboutUsComponent from "../../components/cms/forms/AddAboutUsComponent.js";
 
 const navbar = new ElementObject('navbar');
 navbar.addComponent(new NavbarComponent());
@@ -45,5 +46,10 @@ document.getElementById('sponsor-link').addEventListener('click', async () => {
         let sponsor = new AddSponsorComponent();
         await sponsor.refreshPage();
     }
+
 )
+document.getElementById('about-us-link').addEventListener('click', async () => {
+    let sponsor = new AddAboutUsComponent();
+    await sponsor.refreshPage();
+})
 

@@ -1,7 +1,7 @@
-import Component from "../../lib/Component.js";
-import AddNewsComponent from "./AddNewsComponent.js";
+import Component from "../../../lib/Component.js";
+import AddNewsComponent from "../forms/AddNewsComponent.js";
 
-class NewsTableComponent extends Component {
+class AboutUsTableComponent extends Component {
 
     constructor(news) {
         let state = {

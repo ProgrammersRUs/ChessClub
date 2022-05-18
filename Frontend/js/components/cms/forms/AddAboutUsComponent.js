@@ -1,31 +1,31 @@
-import Component from "../../lib/Component.js";
-import ElementObject from "../../lib/ElementObject.js";
-import NewsTableComponent from "./NewsTableComponent.js";
-import TwoRowComponent from "../TwoRowComponent.js";
+import Component from "../../../lib/Component.js";
+import ElementObject from "../../../lib/ElementObject.js";
+import NewsTableComponent from "../tables/NewsTableComponent.js";
+import TwoRowComponent from "../../TwoRowComponent.js";
 
-class AddNewsComponent extends Component {
+class AddAboutUsComponent extends Component {
 
     constructor() {
         let state = {}
 
-        super('Nyheder', state, (state) =>
+        super('Om os', state, (state) =>
             `<div class="row mx-w-100 h-100">
             <div class="card col-sm m-1" style="background-color: rgba(217, 226, 249, 0.3);">
                 <div class="card-body">
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1">Overskrift: </span>
-                        <input id="newsHeader" type="text" class="form-control" placeholder="" aria-label=""
+                        <input id="postHeader" type="text" class="form-control" placeholder="" aria-label=""
                                aria-describedby="basic-addon1">
                     </div>
                     <div class="input-group h-50">
-                        <span class="input-group-text ">Nyheds tekst: </span>
-                        <textarea id="newsBody" class="form-control" aria-label="With textarea"></textarea>
+                        <span class="input-group-text ">Om os tekst: </span>
+                        <textarea id="postBody" class="form-control" aria-label="With textarea"></textarea>
                     </div>
                     <div class="row">
                     <div class="container">
-                    <button type="button" class="btn btn-primary" id="submitNews">Opret Nyhed</button>
+                    <button type="button" class="btn btn-primary" id="submitPost">Opret nyt indlæg</button>
                               <div class="form-check form-switch float-end">
-                        <label class="form-check-label" for="flexSwitchCheckChecked">Publicer nyhed</label>
+                        <label class="form-check-label" for="flexSwitchCheckChecked">Publicer indlæg</label>
                         <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
                     </div>
                            
@@ -41,22 +41,22 @@ class AddNewsComponent extends Component {
 
 
     addEventlisenterToContent() {
-        const url = config.endpoints.cms.root + config.endpoints.cms.subPoint.postNews
-        const button = document.getElementById('submitNews')
+        const url = config.endpoints.cms.root + config.endpoints.cms.subPoint.postAboutUs
+        const button = document.getElementById('submitPost')
 
 
         button.addEventListener("click", async () => {
-            await postNews(url)
+            await postAboutUs(url)
             await this.refreshPage()
         })
 
-        async function postNews(url) {
-            const newsHeader = document.getElementById('newsHeader').value
-            const newsBody = document.getElementById('newsBody').value
-            const newsIsActive = document.getElementById('flexSwitchCheckChecked')
+        async function postAboutUs(url) {
+            const aboutUsHeader = document.getElementById('postHeader').value
+            const aboutUsBody = document.getElementById('postBody').value
+            const aboutUsIsActive = document.getElementById('flexSwitchCheckChecked')
             let isActive = 0
 
-            if (newsIsActive.checked) {
+            if (aboutUsIsActive.checked) {
                 isActive = 1
             }
 
@@ -64,8 +64,9 @@ class AddNewsComponent extends Component {
                 user: JSON.parse(sessionStorage.getItem("user")),
                 news: {
                     creationDate: new Date().toLocaleDateString('en-CA'),
-                    newsHeader: newsHeader,
-                    newsBody: newsBody,
+                    header: aboutUsHeader,
+                    body: aboutUsBody,
+                    imageUrl: "",
                     isActive: isActive
                 }
             }
@@ -89,20 +90,20 @@ class AddNewsComponent extends Component {
     }
 
     async refreshPage() {
-        const newsForm = new ElementObject('cms-content');
+        const aboutUsForm = new ElementObject('cms-content');
 
         let cmsBottom = new NewsTableComponent(await
-            fetch(config.endpoints.cms.root + config.endpoints.cms.subPoint.allNews).then(response => response.json()));
+            fetch(config.endpoints.cms.root + config.endpoints.cms.subPoint.allSponsers).then(response => response.json()));
         document.getElementById('cms-content-header').innerText = this.name;
 
         let cmsBody = new TwoRowComponent('what this name for', this, cmsBottom);
-        newsForm.addComponent(cmsBody)
-        newsForm.updateDOM();
+        aboutUsForm.addComponent(cmsBody)
+        aboutUsForm.updateDOM();
         cmsBottom.addEventListenersNewsTable()
         this.addEventlisenterToContent()
     }
 }
 
 
-export default AddNewsComponent;
+export default AddAboutUsComponent;
 
