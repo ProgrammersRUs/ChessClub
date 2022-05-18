@@ -2,10 +2,7 @@ package com.example.cms.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Optional;
 
@@ -20,6 +17,9 @@ public class News {
     private String newsBody;
     private String imageUrl;
     private String href;
+
+    @Column(columnDefinition="tinyint(1) default 1")
+    private String isActive;
 
 
 
@@ -69,5 +69,17 @@ public class News {
 
     public void setHref(String href) {
         this.href = href;
+    }
+
+    public void setCreationDate(LocalDate creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public String getIsActive() {
+        return isActive;
+    }
+
+    public void setIsActive(String isActive) {
+        this.isActive = isActive;
     }
 }
