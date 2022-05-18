@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/event")
 public class EventController {
 
@@ -37,6 +38,16 @@ public class EventController {
         }
         Optional<Member> member = memberService.getMemberByUser(user);
         return eventService.getAll(member.isPresent());
+    }
+
+
+    @PostMapping("/all-upcoming")
+    public List<Event> getAllUpcoming(@RequestBody User user){
+        if (user.getId() == 0 || user == null) {
+            return eventService.getAllUpcoming(false);
+        }
+        Optional<Member> member = memberService.getMemberByUser(user);
+        return eventService.getAllUpcoming(member.isPresent());
     }
 
     @PostMapping("/new")

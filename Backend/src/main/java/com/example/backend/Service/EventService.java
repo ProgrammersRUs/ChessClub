@@ -26,6 +26,9 @@ public class EventService {
     }
 
     public Event saveEvent(Event event) {
+        if(event.getEventDay() == null){
+            event.setEventDay(LocalDate.now());
+        }
         if (!event.getRegistrations().isEmpty()) {
             registrationRepository.saveAll(event.getRegistrations());
         }
@@ -38,6 +41,14 @@ public class EventService {
         }
         return eventRepository.findByMemberOnlyFalse();
     }
+
+    public List<Event> getAllUpcoming(boolean allowed){
+        if (allowed) {
+            return eventRepository.findByEventDayAfterOrderByEventDay(LocalDate.now());
+        }
+        return eventRepository.findByEventDayAfterAndMemberOnlyFalseOrderByEventDay(LocalDate.now());
+    }
+
 
     public Registration joinEvent(Event event, Member member){
         Registration registration = new Registration();
