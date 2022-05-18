@@ -76,7 +76,7 @@ public class NewsController {
             }
             try {
                 newsService.deleteNews(id);
-                return new ResponseEntity<>("Member Deleted with id: " + id, HttpStatus.OK);
+                return new ResponseEntity<>("news Deleted with id: " + id, HttpStatus.OK);
             } catch (Exception e) {
                 return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
             }

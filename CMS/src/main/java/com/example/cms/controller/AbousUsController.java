@@ -1,11 +1,9 @@
 package com.example.cms.controller;
 
 import com.example.cms.entity.AboutPage;
-import com.example.cms.entity.News;
 import com.example.cms.service.AboutPageService;
 import com.example.cms.service.UserService;
 import com.example.cms.wrapper.UserAboutPageWrapper;
-import com.example.cms.wrapper.UserNewsWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -58,25 +56,40 @@ public class AbousUsController {
   }
 
   @PutMapping("/{id}")
-  public ResponseEntity<AboutPage> updateAboutPage(@PathVariable int id, @RequestBody AboutPage aboutPage){
-    Optional<AboutPage> optAboutPage = aboutPageService.findByisOpt(id);
-    if (optAboutPage.isPresent()){
-      aboutPageService.addNew(aboutPage);
-      return  new ResponseEntity<>(aboutPage, HttpStatus.OK);
-    } else {
-      AboutPage aboutPageNotFound = new AboutPage();
-      aboutPageNotFound.setHeader("No about with id: " + id);
-      return  new ResponseEntity<>(aboutPage, HttpStatus.NOT_FOUND);
+  public ResponseEntity<AboutPage> updateAboutPage(@PathVariable int id, @RequestBody UserAboutPageWrapper userAboutPageWrapper) {
+    if (userAboutPageWrapper.getUser() != null) {
+      if (!userService.validateAdmin(userAboutPageWrapper.getUser())) {
+        return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+      }
+      Optional<AboutPage> optAboutPage = aboutPageService.findByisOpt(id);
+      if (optAboutPage.isPresent()) {
+        aboutPageService.addNew(userAboutPageWrapper.getAboutPage());
+        return new ResponseEntity<>(userAboutPageWrapper.getAboutPage(), HttpStatus.OK);
+      } else {
+        AboutPage aboutPageNotFound = new AboutPage();
+        aboutPageNotFound.setHeader("No post with id: " + id);
+        return new ResponseEntity<>(aboutPageNotFound, HttpStatus.NOT_FOUND);
+      }
     }
+    return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
   }
 
   @DeleteMapping("/{id}")
-  public ResponseEntity<String> deleteAboutPage(@PathVariable int id) {
-    try {
-      aboutPageService.deleteAboutPage(id);
-      return new ResponseEntity<>("AboutPage Deleted with id: " + id, HttpStatus.OK);
-    } catch (Exception e) {
-      return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+  public ResponseEntity<String> deleteAboutPage(@PathVariable int id, @RequestBody UserAboutPageWrapper userAboutPageWrapper) {
+    if (userAboutPageWrapper.getUser() != null) {
+      System.out.println(userAboutPageWrapper.getUser().getUserEmail() + " : "+userAboutPageWrapper.getUser().getId() + ": "+ userAboutPageWrapper.getUser().isAdminStatus());
+      boolean access = userService.validateAdmin(userAboutPageWrapper.getUser());
+      System.out.println(access);
+      if (!access) {
+        return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+      }
+      try {
+        aboutPageService.deleteAboutPage(id);
+        return new ResponseEntity<>("Post Deleted with id: " + id, HttpStatus.OK);
+      } catch (Exception e) {
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+      }
     }
+    return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
   }
 }

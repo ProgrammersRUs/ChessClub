@@ -138,7 +138,7 @@ class AboutUsTableComponent extends Component {
 
             let body = {
                 user: JSON.parse(sessionStorage.getItem('user')),
-                about: {
+                aboutPage: {
                     id: post.id,
                     creationDate: post.creationDate,
                     header: post.header,
