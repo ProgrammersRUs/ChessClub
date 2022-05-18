@@ -1,4 +1,7 @@
 import Component from "../../lib/Component.js";
+import ElementObject from "../../lib/ElementObject.js";
+import TwoRowComponent from "../TwoRowComponent.js";
+import SponsorTableComponent from "./SponsorTableComponent.js";
 
 class AddNewSponsorComponent extends Component {
 
@@ -35,12 +38,13 @@ class AddNewSponsorComponent extends Component {
 `);
     }
 
-    addEventliseenter() {
+    addEventlisenterToContent() {
         const url = config.endpoints.cms.root + config.endpoints.cms.subPoint.postSponsor;
         const button = document.getElementById('submitSponsor')
 
         button.addEventListener("click", async () => {
             await postSponsor(url)
+            await this.refreshPage()
         })
 
         async function postSponsor(url) {
@@ -73,6 +77,19 @@ class AddNewSponsorComponent extends Component {
             return response;
 
         }
+    }
+
+    async refreshPage() {
+        const sponsorForm = new ElementObject('cms-content');
+
+        let cmsBottom = new SponsorTableComponent(await
+            fetch(config.endpoints.cms.root + config.endpoints.cms.subPoint.allSponsers).then(response => response.json()));
+        document.getElementById('cms-content-header').innerText = this.name;
+
+        let cmsBody = new TwoRowComponent('what this name for', this, cmsBottom);
+        sponsorForm.addComponent(cmsBody)
+        sponsorForm.updateDOM();
+        this.addEventlisenterToContent()
     }
 }
 

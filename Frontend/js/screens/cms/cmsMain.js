@@ -42,18 +42,8 @@ document.getElementById('members-link').addEventListener('click', async () => {
 )
 
 document.getElementById('sponsor-link').addEventListener('click', async () => {
-        const sponsorForm = new ElementObject('cms-content');
-
-
         let sponsor = new AddSponsorComponent();
-        let sponsorC = new SponsorTableComponent(await fetch(config.endpoints.cms.root + config.endpoints.cms.subPoint.allSponsers).then(response => response.json()));
-
-        document.getElementById('cms-content-header').innerText = sponsor.name;
-
-        let top = new TwoRowComponent('what this name for', sponsor, sponsorC);
-        sponsorForm.addComponent(top)
-        sponsorForm.updateDOM();
-        sponsor.addEventliseenter()
+        await sponsor.refreshPage();
     }
 )
 
