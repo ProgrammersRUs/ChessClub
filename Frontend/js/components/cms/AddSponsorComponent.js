@@ -36,7 +36,7 @@ class AddNewSponsorComponent extends Component {
     }
 
     addEventliseenter() {
-        const url = 'https://cmsbackend420.azurewebsites.net/sponsor/new'
+        const url = config.endpoints.cms.root + config.endpoints.cms.subPoint.postSponsor;
         const button = document.getElementById('submitSponsor')
 
         button.addEventListener("click", async () => {
@@ -47,10 +47,16 @@ class AddNewSponsorComponent extends Component {
             const sponsorHeader = document.getElementById('sponsor-header').value
             const sponsorBody = document.getElementById('sponsor-body').value
 
+            console.log(sessionStorage.getItem('user'))
+
             let body = {
-                name: sponsorHeader,
-                description: sponsorBody
+                user: JSON.parse(sessionStorage.getItem('user')),
+                sponsor: {
+                    name: sponsorHeader,
+                    description: sponsorBody
+                }
             }
+            console.log(body)
 
             const fetchOptions = {
                 method: "POST",

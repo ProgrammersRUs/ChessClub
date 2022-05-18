@@ -7,7 +7,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.WebClientException;
 
 @Service
-public class UserService {
+public class UserService implements IUserService {
 
     private WebClient userClient;
     private String userValidationEndpoint;
@@ -30,11 +30,22 @@ public class UserService {
                 .bodyToMono(User.class)
                 .block();
 
+            System.out.println(validatedUser.compareTo(user));
+
         if(validatedUser.compareTo(user) == 0){
             return true;
         }
         }catch (WebClientException e){
+            System.out.println(e);
             return false;
+        }
+        return false;
+    }
+
+
+    public boolean validateAdmin(User user){
+        if(validateUser(user)){
+            return user.isAdminStatus();
         }
         return false;
     }

@@ -1,14 +1,13 @@
-import Component from "../../lib/Component.js";
 import ElementObject from "../../lib/ElementObject.js";
-import NewsTableComponent from "./NewsTableComponent.js";
-import TwoRowComponent from "../TwoRowComponent.js";
 
-class AddNewsComponent extends Component {
+class AddEventComponent extends Component{
 
     constructor() {
-        let state = {}
+        let state = {
 
-        super('Nyheder', state, (state) =>
+        }
+
+        super('Events', state, (state)=>
             `<div class="row mx-w-100 h-100">
             <div class="card col-sm m-1" style="background-color: rgba(217, 226, 249, 0.3);">
                 <div class="card-body">
@@ -18,14 +17,14 @@ class AddNewsComponent extends Component {
                                aria-describedby="basic-addon1">
                     </div>
                     <div class="input-group h-50">
-                        <span class="input-group-text ">Nyheds tekst: </span>
+                        <span class="input-group-text ">Event tekst: </span>
                         <textarea id="newsBody" class="form-control" aria-label="With textarea"></textarea>
                     </div>
                     <div class="row">
                     <div class="container">
-                    <button type="button" class="btn btn-primary" id="submitNews">Opret Nyhed</button>
+                    <button type="button" class="btn btn-primary" id="createEvent">Opret Event</button>
                               <div class="form-check form-switch float-end">
-                        <label class="form-check-label" for="flexSwitchCheckChecked">Publicer nyhed</label>
+                        <label class="form-check-label" for="flexSwitchCheckChecked">Publicer Event</label>
                         <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
                     </div>
                            
@@ -40,12 +39,12 @@ class AddNewsComponent extends Component {
     }
 
 
-    addEventlisenterToContent() {
-        const url = config.endpoints.cms.root + config.endpoints.cms.subPoint.postNews
-        const button = document.getElementById('submitNews')
+    addEventliseenter() {
+        const url = 'https://cmsbackend420.azurewebsites.net/event/createEvent'
+        const button = document.getElementById('createEvent')
 
 
-        button.addEventListener("click", async () => {
+        button.addEventListener("click", async() => {
             await postNews(url)
             await this.refreshPage()
         })
@@ -56,25 +55,22 @@ class AddNewsComponent extends Component {
             const newsIsActive = document.getElementById('flexSwitchCheckChecked')
             let isActive = 0
 
-            if (newsIsActive.checked) {
+            if (newsIsActive.checked){
                 isActive = 1
             }
 
             let body = {
-                user: JSON.parse(sessionStorage.getItem("user")),
-                news: {
-                    creationDate: new Date().toLocaleDateString('en-CA'),
-                    newsHeader: newsHeader,
-                    newsBody: newsBody,
-                    isActive: isActive
-                }
+                creationDate: new Date().toLocaleDateString('en-CA'),
+                newsHeader: newsHeader,
+                newsBody: newsBody,
+                isActive: isActive
             }
             const fetchOptions = {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(body)
             };
-            const response = await fetch(url, fetchOptions);
+            const response = await fetch(url,fetchOptions );
             if (!response) {
                 const errorMessage = await response.text();
                 console.log(errorMessage)
@@ -86,9 +82,10 @@ class AddNewsComponent extends Component {
         }
 
 
+
     }
 
-    async refreshPage() {
+    async refreshPage(){
         const newsForm = new ElementObject('cms-content');
 
         let cmsBottom = new NewsTableComponent(await
@@ -105,4 +102,3 @@ class AddNewsComponent extends Component {
 
 
 export default AddNewsComponent;
-
