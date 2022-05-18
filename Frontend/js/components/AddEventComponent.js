@@ -22,7 +22,7 @@ class AddEventComponent extends Component{
                     </div>
                     <div class="row">
                     <div class="container">
-                    <button type="button" class="btn btn-primary" id="submitNews">Opret Event</button>
+                    <button type="button" class="btn btn-primary" id="createEvent">Opret Event</button>
                               <div class="form-check form-switch float-end">
                         <label class="form-check-label" for="flexSwitchCheckChecked">Publicer Event</label>
                         <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
@@ -40,8 +40,8 @@ class AddEventComponent extends Component{
 
 
     addEventliseenter() {
-        const url = 'https://cmsbackend420.azurewebsites.net/news/new'
-        const button = document.getElementById('submitNews')
+        const url = 'https://cmsbackend420.azurewebsites.net/event/createEvent'
+        const button = document.getElementById('createEvent')
 
 
         button.addEventListener("click", async() => {
