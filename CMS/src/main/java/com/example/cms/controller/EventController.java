@@ -32,4 +32,9 @@ public class EventController {
     public List<Event> getAllEvents() {
         return eventService.getAllEvents();
     }
+
+    @GetMapping("/next-event")
+    public List<Event> getNextEvent(){
+        return eventService.getNextEvent();
+    }
 }
