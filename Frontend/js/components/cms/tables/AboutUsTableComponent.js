@@ -1,5 +1,4 @@
 import Component from "../../../lib/Component.js";
-import AddNewsComponent from "../forms/AddNewsComponent.js";
 import AddAboutUsComponent from "../forms/AddAboutUsComponent.js";
 
 class AboutUsTableComponent extends Component {
@@ -42,7 +41,7 @@ class AboutUsTableComponent extends Component {
 
         return aboutUsList.map(aboutUs => `
                             <tr>
-                                <td id="newsId${aboutUs.id}"class="d-none">${aboutUs.id}</td>
+                                <td id="postId${aboutUs.id}"class="d-none">${aboutUs.id}</td>
                                 <td>${aboutUs.header}</td>
                                 <td>${aboutUs.creationDate}</td>
                                 <td class="accordion-item col-2">
@@ -53,9 +52,9 @@ class AboutUsTableComponent extends Component {
                                     </button>
                                 </td>
                                 <td class="col-md-2">
-                                <button id="deleteNews${aboutUs.id}" type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i class="fa fa-trash"></i> </button>
+                                <button id="deletePost${aboutUs.id}" type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i class="fa fa-trash"></i> </button>
                                 <button  type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i class="fa fa-edit"></i> </button>
-                                <button id="updateNewsStatus${aboutUs.id}"  type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i ${this.isActivePost(aboutUs)}></i> </button>
+                                <button id="updatePostStatus${aboutUs.id}"  type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i ${this.isActivePost(aboutUs)}></i> </button>
                             </td>
                             </tr>
                             <tr id="collapse${aboutUs.id}" class="accordion-collapse collapse"
@@ -82,7 +81,7 @@ class AboutUsTableComponent extends Component {
 
     addEventListenersPostsTable() {
 
-        const url = config.endpoints.cms.root + config.endpoints.cms.subPoint.deleteNews;
+        const url = config.endpoints.cms.root + config.endpoints.cms.subPoint.deleteAboutUs;
         this.state.aboutUs.forEach(about => {
 
             const buttonDelete = document.getElementById('deletePost' + about.id)
@@ -164,10 +163,7 @@ class AboutUsTableComponent extends Component {
 
             }
         }
-
-
     }
-
-
 }
+
 export default AboutUsTableComponent;
