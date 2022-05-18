@@ -10,9 +10,15 @@ async function postUserStatus(user, userStatus) {
     const url = 'http://localhost:8080/user/update-status'
 
     let status = userStatus.value == 'Admin' ? true : false;
+
+    let body = {
+        admin: JSON.parse(sessionStorage.getItem('user')),
+        user: {id: user, adminStatus: status},
+    }
+
     const options = {
         method: 'PUT',
-        body: JSON.stringify({id: user, adminStatus: status}),
+        body: JSON.stringify(body),
         headers: {
             'Content-type': 'application/json'
         }

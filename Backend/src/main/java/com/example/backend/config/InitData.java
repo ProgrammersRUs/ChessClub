@@ -19,23 +19,6 @@ public class InitData implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-
-        User user = new User();
-        user.setUserEmail("This@Mail.com");
-        user.setUserPassword("123");
-        userService.saveUser(user);
-
-
-        Member member = new Member();
-        member.setUser(user);
-        member.setMemberFirstName("Johnny");
-        member.setMemberLastName("Depp");
-        member.setMemberPhoneNr("42042069");
-        member.setMemberAge("18/05/1998");
-        member.setMemberAddress("This adress is lit 54");
-        memberService.saveMember(member);
-
-
     }
 
 

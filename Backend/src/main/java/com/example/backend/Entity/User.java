@@ -1,5 +1,6 @@
 package com.example.backend.Entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jdk.jfr.BooleanFlag;
 
 import javax.persistence.*;
@@ -10,6 +11,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String userEmail;
+    @JsonBackReference
     private String userPassword;
 
     public boolean isAdminStatus() {
