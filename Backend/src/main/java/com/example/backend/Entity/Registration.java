@@ -1,5 +1,7 @@
 package com.example.backend.Entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -15,6 +17,7 @@ public class Registration {
     private String name;
 
     @ManyToOne
+    @JsonBackReference
     private Member member;
 
     private LocalDate registrationDate;
@@ -22,6 +25,13 @@ public class Registration {
     @Column(columnDefinition = "BOOLEAN")
     private boolean externalRegistation;
 
+    public boolean isExternalRegistation() {
+        return externalRegistation;
+    }
+
+    public void setExternalRegistation(boolean externalRegistation) {
+        this.externalRegistation = externalRegistation;
+    }
 
     public Long getId() {
         return id;

@@ -2,8 +2,10 @@ package com.example.backend.Controller;
 
 import com.example.backend.Entity.Event;
 import com.example.backend.Entity.Member;
+import com.example.backend.Entity.Registration;
 import com.example.backend.Entity.User;
 import com.example.backend.JSonWrapper.EventUserWrapper;
+import com.example.backend.JSonWrapper.UserJoinDateWrapper;
 import com.example.backend.Service.EventService;
 import com.example.backend.Service.MemberService;
 import com.example.backend.Service.UserService;
@@ -30,7 +32,7 @@ public class EventController {
 
     @PostMapping("/get-all")
     public List<Event> getAll(@RequestBody User user) {
-        if(user.getId() == 0 || user == null){
+        if (user.getId() == 0 || user == null) {
             return eventService.getAll(false);
         }
         Optional<Member> member = memberService.getMemberByUser(user);
@@ -38,15 +40,38 @@ public class EventController {
     }
 
     @PostMapping("/new")
-    public ResponseEntity<Event> createNewEvent(@RequestBody EventUserWrapper eventUserWrapper){
-        if(!eventUserWrapper.getUser().isAdminStatus()){
+    public ResponseEntity<Event> createNewEvent(@RequestBody EventUserWrapper eventUserWrapper) {
+        if (!eventUserWrapper.getUser().isAdminStatus()) {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
         User admin = userService.findUser(eventUserWrapper.getUser().getId());
-        if(admin.isAdminStatus()){
+        if (admin.isAdminStatus()) {
             Event response = eventService.saveEvent(eventUserWrapper.getEvent());
             return new ResponseEntity<>(response, HttpStatus.CREATED);
         }
         return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+    }
+
+    @PostMapping("/join/{eventId}")
+    public ResponseEntity<Registration> joinEvent(@PathVariable int eventId, @RequestBody UserJoinDateWrapper userJoinDateWrapper) {
+        Optional<Event> optionalEvent = eventService.getEventById(eventId);
+        System.out.println(optionalEvent.isPresent());
+        if (optionalEvent.isPresent()) {
+            Event event = optionalEvent.get();
+            if (userJoinDateWrapper.getUser() == null || userJoinDateWrapper.getUser().getId() == 0) {
+                if (event.isMemberOnly()) {
+                    return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+                }
+                Registration response = eventService.joinEvent(event, userJoinDateWrapper.getEmail(), userJoinDateWrapper.getName());
+                return new ResponseEntity<>(response, HttpStatus.CREATED);
+
+            }
+            Optional<Member> member = memberService.getMemberByUser(userJoinDateWrapper.getUser());
+            if (member.isPresent()) {
+                Registration response = eventService.joinEvent(event, member.get());
+                return new ResponseEntity<>(response, HttpStatus.CREATED);
+            }
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 }
