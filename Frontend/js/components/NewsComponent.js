@@ -11,7 +11,8 @@ class NewsComponent extends Component{
     }
 
  renderNews(news) {
-    return news.map(news => `
+
+    return news.filter(news => news.isActive == true).map(news =>  `
 <div class="card col-sm m-1" style="height: 10rem; background-color: rgba(217, 226, 249, 0.3);">
   <div class="card-body">
     <h5 class="card-title">${news.newsHeader}</h5>

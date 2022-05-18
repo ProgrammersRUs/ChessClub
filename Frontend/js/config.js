@@ -59,7 +59,10 @@ const config = {
             root: 'http://localhost:8089/',
             subPoint: {
                 allNews: 'news/all-news',
-                allSponsers: 'sponsor/get-all'
+                allSponsers: 'sponsor/get-all',
+                postNews: 'news/new',
+                postSponsor: 'sponsor/new',
+                deleteNews: 'news/'
             }
 
         }
