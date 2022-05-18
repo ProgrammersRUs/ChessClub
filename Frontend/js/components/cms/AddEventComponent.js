@@ -1,24 +1,26 @@
+import TwoRowComponent from "../TwoRowComponent.js";
 import ElementObject from "../../lib/ElementObject.js";
+import Component from "../../lib/Component.js";
+import EventTableComponent from "./EventTableComponent.js";
 
-class AddEventComponent extends Component{
+
+class AddEventComponent extends Component {
 
     constructor() {
-        let state = {
+        let state = {}
 
-        }
-
-        super('Events', state, (state)=>
+        super('Events', state, (state) =>
             `<div class="row mx-w-100 h-100">
             <div class="card col-sm m-1" style="background-color: rgba(217, 226, 249, 0.3);">
                 <div class="card-body">
                     <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">Overskrift: </span>
-                        <input id="newsHeader" type="text" class="form-control" placeholder="" aria-label=""
+                        <span class="input-group-text" id="basic-addon1">Titel: </span>
+                        <input id="eventHeader" type="text" class="form-control" placeholder="" aria-label=""
                                aria-describedby="basic-addon1">
                     </div>
                     <div class="input-group h-50">
-                        <span class="input-group-text ">Event tekst: </span>
-                        <textarea id="newsBody" class="form-control" aria-label="With textarea"></textarea>
+                        <span class="input-group-text ">Event beskrivelse: </span>
+                        <textarea id="eventBody" class="form-control" aria-label="With textarea"></textarea>
                     </div>
                     <div class="row">
                     <div class="container">
@@ -39,38 +41,39 @@ class AddEventComponent extends Component{
     }
 
 
-    addEventliseenter() {
-        const url = 'https://cmsbackend420.azurewebsites.net/event/createEvent'
+    addEventlisenterToContent() {
+        const url = 'http://localhost:8089/event/createEvent'
         const button = document.getElementById('createEvent')
 
 
-        button.addEventListener("click", async() => {
-            await postNews(url)
+        button.addEventListener("click", async () => {
+            await postEvent(url)
             await this.refreshPage()
         })
 
-        async function postNews(url) {
-            const newsHeader = document.getElementById('newsHeader').value
-            const newsBody = document.getElementById('newsBody').value
-            const newsIsActive = document.getElementById('flexSwitchCheckChecked')
+        async function postEvent(url) {
+            const eventHeader = document.getElementById('eventHeader').value
+            const eventBody = document.getElementById('eventBody').value
+            const eventIsActive = document.getElementById('flexSwitchCheckChecked')
             let isActive = 0
-
-            if (newsIsActive.checked){
+console.log(eventBody + eventHeader)
+            if (eventIsActive.checked) {
                 isActive = 1
             }
 
             let body = {
-                creationDate: new Date().toLocaleDateString('en-CA'),
-                newsHeader: newsHeader,
-                newsBody: newsBody,
-                isActive: isActive
+                    localDate: new Date().toLocaleDateString('en-CA'),
+                    title: eventHeader,
+                    description: eventBody,
+                    location: ""
+
             }
             const fetchOptions = {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(body)
             };
-            const response = await fetch(url,fetchOptions );
+            const response = await fetch(url, fetchOptions);
             if (!response) {
                 const errorMessage = await response.text();
                 console.log(errorMessage)
@@ -81,24 +84,22 @@ class AddEventComponent extends Component{
 
         }
 
-
-
     }
 
-    async refreshPage(){
-        const newsForm = new ElementObject('cms-content');
+    async refreshPage() {
+        const eventForm = new ElementObject('cms-content');
 
-        let cmsBottom = new NewsTableComponent(await
-            fetch(config.endpoints.cms.root + config.endpoints.cms.subPoint.allNews).then(response => response.json()));
+        let cmsBottom = new EventTableComponent(await
+            fetch(config.endpoints.cms.root + config.endpoints.cms.subPoint.allEvents).then(response => response.json()));
         document.getElementById('cms-content-header').innerText = this.name;
 
         let cmsBody = new TwoRowComponent('what this name for', this, cmsBottom);
-        newsForm.addComponent(cmsBody)
-        newsForm.updateDOM();
-        cmsBottom.addEventListenersNewsTable()
+        eventForm.addComponent(cmsBody)
+        eventForm.updateDOM();
+        cmsBottom.addEventListenersEventTable()
         this.addEventlisenterToContent()
     }
 }
 
 
-export default AddNewsComponent;
+export default AddEventComponent;

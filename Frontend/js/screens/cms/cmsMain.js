@@ -7,6 +7,7 @@ import TwoRowComponent from "../../components/TwoRowComponent.js";
 import MemberOverviewComponent from "../../components/MemberOverviewComponent.js";
 import AddSponsorComponent from "../../components/cms/AddSponsorComponent.js";
 import SponsorTableComponent from "../../components/cms/SponsorTableComponent.js";
+import AddEventComponent from "../../components/cms/AddEventComponent.js";
 
 const navbar = new ElementObject('navbar');
 navbar.addComponent(new NavbarComponent());
@@ -23,6 +24,11 @@ cmsLayout.addComponent(cmsComponent)
 navbar.updateDOM();
 footer.updateDOM();
 cmsLayout.updateDOM();
+
+document.getElementById('evnt-link').addEventListener('click', async () => {
+        let event1 = new AddEventComponent();
+        await event1.refreshPage()
+})
 
 
 document.getElementById('news-link').addEventListener('click', async () => {
