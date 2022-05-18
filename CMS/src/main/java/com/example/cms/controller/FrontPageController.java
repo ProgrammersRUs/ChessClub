@@ -2,6 +2,8 @@ package com.example.cms.controller;
 
 import com.example.cms.entity.FrontPage;
 import com.example.cms.service.FrontPageService;
+import com.example.cms.service.UserService;
+import com.example.cms.wrapper.UserFrontPageWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,10 +29,19 @@ public class FrontPageController {
   @Autowired
   FrontPageService frontPageService;
 
+  @Autowired
+  UserService userService;
+
   @PostMapping("/new")
-  @ResponseStatus(HttpStatus.CREATED)
-  public FrontPage postFrontPage(@RequestBody FrontPage frontPage) {
-    return frontPageService.addNew(frontPage);
+  public ResponseEntity<FrontPage> postFrontPage(@RequestBody UserFrontPageWrapper userFrontPageWrapper) {
+    if(userFrontPageWrapper.getUser() != null){
+      if(!userService.validateUser(userFrontPageWrapper.getUser())){
+        return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+      }
+      FrontPage response = frontPageService.addNew(userFrontPageWrapper.getFrontPage());
+      return new ResponseEntity<>(response, HttpStatus.CREATED);
+
+    }return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
   }
 
   @GetMapping("/{id}")
@@ -38,33 +49,47 @@ public class FrontPageController {
     return frontPageService.getFrontPageById(id);
   }
 
-  @GetMapping("/all-frontnpages")
+  @GetMapping("/all-frontpages")
   public List<FrontPage> getAllFrontPages() {
     return frontPageService.getAllFrontPages();
   }
 
   @PutMapping("/{id}")
-  public ResponseEntity<FrontPage> FrontPage(@PathVariable int id, @RequestBody FrontPage frontPage){
-    Optional<FrontPage> optFrontPage = frontPageService.findByisOpt(id);
-    if (optFrontPage.isPresent()){
-      frontPageService.addNew(frontPage);
-      return  new ResponseEntity<>(frontPage, HttpStatus.OK);
-    } else {
-      FrontPage frontPageNotFound = new FrontPage();
-      frontPageNotFound.setHeader("No frontPage with id: " + id);
-      return  new ResponseEntity<>(frontPage, HttpStatus.NOT_FOUND);
+  public ResponseEntity<FrontPage> updateFrontPage(@PathVariable int id, @RequestBody UserFrontPageWrapper userFrontPageWrapper) {
+    if (userFrontPageWrapper.getUser() != null) {
+      if (!userService.validateAdmin(userFrontPageWrapper.getUser())) {
+        return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+      }
+      Optional<FrontPage> optfrontPage = frontPageService.findByisOpt(id);
+      if (optfrontPage.isPresent()) {
+        frontPageService.addNew(userFrontPageWrapper.getFrontPage());
+        return new ResponseEntity<>(userFrontPageWrapper.getFrontPage(), HttpStatus.OK);
+      } else {
+        FrontPage frontPage = new FrontPage();
+        frontPage.setHeader("No frontPage with id: " + id);
+        return new ResponseEntity<>(frontPage, HttpStatus.NOT_FOUND);
+      }
     }
+    return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
   }
 
   @DeleteMapping("/{id}")
-  public ResponseEntity<String> deleteFrontPage(@PathVariable int id) {
-    try {
-      frontPageService.deleteFrontPage(id);
-      return new ResponseEntity<>("FrontPage Deleted with id: " + id, HttpStatus.OK);
-    } catch (Exception e) {
-      return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+  public ResponseEntity<String> deleteFrontPage(@PathVariable int id, @RequestBody UserFrontPageWrapper userFrontPageWrapper) {
+    if (userFrontPageWrapper.getUser() != null) {
+      System.out.println(userFrontPageWrapper.getUser().getUserEmail() + " : "+userFrontPageWrapper.getUser().getId() + ": "+ userFrontPageWrapper.getUser().isAdminStatus());
+      boolean access = userService.validateAdmin(userFrontPageWrapper.getUser());
+      System.out.println(access);
+      if (!access) {
+        return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+      }
+      try {
+        frontPageService.deleteFrontPage(id);
+        return new ResponseEntity<>("Frontpage deleted with id: " + id, HttpStatus.OK);
+      } catch (Exception e) {
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+      }
     }
-
+    return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
   }
 
 }

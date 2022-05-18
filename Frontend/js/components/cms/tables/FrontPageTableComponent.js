@@ -1,13 +1,14 @@
 import Component from "../../../lib/Component.js";
-import AddNewsComponent from "../forms/AddNewsComponent.js";
+import AddFronPageComponent from "../forms/AddFrontPageComponent.js";
+import addFrontPageComponent from "../forms/AddFrontPageComponent.js";
 
 class FrontPageTableComponent extends Component {
 
-    constructor(news) {
+    constructor(frontPage) {
         let state = {
-            news: news
+            frontPage: frontPage
         }
-        super('news', state, (state) =>
+        super('frontpage', state, (state) =>
             `
 
             <div class="row mx-w-1003">
@@ -22,7 +23,7 @@ class FrontPageTableComponent extends Component {
                         </tr>
                         </thead>
                         <tbody>
-            ${this.renderNews(state.news)}
+            ${this.renderPosts(state.frontPage)}
           
                         </tbody>
                     </table>
@@ -36,30 +37,30 @@ class FrontPageTableComponent extends Component {
     }
 
 
-    renderNews(news) {
+    renderPosts(frontpage) {
 
 
-        return news.map(news => `
+        return frontpage.map(frontPage => `
                             <tr>
-                                <td id="newsId${news.newsId}"class="d-none">${news.newsId}</td>
-                                <td>${news.newsHeader}</td>
-                                <td>${news.creationDate}</td>
+                                <td id="fp-id${frontPage.id}"class="d-none">${frontPage.id}</td>
+                                <td>${frontPage.header}</td>
+                                <td>${frontPage.creationDate}</td>
                                 <td class="accordion-item col-2">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                            data-bs-target="#collapse${news.newsId}" aria-expanded="true"
-                                            aria-controls="collapse${news.newsId}"> Se mere
+                                            data-bs-target="#collapse${frontPage.id}" aria-expanded="true"
+                                            aria-controls="collapse${frontPage.id}"> Se mere
                                     </button>
                                 </td>
                                 <td class="col-md-2">
-                                <button id="deleteNews${news.newsId}" type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i class="fa fa-trash"></i> </button>
+                                <button id="deletePost${frontPage.id}" type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i class="fa fa-trash"></i> </button>
                                 <button  type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i class="fa fa-edit"></i> </button>
-                                <button id="updateNewsStatus${news.newsId}"  type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i ${this.isActiveNews(news)}></i> </button>
+                                <button id="updatePostStatus${frontPage.id}"  type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i ${this.isActivePost(frontPage)}></i> </button>
                             </td>
                             </tr>
-                            <tr id="collapse${news.newsId}" class="accordion-collapse collapse"
+                            <tr id="collapse${frontPage.id}" class="accordion-collapse collapse"
                                 aria-labelledby="headingOne1" data-bs-parent="#accordionExample">
                                 <td class="accordion-body" colspan="3">
-                                    ${news.newsBody}<
+                                    ${frontPage.body}<
                                 </td>
                             </tr>
 
@@ -69,8 +70,8 @@ class FrontPageTableComponent extends Component {
 
     }
 
-    isActiveNews(news) {
-        if (news.isActive == true) {
+    isActivePost(frontpage) {
+        if (frontpage.isActive == true) {
             return 'class="fa fa-eye"'
         } else {
             return 'class="fa fa-eye-slash"'
@@ -78,33 +79,33 @@ class FrontPageTableComponent extends Component {
     }
 
 
-    addEventListenersNewsTable() {
+    addEventListenersPostTable() {
 
-        const url = config.endpoints.cms.root + config.endpoints.cms.subPoint.deleteNews;
-        this.state.news.forEach(news => {
+        const url = config.endpoints.cms.root + config.endpoints.cms.subPoint.deleteFrontPage;
+        this.state.frontPage.forEach(frontpage => {
 
-            const buttonDelete = document.getElementById('deleteNews' + news.newsId)
-            const buttonUpdateStatus = document.getElementById('updateNewsStatus' + news.newsId)
+            const buttonDelete = document.getElementById('deletePost' + frontpage.id)
+            const buttonUpdateStatus = document.getElementById('updatePostStatus' + frontpage.id)
             console.log(buttonUpdateStatus)
 
             buttonDelete.addEventListener("click", async () => {
-                await deleteNews(news)
-                await new AddNewsComponent().refreshPage()
+                await deletePost(frontpage)
+                await new AddFronPageComponent().refreshPage()
             })
 
             buttonUpdateStatus.addEventListener("click", async () => {
-                await updateNewsStatus(news)
-                await new AddNewsComponent().refreshPage()
+                await updatePostStatus(frontpage)
+                await new addFrontPageComponent().refreshPage()
             })
         })
 
 
-        async function deleteNews(news) {
+        async function deletePost(frontPage) {
 
             let body = {
                 user: JSON.parse(sessionStorage.getItem('user')),
-                news: {
-                    newsId: news.newsId
+                frontPage: {
+                    id: frontPage.id
                 }
             }
 
@@ -115,7 +116,7 @@ class FrontPageTableComponent extends Component {
                 }
             ;
 
-            const response = await fetch(url + news.newsId, fetchOptions);
+            const response = await fetch(url + frontPage.id, fetchOptions);
 
             if (!response) {
                 const errorMessage = await response.text();
@@ -125,26 +126,25 @@ class FrontPageTableComponent extends Component {
             }
         }
 
-        async function updateNewsStatus(news) {
+        async function updatePostStatus(frontPage) {
 
-            if (news.isActive == 1) {
-                news.isActive = 0
-            } else if (news.isActive == 0) {
-                news.isActive = 1
+            if (frontPage.isActive == 1) {
+                frontPage.isActive = 0
+            } else if (frontPage.isActive == 0) {
+                frontPage.isActive = 1
             }
 
-            console.log(news.isActive)
+            console.log(frontPage.isActive)
 
             let body = {
                 user: JSON.parse(sessionStorage.getItem('user')),
-                news: {
-                    newsId: news.newsId,
-                    newsHeader: news.newsHeader,
-                    newsBody: news.newsBody,
-                    creationDate: news.creationDate,
-                    href: news.href,
-                    imageUrl: news.imageUrl,
-                    isActive: news.isActive
+                frontPage: {
+                    id: frontPage.id,
+                    header: frontPage.header,
+                    body: frontPage.body,
+                    creationDate: frontPage.creationDate,
+                    imgUrl: frontPage.imgUrl,
+                    isActive: frontPage.isActive
                 }
             }
 
@@ -154,7 +154,7 @@ class FrontPageTableComponent extends Component {
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(body)
             };
-            const response = await fetch(url + news.newsId, fetchOptions);
+            const response = await fetch(url + frontPage.id, fetchOptions);
 
             if (!response) {
                 const errorMessage = await response.text();

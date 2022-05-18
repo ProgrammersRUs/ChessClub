@@ -97,7 +97,7 @@ class AddFronPageComponent extends Component {
         let cmsBody = new TwoRowComponent('what this name for', this, cmsBottom);
         frontPageForm.addComponent(cmsBody)
         frontPageForm.updateDOM();
-        cmsBottom.addEventListenersPostsTable()
+        cmsBottom.addEventListenersPostTable()
         this.addEventlisenterToContent()
     }
 }
