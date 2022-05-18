@@ -22,12 +22,12 @@ public class Event {
     @JoinColumn(name = "event_id")
     private List<Registration> registrations;
 
+    private int cmsId;
 
     public int getId() {
         return id;
     }
 
-    private int cmsId;
 
     public String getName() {
         return name;
