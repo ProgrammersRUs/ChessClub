@@ -104,7 +104,7 @@ class NewsTableComponent extends Component {
             let body = {
                 user: JSON.parse(sessionStorage.getItem('user')),
                 news: {
-                    newsId:news.newsId
+                    newsId: news.newsId
                 }
             }
 
@@ -136,13 +136,16 @@ class NewsTableComponent extends Component {
             console.log(news.isActive)
 
             let body = {
-                newsId: news.newsId,
-                newsHeader: news.newsHeader,
-                newsBody: news.newsBody,
-                creationDate: news.creationDate,
-                href: news.href,
-                imageUrl: news.imageUrl,
-                isActive: news.isActive
+                user: JSON.parse(sessionStorage.getItem('user')),
+                news: {
+                    newsId: news.newsId,
+                    newsHeader: news.newsHeader,
+                    newsBody: news.newsBody,
+                    creationDate: news.creationDate,
+                    href: news.href,
+                    imageUrl: news.imageUrl,
+                    isActive: news.isActive
+                }
             }
 
             console.log(body)
