@@ -14,17 +14,13 @@ public class User {
     @JsonBackReference
     private String userPassword;
 
-    public boolean isAdminStatus() {
-        return adminStatus;
-    }
-
-    public void setAdminStatus(boolean adminStatus) {
-        this.adminStatus = adminStatus;
-    }
     @Column(columnDefinition = "BOOLEAN")
+
     private boolean adminStatus;
 
-    User(String userEmail, String userPassword){
+
+
+    public User(String userEmail, String userPassword){
         this.userEmail = userEmail;
         this.userPassword = userPassword;
         adminStatus = false;
@@ -58,4 +54,12 @@ public class User {
         this.userPassword = userPassword;
     }
 
+
+    public boolean isAdminStatus() {
+        return adminStatus;
+    }
+
+    public void setAdminStatus(boolean adminStatus) {
+        this.adminStatus = adminStatus;
+    }
 }

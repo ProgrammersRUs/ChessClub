@@ -18,7 +18,7 @@ public class News {
     private String imageUrl;
     private String href;
 
-    @Column(columnDefinition="tinyint(1) default 1")
+    @Column(columnDefinition="tinyint(1)")
     private String isActive;
 
 

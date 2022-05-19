@@ -1,13 +1,13 @@
 import Component from "../../lib/Component.js";
 
-class CmsComponent extends Component{
+class CmsComponent extends Component {
 
     constructor(body) {
         let state = {
             body: body
         }
 
-        super('cms-layout', state, (state)=>
+        super('cms-layout', state, (state) =>
             `
     <div class="d-md-flex myWrapper" id="wrapper">
         <!-- Sidebar-->
@@ -19,6 +19,9 @@ class CmsComponent extends Component{
                 <a class="list-group-item list-group-item-action list-group-item-light p-3" id="members-link">Medlems
                     oversigt</a>
                 <a class="list-group-item list-group-item-action list-group-item-light p-3" id="sponsor-link">Sponsorer</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" id="frontpage-link">Forside</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" id="about-us-link">Om os</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" id="contact-us-link">Kontakt os</a>
             </div>
         </div>
 

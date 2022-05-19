@@ -1,4 +1,4 @@
-import Component from "../../lib/Component.js";
+import Component from "../../../lib/Component.js";
 
 class SponsorTableComponent extends Component {
 
@@ -6,7 +6,7 @@ class SponsorTableComponent extends Component {
         let state = {
             sponor: sponsor
         }
-        super('news', state, (state) =>
+        super('sponsor', state, (state) =>
             `
 
             <div class="row mx-w-1003">
@@ -50,7 +50,7 @@ class SponsorTableComponent extends Component {
                             <tr id="collapse${s.id}" class="accordion-collapse collapse"
                                 aria-labelledby="headingOne1" data-bs-parent="#accordionExample">
                                 <td class="accordion-body" colspan="3">
-                                    ${s.description}<
+                                    ${s.description}
                                 </td>
                             </tr>
                 

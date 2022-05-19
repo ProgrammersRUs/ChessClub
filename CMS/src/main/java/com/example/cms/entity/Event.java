@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Entity
 public class Event {
@@ -16,6 +17,7 @@ public class Event {
     private String location;
     private String title;
     private String description;
+    private LocalTime meetingTime;
 
     public int getEventId() {
         return eventId;
@@ -51,5 +53,13 @@ public class Event {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public LocalTime getMeetingTime() {
+        return meetingTime;
+    }
+
+    public void setMeetingTime(LocalTime meetingTime) {
+        this.meetingTime = meetingTime;
     }
 }
