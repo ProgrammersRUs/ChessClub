@@ -25,8 +25,12 @@ public class EventService {
         return eventRepository.findById(id);
     }
 
+    public Optional<Event> getEventByCmsId(int id) {
+        return eventRepository.findByCmsId(id);
+    }
+
     public Event saveEvent(Event event) {
-        if(event.getEventDay() == null){
+        if (event.getEventDay() == null) {
             event.setEventDay(LocalDate.now());
         }
         if (!event.getRegistrations().isEmpty()) {
@@ -42,7 +46,7 @@ public class EventService {
         return eventRepository.findByMemberOnlyFalse();
     }
 
-    public List<Event> getAllUpcoming(boolean allowed){
+    public List<Event> getAllUpcoming(boolean allowed) {
         if (allowed) {
             return eventRepository.findByEventDayAfterOrderByEventDay(LocalDate.now().minusDays(1));
         }
@@ -50,9 +54,9 @@ public class EventService {
     }
 
 
-    public Registration joinEvent(Event event, Member member){
+    public Registration joinEvent(Event event, Member member) {
         Registration registration = new Registration();
-        registration.setName(member.getMemberFirstName() + " " +member.getMemberLastName());
+        registration.setName(member.getMemberFirstName() + " " + member.getMemberLastName());
         registration.setEmail(member.getUser().getUserEmail());
         registration.setMember(member);
         registration.setRegistrationDate(LocalDate.now());
@@ -64,7 +68,7 @@ public class EventService {
         return registration;
     }
 
-    public Registration joinEvent(Event event, String email, String name){
+    public Registration joinEvent(Event event, String email, String name) {
         Registration registration = new Registration();
         registration.setName(name);
         registration.setEmail(email);

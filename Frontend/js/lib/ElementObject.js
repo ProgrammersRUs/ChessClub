@@ -1,4 +1,5 @@
 import TwoColumnComponent from "../components/TwoColumnComponent.js";
+import component from "./Component.js";
 
 export class ElementObject{
     constructor(selector) {
@@ -19,6 +20,9 @@ export class ElementObject{
 
             });
             this.element.innerHTML = mergedViews;
+            this.components.forEach(component =>{
+                component.addEventListenersToMe();
+            })
         }
 
     }
