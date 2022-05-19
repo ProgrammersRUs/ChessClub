@@ -60,9 +60,12 @@ const config = {
             subPoint: {
                 allNews: 'news/all-news',
                 allSponsers: 'sponsor/get-all',
+                allEvents: 'event/all-events',
                 postNews: 'news/new',
                 postSponsor: 'sponsor/new',
+                postEvent: 'event/createEvent',
                 deleteNews: 'news/',
+                deleteEvent: 'event',
                 postAboutUs:'about-page/new',
                 allAboutUs: 'about-page/all-about-pages',
                 deleteAboutUs: 'about-page/',
