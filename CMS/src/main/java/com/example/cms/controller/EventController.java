@@ -57,4 +57,10 @@ public class EventController {
         }
         return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
     }
+
+    @PostMapping("/get-all")
+    public ResponseEntity<List<Event>> getEvents(@RequestBody List<Integer> eventIds) {
+        return new ResponseEntity<>(eventService.getAllEventsById(eventIds), HttpStatus.OK);
+    }
+
 }

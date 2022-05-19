@@ -19,6 +19,7 @@ class EventTableComponent extends Component {
                             <th scope="col">Dato oprettet:</th>
                             <th scope="col">Møde tid</th>
                             <th scope="col">Lokation</th>
+                            <th scope="col">URL</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -45,6 +46,7 @@ class EventTableComponent extends Component {
                                 <td>${event.localDate}</td>
                                 <td>${event.localDate}</td>
                                 <td>${event.location}</td>
+                                <td>${event.url}</td>
                                 <td class="accordion-item col-2">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                             data-bs-target="#collapse${event.eventId}" aria-expanded="true"

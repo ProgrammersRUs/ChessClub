@@ -17,11 +17,19 @@ class AddEventComponent extends Component {
                         <span class="input-group-text" id="basic-addon1">Titel: </span>
                         <input id="eventHeader" type="text" class="form-control" placeholder="" aria-label=""
                                aria-describedby="basic-addon1">
+                               <div class="input-group mb-2">
+                        <span class="input-group-text">Møde tid: </span>
+                        <input id="eventHeader" type="text" class="form-control" placeholder="" aria-label=""
+                               aria-describedby="basic-addon1">
+                    </div>
                     </div>
                     <div class="input-group h-50">
                         <span class="input-group-text ">Event beskrivelse: </span>
                         <textarea id="eventBody" class="form-control" aria-label="With textarea"></textarea>
                     </div>
+                    
+                    
+                    
                     <div class="row">
                     <div class="container">
                     <button type="button" class="btn btn-primary" id="createEvent">Opret Event</button>
@@ -32,8 +40,6 @@ class AddEventComponent extends Component {
                            
                     </div>
                     </div>
-            
-                  
                 </div>
             </div>
         </div>
@@ -54,18 +60,21 @@ class AddEventComponent extends Component {
         async function postEvent(url) {
             const eventHeader = document.getElementById('eventHeader').value
             const eventBody = document.getElementById('eventBody').value
+            const eventTime = document.getElementById('eventTime').value
             const eventIsActive = document.getElementById('flexSwitchCheckChecked')
             let isActive = 0
-console.log(eventBody + eventHeader)
+            console.log(eventBody + eventHeader)
             if (eventIsActive.checked) {
                 isActive = 1
             }
 
             let body = {
-                    localDate: new Date().toLocaleDateString('en-CA'),
-                    title: eventHeader,
-                    description: eventBody,
-                    location: ""
+                localDate: new Date().toLocaleDateString('en-CA'),
+                title: eventHeader,
+                description: eventBody,
+                location: "",
+                url: "",
+                meetingTime: LocalTime
 
             }
             const fetchOptions = {
@@ -81,9 +90,7 @@ console.log(eventBody + eventHeader)
 
             }
             return response;
-
         }
-
     }
 
     async refreshPage() {
