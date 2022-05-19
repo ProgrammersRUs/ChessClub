@@ -12,10 +12,59 @@ const body = new ElementObject('body');
 navbar.addComponent(new NavbarComponent());
 footer.addComponent(new FooterComponent());
 
+//document.getElementById("myInput").addEventListener("click", getInputValue, false)
 const ChessWebAPI = "https://api.chess.com/pub/club/skak-faxe-kommune"
-const Tournaments = "https://api.chess.com/pub/tournament/testisdabest/1/1"
+/*const Tournaments = "https://api.chess.com/pub/tournament/testisdabest/1/1"*/
+const Tournaments = urlMending()
 const TournamentsFacts = "https://api.chess.com/pub/tournament/testisdabest/"
 const Members = "https://api.chess.com/pub/club/skak-faxe-kommune/members"
+
+
+function urlMending() {
+    return "https://api.chess.com/pub/tournament/" + splitURL() + "/1/1"
+}
+
+export function getInputValue() {
+    // Selecting the input element and get its value
+    var inputVal = document.getElementById("myInput").value;
+
+    // Displaying the value
+    console.log(inputVal)
+return inputVal
+}
+
+function splitURL() {
+   /* const splitURL = getInputValue()*/
+    const splitURL = "https://www.chess.com/tournament/testisdabest-1"
+    const tournamentURL = splitURL.split("/");
+    const lastURLString = tournamentURL[tournamentURL.length -1]
+    console.log(splitURL + " " + lastURLString)
+return lastURLString
+}
+
+async function fetchMatches() {
+    const matches = await fetch(Tournaments).then(response => response.json());
+
+    for (const game of matches.games) {
+        if (!game.end_time) {
+            game.black = await fetch(game.black).then(response => response.json());
+            game.white = await fetch(game.white).then(response => response.json());
+        }
+    }
+
+    return matches
+}
+
+const matches = new ElementObject('matches');
+matches.addComponent(new TournamentComponent(await
+    fetch(Tournaments).then(response => response.json()).then()));
+
+
+
+/*
+https://www.chess.com/tournament/62nd-chess-com-tournament-under-1000
+ */
+
 /*
 const MemberInfo = "https://api.chess.com/pub/player/{username}"
  */
@@ -35,42 +84,25 @@ async function fetchChessApi() {
     return await fetch(ChessWebAPI).then(response => response.json());
 }
 
-async function fetchMatches() {
-    const matches = await fetch(Tournaments).then(response => response.json());
-
-    for (const game of matches.games) {
-        if (!game.end_time) {
-            game.black = await fetch(game.black).then(response => response.json());
-            game.white = await fetch(game.white).then(response => response.json());
-        }
-    }
-
-    return matches
-}
-
-
-const matches = new ElementObject('matches');
-matches.addComponent(new TournamentComponent(await
-    fetch(Tournaments).then(response => response.json()).then()));
 
 
 async function fetchMembers() {
     const memberList = await fetch(Members).then(response => response.json());
 
 
-for (const member of memberList.monthly) {
-    let timestamp = member.joined;
-    if (!timestamp) {
-        break;
+    for (const member of memberList.monthly) {
+        let timestamp = member.joined;
+        if (!timestamp) {
+            break;
+        }
+        let date = new Date(timestamp * 1000);
+        let month = date.getMonth();
+        let year = date.getFullYear();
+        let day = date.getDate();
+        let formatedTime = day + '/' + month + '/' + year;
+        member.joined = formatedTime
+        console.log(member.joined)
     }
-    let date = new Date(timestamp * 1000);
-    let month = date.getMonth();
-    let year = date.getFullYear();
-    let day = date.getDate();
-    let formatedTime = day + '/' + month + '/' + year;
-    member.joined = formatedTime
-    console.log(member.joined)
-}
 
     return memberList;
 }
