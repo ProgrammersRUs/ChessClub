@@ -23,7 +23,7 @@ public class User {
     }
     private boolean adminStatus;
 
-    User(String userEmail, String userPassword){
+    public User(String userEmail, String userPassword){
         this.userEmail = userEmail;
         this.userPassword = userPassword;
         adminStatus = false;
