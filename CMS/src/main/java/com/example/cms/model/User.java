@@ -6,6 +6,9 @@ public class User implements Comparable<User>{
     private String userEmail;
     private boolean adminStatus;
 
+    public User() {
+    }
+
     public int getId() {
         return id;
     }
@@ -27,9 +30,11 @@ public class User implements Comparable<User>{
 
     @Override
     public int compareTo(User o) {
-        if(o.id == id){
-            if(userEmail == o.userEmail){
+        if(this.id == o.getId()){
+            if(this.userEmail.equals(o.getUserEmail())){
+                if(adminStatus == o.isAdminStatus()){
                 return 0;
+                }
             }
         }
         return -1;

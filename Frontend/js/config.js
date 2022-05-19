@@ -50,16 +50,28 @@ const config = {
     ],
     endpoints: {
         member: {
-            root: 'https://hofsk.azurewebsites.net/',
+            root: 'http://localhost:8080/',
             subPoint: {
                 getAll: 'member/all-members'
             }
         },
         cms: {
-            root: 'https://cmsbackend420.azurewebsites.net/',
+            root: 'http://localhost:8089/',
             subPoint: {
                 allNews: 'news/all-news',
-                allSponsers: 'sponsor/get-all'
+                allSponsers: 'sponsor/get-all',
+                postNews: 'news/new',
+                postSponsor: 'sponsor/new',
+                deleteNews: 'news/',
+                postAboutUs:'about-page/new',
+                allAboutUs: 'about-page/all-about-pages',
+                deleteAboutUs: 'about-page/',
+                postFrontPage:'front-page/new',
+                allFrontPages:'front-page/all-frontpages',
+                deleteFrontPage: 'front-page/',
+                postContactUs: 'contact-us-page/new',
+                allContactUsPages:'contact-us-page/all-contactus-pages',
+                deleteContactUs: 'contact-us-page/',
             }
 
         }

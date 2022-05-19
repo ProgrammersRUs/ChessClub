@@ -3,6 +3,7 @@ package com.example.backend.Controller;
 import com.example.backend.Entity.Member;
 import com.example.backend.Entity.User;
 import com.example.backend.JSonWrapper.MemberUserWrapper;
+import com.example.backend.JSonWrapper.UserAdminWrapper;
 import com.example.backend.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,16 +27,24 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public User findUserById(@PathVariable int id){
+    public User findUserById(@PathVariable int id) {
         return userService.findUser(id);
     }
 
     @PutMapping("/update-status")
-    public User updateStatus(@RequestBody User user) {
-       User updateUser = userService.findUser(user.getId());
-       if (updateUser != null) {
-           updateUser = userService.saveUserStatus(updateUser, user.isAdminStatus());
-           return updateUser;
-       } return null;
+    public ResponseEntity<User> updateStatus(@RequestBody UserAdminWrapper userAdminWrapperser) {
+        if(userAdminWrapperser.getAdmin() == null){
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
+        User admin = userService.findUser(userAdminWrapperser.getAdmin().getId());
+        if (admin.isAdminStatus() && userAdminWrapperser.getAdmin().isAdminStatus()) {
+            User updateUser = userService.findUser(userAdminWrapperser.getUser().getId());
+            if (updateUser != null) {
+                updateUser = userService.saveUserStatus(updateUser, userAdminWrapperser.getUser().isAdminStatus());
+                return new ResponseEntity<>(updateUser, HttpStatus.OK);
+            }
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
     }
 }
