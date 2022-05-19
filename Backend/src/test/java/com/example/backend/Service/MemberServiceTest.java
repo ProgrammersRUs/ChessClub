@@ -36,7 +36,7 @@ class MemberServiceTest {
 
         memberService.saveMember(member);
 
-        Member savedMember = memberService.getMemberById(2);
+        Member savedMember = memberService.getMemberById(3);
 
         System.out.println(savedMember + " " + member);
 
@@ -69,9 +69,9 @@ class MemberServiceTest {
 
         memberService.saveMember(testUser);
 
-        memberService.deleteMember(1);
+        memberService.deleteMember(2);
 
-        Optional<Member> findMember = memberService.findById(1);
+        Optional<Member> findMember = memberService.findById(2);
 
         assertTrue(findMember.isEmpty());
 
