@@ -1,7 +1,7 @@
 const config = {
     club: {
         name: 'Haslev og Faxe skakklubber',
-        logoSrc: '../img/Haslev%20og%20Faxe%20Skakklub%20-logos_black.png',
+        logoSrc: '../img/Haslev og Faxe Skakklubber-logos_black.png',
         copyrightYear: 2022
     },
     navbarData: {

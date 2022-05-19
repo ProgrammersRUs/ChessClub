@@ -19,7 +19,7 @@ class AddEventComponent extends Component {
                                aria-describedby="basic-addon1">
                                <div class="input-group mb-2">
                         <span class="input-group-text">Møde tid: </span>
-                        <input id="eventHeader" type="text" class="form-control" placeholder="" aria-label=""
+                        <input id="eventTime" type="text" class="form-control" placeholder="" aria-label=""
                                aria-describedby="basic-addon1">
                     </div>
                     </div>
@@ -34,8 +34,8 @@ class AddEventComponent extends Component {
                     <div class="container">
                     <button type="button" class="btn btn-primary" id="createEvent">Opret Event</button>
                               <div class="form-check form-switch float-end">
-                        <label class="form-check-label" for="flexSwitchCheckChecked">Publicer Event</label>
-                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                        <label class="form-check-label" for="flexSwitchCheckChecked">Kun for Medlemmer</label>
+                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked">
                     </div>
                            
                     </div>
@@ -49,24 +49,28 @@ class AddEventComponent extends Component {
 
     addEventlisenterToContent() {
         const url = 'http://localhost:8089/event/createEvent'
+        const url2 = 'http://localhost:8080/event/new'
         const button = document.getElementById('createEvent')
 
 
         button.addEventListener("click", async () => {
-            await postEvent(url)
+            let cmsResponse = await postEventCms(url).then(response => response.json());
+
+            const eventIsActive = document.getElementById('flexSwitchCheckChecked')
+            let isActive = false
+            if (eventIsActive.checked) {
+                isActive = true
+            }
+
+            await postEventMember(url2, cmsResponse, isActive)
             await this.refreshPage()
         })
 
-        async function postEvent(url) {
+        async function postEventCms(url) {
             const eventHeader = document.getElementById('eventHeader').value
             const eventBody = document.getElementById('eventBody').value
             const eventTime = document.getElementById('eventTime').value
-            const eventIsActive = document.getElementById('flexSwitchCheckChecked')
-            let isActive = 0
-            console.log(eventBody + eventHeader)
-            if (eventIsActive.checked) {
-                isActive = 1
-            }
+
 
             let body = {
                 localDate: new Date().toLocaleDateString('en-CA'),
@@ -74,7 +78,7 @@ class AddEventComponent extends Component {
                 description: eventBody,
                 location: "",
                 url: "",
-                meetingTime: LocalTime
+                meetingTime: eventTime
 
             }
             const fetchOptions = {
@@ -90,6 +94,34 @@ class AddEventComponent extends Component {
 
             }
             return response;
+        }
+
+        async function postEventMember(url, cmsResponse, memberOnly) {
+            console.log(cmsResponse)
+            let body = {
+                user: JSON.parse(sessionStorage.getItem("user")),
+                event: {
+                    name: cmsResponse.title,
+                    memberOnly: memberOnly,
+                    registrations: [],
+                    eventDay: cmsResponse.localDate,
+                    cmsId: cmsResponse.eventId
+                }
+            }
+            const fetchOptions = {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(body)
+            };
+            const response = await fetch(url, fetchOptions);
+            if (!response) {
+                const errorMessage = await response.text();
+                console.log(errorMessage)
+                throw new Error(errorMessage);
+
+            }
+            return response;
+
         }
     }
 

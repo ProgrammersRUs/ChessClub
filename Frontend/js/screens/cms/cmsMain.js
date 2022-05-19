@@ -4,7 +4,7 @@ import FooterComponent from "../../components/FooterComponent.js";
 import CmsComponent from "../../components/cms/CmsComponent.js";
 import AddNewsComponent from "../../components/cms/forms/AddNewsComponent.js";
 import MemberOverviewComponent from "../../components/MemberOverviewComponent.js";
-import SponsorTableComponent from "../../components/cms/SponsorTableComponent.js";
+import SponsorTableComponent from "../../components/cms/tables/SponsorTableComponent.js";
 import AddEventComponent from "../../components/cms/AddEventComponent.js";
 import AddSponsorComponent from "../../components/cms/forms/AddSponsorComponent.js";
 import AddAboutUsComponent from "../../components/cms/forms/AddAboutUsComponent.js";
