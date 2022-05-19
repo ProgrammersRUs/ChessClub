@@ -13,56 +13,39 @@ const body = new ElementObject('body');
 navbar.addComponent(new NavbarComponent());
 footer.addComponent(new FooterComponent());
 
-let test = {
-    title: "Test",
-    location: config.locations[0],
-    date: "30/02-1920",
-    description: "Fedt Event Fedt Event Fedt Event Fedt Event Fedt Event Fedt Event Fedt Event Fedt Event Fedt Event Fedt Event Fedt Event Fedt Event Fedt Event Fedt Event Fedt Event Fedt Event Fedt Event Fedt Event Fedt Event Fedt Event ",
-    href: "/",
-    imgSrc: ''
-}
+let user = sessionStorage.getItem("user");
+if(user == null){
+    user = JSON.stringify({});
 
-let test2 = [
-    {
-        title: 'Lørdags Skak',
-        date: "20-02-3025",
-        body: 'Wow wow wowowowowowowow'
-    },
-    {
-        title: 'Torsdags Skak',
-        date: "20-02-4567",
-        body: 'Test test test'
-    },
-    {
-        title: 'Juleskak',
-        date: "20-02-9999",
-        body: 'Verner og Åge spiller'
-    },
-    {
-        title: 'Udlandsskak',
-        date: "20-02-2050",
-        body: 'Grand Master turnering for 2k ratede spillere'
-    }
-]
+}
 let options = {
     method:"POST",
     headers:{"Content-Type": "application/json"},
-    body:JSON.stringify({id:1})
+    body:user
 }
 
-let data = await fetch(config.endpoints.member.root + "event/all-upcoming", options).then(responce => responce.json());
+let data = await fetch(config.endpoints.member.root + "event/all-upcoming", options).then(response => response.json());
 console.log(data)
-//hent data fra cms om de events vi har fået retur
+let array = [];
+data.forEach(data => array.push(data.cmsId));
 
-let eventGrid = new EventGridComponent(test2);
-let nextComponent = new NextEventComponent(test);
+let cmsOption= {
+    method:"POST",
+    headers:{"Content-Type": "application/json"},
+    body: JSON.stringify(array)
+}
+
+let cmsData = await fetch(config.endpoints.cms.root + "event/get-all", cmsOption).then(response => response.json());
+console.log(cmsData)
+let nextEvent = cmsData.splice(0,1);
+
+let eventGrid = new EventGridComponent(cmsData);
+let nextComponent = new NextEventComponent(nextEvent[0]);
 let calender = new GoogleCalanderComponent('400px', '100%');
-console.log(calender.view())
 let top = new TwoColumnComponent('top',nextComponent,calender);
 
 body.addComponent(top);
 body.addComponent(eventGrid);
-
 
 navbar.updateDOM();
 body.updateDOM();

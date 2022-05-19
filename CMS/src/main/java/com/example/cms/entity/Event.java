@@ -1,5 +1,7 @@
 package com.example.cms.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,6 +19,7 @@ public class Event {
     private String location;
     private String title;
     private String description;
+    @JsonFormat(pattern = "HH:mm:ss")
     private LocalTime meetingTime;
 
     public int getEventId() {

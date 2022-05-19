@@ -35,11 +35,11 @@ class EventGridComponent extends Component {
                         <strong>${state.title}</strong>               
                     </div>
                     <div class="col-6 text-end">
-                        <p>${state.date}</p>
+                        <p>${state.localDate}</p>
                     </div>
                 </div>
                 <div class="row d-none d-md-flex mh-100" style="min-height: 100px">
-                    <p>${state.body}</p>
+                    <p>${state.description}</p>
                 
                 </div>
 </div>
