@@ -59,7 +59,7 @@ class ContactUsTableComponent extends Component {
                             <tr id="collapse${contactuspage.id}" class="accordion-collapse collapse"
                                 aria-labelledby="headingOne1" data-bs-parent="#accordionExample">
                                 <td class="accordion-body" colspan="3">
-                                    ${contactuspage.body}<
+                                    ${contactuspage.body}
                                 </td>
                             </tr>
 

@@ -60,7 +60,7 @@ class FrontPageTableComponent extends Component {
                             <tr id="collapse${frontPage.id}" class="accordion-collapse collapse"
                                 aria-labelledby="headingOne1" data-bs-parent="#accordionExample">
                                 <td class="accordion-body" colspan="3">
-                                    ${frontPage.body}<
+                                    ${frontPage.body}
                                 </td>
                             </tr>
 

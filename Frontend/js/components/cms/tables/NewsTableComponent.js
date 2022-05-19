@@ -59,7 +59,7 @@ class NewsTableComponent extends Component {
                             <tr id="collapse${news.newsId}" class="accordion-collapse collapse"
                                 aria-labelledby="headingOne1" data-bs-parent="#accordionExample">
                                 <td class="accordion-body" colspan="3">
-                                    ${news.newsBody}<
+                                    ${news.newsBody}
                                 </td>
                             </tr>
 

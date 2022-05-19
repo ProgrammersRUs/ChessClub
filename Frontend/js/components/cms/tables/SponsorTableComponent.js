@@ -50,7 +50,7 @@ class SponsorTableComponent extends Component {
                             <tr id="collapse${s.id}" class="accordion-collapse collapse"
                                 aria-labelledby="headingOne1" data-bs-parent="#accordionExample">
                                 <td class="accordion-body" colspan="3">
-                                    ${s.description}<
+                                    ${s.description}
                                 </td>
                             </tr>
                 
