@@ -62,7 +62,16 @@ const config = {
                 allSponsers: 'sponsor/get-all',
                 postNews: 'news/new',
                 postSponsor: 'sponsor/new',
-                deleteNews: 'news/'
+                deleteNews: 'news/',
+                postAboutUs:'about-page/new',
+                allAboutUs: 'about-page/all-about-pages',
+                deleteAboutUs: 'about-page/',
+                postFrontPage:'front-page/new',
+                allFrontPages:'front-page/all-frontpages',
+                deleteFrontPage: 'front-page/',
+                postContactUs: 'contact-us-page/new',
+                allContactUsPages:'contact-us-page/all-contactus-pages',
+                deleteContactUs: 'contact-us-page/',
             }
 
         }

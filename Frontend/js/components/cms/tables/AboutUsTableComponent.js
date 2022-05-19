@@ -1,13 +1,13 @@
-import Component from "../../lib/Component.js";
-import AddNewsComponent from "./AddNewsComponent.js";
+import Component from "../../../lib/Component.js";
+import AddAboutUsComponent from "../forms/AddAboutUsComponent.js";
 
-class NewsTableComponent extends Component {
+class AboutUsTableComponent extends Component {
 
-    constructor(news) {
+    constructor(aboutUs) {
         let state = {
-            news: news
+            aboutUs: aboutUs
         }
-        super('news', state, (state) =>
+        super('aboutUs', state, (state) =>
             `
 
             <div class="row mx-w-1003">
@@ -22,7 +22,7 @@ class NewsTableComponent extends Component {
                         </tr>
                         </thead>
                         <tbody>
-            ${this.renderNews(state.news)}
+            ${this.renderAboutUsPosts(state.aboutUs)}
           
                         </tbody>
                     </table>
@@ -36,30 +36,31 @@ class NewsTableComponent extends Component {
     }
 
 
-    renderNews(news) {
+    renderAboutUsPosts(aboutUsList) {
 
 
-        return news.map(news => `
+        return aboutUsList.map(aboutUs => `
                             <tr>
-                                <td id="newsId${news.newsId}"class="d-none">${news.newsId}</td>
-                                <td>${news.newsHeader}</td>
-                                <td>${news.creationDate}</td>
+                                <td id="postId${aboutUs.id}"class="d-none">${aboutUs.id}</td>
+                                <td>${aboutUs.header}</td>
+                                <td>${aboutUs.creationDate}</td>
                                 <td class="accordion-item col-2">
+                                
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                            data-bs-target="#collapse${news.newsId}" aria-expanded="true"
-                                            aria-controls="collapse${news.newsId}"> Se mere
+                                            data-bs-target="#collapse${aboutUs.id}" aria-expanded="true"
+                                            aria-controls="collapse${aboutUs.id}"> Se mere
                                     </button>
                                 </td>
                                 <td class="col-md-2">
-                                <button id="deleteNews${news.newsId}" type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i class="fa fa-trash"></i> </button>
+                                <button id="deletePost${aboutUs.id}" type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i class="fa fa-trash"></i> </button>
                                 <button  type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i class="fa fa-edit"></i> </button>
-                                <button id="updateNewsStatus${news.newsId}"  type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i ${this.isActiveNews(news)}></i> </button>
+                                <button id="updatePostStatus${aboutUs.id}"  type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i ${this.isActivePost(aboutUs)}></i> </button>
                             </td>
                             </tr>
-                            <tr id="collapse${news.newsId}" class="accordion-collapse collapse"
+                            <tr id="collapse${aboutUs.id}" class="accordion-collapse collapse"
                                 aria-labelledby="headingOne1" data-bs-parent="#accordionExample">
                                 <td class="accordion-body" colspan="3">
-                                    ${news.newsBody}<
+                                    ${aboutUs.body}
                                 </td>
                             </tr>
 
@@ -69,8 +70,8 @@ class NewsTableComponent extends Component {
 
     }
 
-    isActiveNews(news) {
-        if (news.isActive == true) {
+    isActivePost(post) {
+        if (post.isActive == true) {
             return 'class="fa fa-eye"'
         } else {
             return 'class="fa fa-eye-slash"'
@@ -78,33 +79,33 @@ class NewsTableComponent extends Component {
     }
 
 
-    addEventListenersNewsTable() {
+    addEventListenersPostsTable() {
 
-        const url = config.endpoints.cms.root + config.endpoints.cms.subPoint.deleteNews;
-        this.state.news.forEach(news => {
+        const url = config.endpoints.cms.root + config.endpoints.cms.subPoint.deleteAboutUs;
+        this.state.aboutUs.forEach(about => {
 
-            const buttonDelete = document.getElementById('deleteNews' + news.newsId)
-            const buttonUpdateStatus = document.getElementById('updateNewsStatus' + news.newsId)
+            const buttonDelete = document.getElementById('deletePost' + about.id)
+            const buttonUpdateStatus = document.getElementById('updatePostStatus' + about.id)
             console.log(buttonUpdateStatus)
 
             buttonDelete.addEventListener("click", async () => {
-                await deleteNews(news)
-                await new AddNewsComponent().refreshPage()
+                await deletePost(about)
+                await new AddAboutUsComponent().refreshPage()
             })
 
             buttonUpdateStatus.addEventListener("click", async () => {
-                await updateNewsStatus(news)
-                await new AddNewsComponent().refreshPage()
+                await updateStatusPost(about)
+                await new AddAboutUsComponent().refreshPage()
             })
         })
 
 
-        async function deleteNews(news) {
+        async function deletePost(post) {
 
             let body = {
                 user: JSON.parse(sessionStorage.getItem('user')),
-                news: {
-                    newsId:news.newsId
+                aboutPage: {
+                    id: post.id
                 }
             }
 
@@ -115,7 +116,7 @@ class NewsTableComponent extends Component {
                 }
             ;
 
-            const response = await fetch(url + news.newsId, fetchOptions);
+            const response = await fetch(url + post.id, fetchOptions);
 
             if (!response) {
                 const errorMessage = await response.text();
@@ -125,24 +126,26 @@ class NewsTableComponent extends Component {
             }
         }
 
-        async function updateNewsStatus(news) {
+        async function updateStatusPost(post) {
 
-            if (news.isActive == 1) {
-                news.isActive = 0
-            } else if (news.isActive == 0) {
-                news.isActive = 1
+            if (post.isActive == 1) {
+                post.isActive = 0
+            } else if (post.isActive == 0) {
+                post.isActive = 1
             }
 
-            console.log(news.isActive)
+            console.log(post.isActive)
 
             let body = {
-                newsId: news.newsId,
-                newsHeader: news.newsHeader,
-                newsBody: news.newsBody,
-                creationDate: news.creationDate,
-                href: news.href,
-                imageUrl: news.imageUrl,
-                isActive: news.isActive
+                user: JSON.parse(sessionStorage.getItem('user')),
+                aboutPage: {
+                    id: post.id,
+                    creationDate: post.creationDate,
+                    header: post.header,
+                    body: post.body,
+                    imgUrl: post.imgUrl,
+                    isActive: post.isActive
+                }
             }
 
             console.log(body)
@@ -151,7 +154,7 @@ class NewsTableComponent extends Component {
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(body)
             };
-            const response = await fetch(url + news.newsId, fetchOptions);
+            const response = await fetch(url + post.id, fetchOptions);
 
             if (!response) {
                 const errorMessage = await response.text();
@@ -160,13 +163,7 @@ class NewsTableComponent extends Component {
 
             }
         }
-
-
     }
-
-
 }
 
-//document.getElementById('flexSwitchCheckChecked').addEventListener("change", () => console.log(document.getElementById('flexSwitchCheckChecked').checked) )
-
-export default NewsTableComponent;
+export default AboutUsTableComponent;
