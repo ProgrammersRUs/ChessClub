@@ -44,9 +44,9 @@ public class EventService {
 
     public List<Event> getAllUpcoming(boolean allowed){
         if (allowed) {
-            return eventRepository.findByEventDayAfterOrderByEventDay(LocalDate.now());
+            return eventRepository.findByEventDayAfterOrderByEventDay(LocalDate.now().minusDays(1));
         }
-        return eventRepository.findByEventDayAfterAndMemberOnlyFalseOrderByEventDay(LocalDate.now());
+        return eventRepository.findByEventDayAfterAndMemberOnlyFalseOrderByEventDay(LocalDate.now().minusDays(1));
     }
 
 
