@@ -16,7 +16,7 @@ public class FrontPage {
   private LocalDate creationDate;
   private String header;
   private String body;
-  private String imageUrl;
+  private String imgUrl;
   @Column(columnDefinition="tinyint(1) default 1")
   private String isActive;
 
@@ -48,12 +48,12 @@ public class FrontPage {
     this.body = body;
   }
 
-  public String getImageUrl() {
-    return imageUrl;
+  public String getImgUrl() {
+    return imgUrl;
   }
 
-  public void setImageUrl(String imageUrl) {
-    this.imageUrl = imageUrl;
+  public void setImgUrl(String imageUrl) {
+    this.imgUrl = imageUrl;
   }
 
   public String getIsActive() {
