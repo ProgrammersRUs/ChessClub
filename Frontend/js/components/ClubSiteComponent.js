@@ -21,7 +21,7 @@ class ClubSiteComponent extends Component {
         let day = date.getDate();
         let formatedTime = day + '/' + month + '/' + year;
 
-            super('nextEvent', state, (state) =>
+        super('nextEvent', state, (state) =>
             `
       <div class="mb-2 border border-primary rounded h-100">
          <div class="row h-75">

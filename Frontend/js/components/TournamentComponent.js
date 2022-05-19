@@ -12,6 +12,7 @@ class TournamentComponent extends Component {
         super('nextEvent', state, (state) =>
             `
   <h2>Igangværende turneringer</h2>
+
 <table class="table">
     <thead class="thead-dark">
         <tr>
@@ -28,12 +29,12 @@ class TournamentComponent extends Component {
 
   
   `)
-  
-  }
-  
-  renderTournament(games) {
 
-  return games.map(games => `   
+    }
+
+    renderTournament(games) {
+
+        return games.map(games => `   
    <table class="table">   
     <thead class="thead-dark">
        <tr>
@@ -45,12 +46,19 @@ class TournamentComponent extends Component {
        
     </thead>
 </table>
+
+
+
+
  
             `
 
-      ).join('')
+        ).join('')
 
-  }
+    }
+
+
 }
+
 
 export default TournamentComponent

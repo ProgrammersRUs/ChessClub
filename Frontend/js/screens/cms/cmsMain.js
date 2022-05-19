@@ -2,11 +2,12 @@ import ElementObject from '../../lib/ElementObject.js';
 import NavbarComponent from '../../components/NavbarComponent.js';
 import FooterComponent from "../../components/FooterComponent.js";
 import CmsComponent from "../../components/cms/CmsComponent.js";
-import AddNewsComponent from "../../components/cms/AddNewsComponent.js";
-import TwoRowComponent from "../../components/TwoRowComponent.js";
+import AddNewsComponent from "../../components/cms/forms/AddNewsComponent.js";
 import MemberOverviewComponent from "../../components/MemberOverviewComponent.js";
-import AddSponsorComponent from "../../components/cms/AddSponsorComponent.js";
-import SponsorTableComponent from "../../components/cms/SponsorTableComponent.js";
+import AddSponsorComponent from "../../components/cms/forms/AddSponsorComponent.js";
+import AddAboutUsComponent from "../../components/cms/forms/AddAboutUsComponent.js";
+import AddFronPageComponent from "../../components/cms/forms/AddFrontPageComponent.js";
+import AddContactUsComponent from "../../components/cms/forms/AddContactUsComponent.js";
 
 const navbar = new ElementObject('navbar');
 navbar.addComponent(new NavbarComponent());
@@ -42,18 +43,22 @@ document.getElementById('members-link').addEventListener('click', async () => {
 )
 
 document.getElementById('sponsor-link').addEventListener('click', async () => {
-        const sponsorForm = new ElementObject('cms-content');
-
-
         let sponsor = new AddSponsorComponent();
-        let sponsorC = new SponsorTableComponent(await fetch(config.endpoints.cms.root + config.endpoints.cms.subPoint.allSponsers).then(response => response.json()));
-
-        document.getElementById('cms-content-header').innerText = sponsor.name;
-
-        let top = new TwoRowComponent('what this name for', sponsor, sponsorC);
-        sponsorForm.addComponent(top)
-        sponsorForm.updateDOM();
-        sponsor.addEventliseenter()
+        await sponsor.refreshPage();
     }
-)
 
+)
+document.getElementById('about-us-link').addEventListener('click', async () => {
+    let aboutUsComponent = new AddAboutUsComponent();
+    await aboutUsComponent.refreshPage();
+})
+
+document.getElementById('frontpage-link').addEventListener('click', async () => {
+    let frontPageComponent = new AddFronPageComponent();
+    await frontPageComponent.refreshPage();
+})
+
+document.getElementById('contact-us-link').addEventListener('click', async () => {
+    let contactUsComponent = new AddContactUsComponent();
+    await contactUsComponent.refreshPage();
+})
