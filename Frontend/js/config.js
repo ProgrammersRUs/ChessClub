@@ -7,31 +7,33 @@ const config = {
     navbarData: {
         navItems: [
             {
-                name: 'Events',
+                name: 'Begivenheder',
                 href: '../html/events.html'
             },
             {
-                name: 'Om Klubben',
-                href: '../html/history.html'
+                name: 'Online Skak',
+                href: '../html/ClubSite.html'
             },
+
             {
                 name: 'Medlemskab',
                 href: '../html/medlemskab.html'
             },
+
             {
                 name: 'Kontakt os',
                 href: '../html/contact.html'
             },
+
             {
-                name: 'Sponserer',
+                name: 'Sponsorer',
                 href: '../html/sponsor.html'
             }
             ,
             {
-                name: 'Medlems Oversigt',
-                href: '../html/memberoverview.html'
-            }
-            ,
+                name: 'Klubbernes historie',
+                href: '../html/history.html'
+            },
             {
                 name: 'Admin',
                 href: '../html/cms-page.html'
@@ -69,11 +71,11 @@ const config = {
                 postAboutUs:'about-page/new',
                 allAboutUs: 'about-page/all-about-pages',
                 deleteAboutUs: 'about-page/',
-                postFrontPage:'front-page/new',
-                allFrontPages:'front-page/all-frontpages',
+                postFrontPage: 'front-page/new',
+                allFrontPages: 'front-page/all-frontpages',
                 deleteFrontPage: 'front-page/',
                 postContactUs: 'contact-us-page/new',
-                allContactUsPages:'contact-us-page/all-contactus-pages',
+                allContactUsPages: 'contact-us-page/all-contactus-pages',
                 deleteContactUs: 'contact-us-page/',
             }
 
