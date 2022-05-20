@@ -17,6 +17,7 @@ class AddFrontPageComponent extends Component {
                         <input id="postHeader" type="text" class="form-control" placeholder="" aria-label=""
                                aria-describedby="basic-addon1">
                     </div>
+          
                     <div class="input-group h-50">
                         <span class="input-group-text ">Indlæg tekst: </span>
                         <textarea id="postBody" class="form-control" aria-label="With textarea"></textarea>
@@ -53,6 +54,7 @@ class AddFrontPageComponent extends Component {
         async function postFrontPage(url) {
             const frontPageHeader = document.getElementById('postHeader').value
             const frontPageBody = document.getElementById('postBody').value
+            //const postImage = document.getElementById('postImage').value
             const frontPageIsActive = document.getElementById('flexSwitchCheckChecked')
             let isActive = 0
 
@@ -66,7 +68,7 @@ class AddFrontPageComponent extends Component {
                     creationDate: new Date().toLocaleDateString('en-CA'),
                     header: frontPageHeader,
                     body: frontPageBody,
-                    imgUrl: "wrfwrg",
+                    imageUrl: './img/Haslev%20og%20Faxe%20Skakklub%20-logos_black.png',
                     isActive: isActive
                 }
             }

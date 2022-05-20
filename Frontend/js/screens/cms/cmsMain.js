@@ -8,8 +8,8 @@ import SponsorTableComponent from "../../components/cms/tables/SponsorTableCompo
 import AddEventComponent from "../../components/cms/AddEventComponent.js";
 import AddSponsorComponent from "../../components/cms/forms/AddSponsorComponent.js";
 import AddAboutUsComponent from "../../components/cms/forms/AddAboutUsComponent.js";
-import AddFronPageComponent from "../../components/cms/forms/AddFrontPageComponent.js";
 import AddContactUsComponent from "../../components/cms/forms/AddContactUsComponent.js";
+import AddFrontPageComponent from "../../components/cms/forms/AddFrontPageComponent.js";
 
 const navbar = new ElementObject('navbar');
 navbar.addComponent(new NavbarComponent());
@@ -61,7 +61,7 @@ document.getElementById('about-us-link').addEventListener('click', async () => {
 })
 
 document.getElementById('frontpage-link').addEventListener('click', async () => {
-    let frontPageComponent = new AddFronPageComponent();
+    let frontPageComponent = new AddFrontPageComponent();
     await frontPageComponent.refreshPage();
 })
 
