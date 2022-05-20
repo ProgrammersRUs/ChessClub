@@ -48,8 +48,8 @@ class AddEventComponent extends Component {
 
 
     addEventlisenterToContent() {
-        const url = 'http://localhost:8089/event/createEvent'
-        const url2 = 'http://localhost:8080/event/new'
+        const url = config.endpoints.cms.root + 'event/createEvent'
+        const url2 = config.endpoints.member.root + 'event/new'
         const button = document.getElementById('createEvent')
 
 
