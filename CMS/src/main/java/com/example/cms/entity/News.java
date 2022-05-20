@@ -14,6 +14,7 @@ public class News {
     private int newsId;
     private LocalDate creationDate;
     private String newsHeader;
+    @Column(length = 1000)
     private String newsBody;
     private String imageUrl;
     private String href;

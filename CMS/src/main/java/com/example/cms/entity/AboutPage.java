@@ -15,6 +15,7 @@ public class AboutPage {
   private int id;
   private LocalDate creationDate;
   private String header;
+  @Column(length = 2000)
   private String body;
   private String imgUrl;
 
