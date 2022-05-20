@@ -55,7 +55,7 @@ class AddNewsComponent extends Component {
             const newsBody = document.getElementById('newsBody').value
             const newsIsActive = document.getElementById('flexSwitchCheckChecked')
             let isActive = 0
-
+console.log(sessionStorage.getItem('user'))
             if (newsIsActive.checked) {
                 isActive = 1
             }
