@@ -1,7 +1,7 @@
 const config = {
     club: {
         name: 'Haslev og Faxe skakklubber',
-        logoSrc: '../img/Haslev%20og%20Faxe%20Skakklub%20-logos_black.png',
+        logoSrc: '../img/Haslev og Faxe Skakklubber-logos_black.png',
         copyrightYear: 2022
     },
     navbarData: {
@@ -62,10 +62,13 @@ const config = {
             subPoint: {
                 allNews: 'news/all-news',
                 allSponsers: 'sponsor/get-all',
+                allEvents: 'event/all-events',
                 postNews: 'news/new',
                 postSponsor: 'sponsor/new',
+                postEvent: 'event/createEvent',
                 deleteNews: 'news/',
-                postAboutUs: 'about-page/new',
+                deleteEvent: 'event',
+                postAboutUs:'about-page/new',
                 allAboutUs: 'about-page/all-about-pages',
                 deleteAboutUs: 'about-page/',
                 postFrontPage: 'front-page/new',

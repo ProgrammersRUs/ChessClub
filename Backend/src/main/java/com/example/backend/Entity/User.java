@@ -13,7 +13,9 @@ public class User {
     private String userEmail;
     @JsonBackReference
     private String userPassword;
-    @Column(columnDefinition="tinyint(1)")
+
+    @Column(columnDefinition = "BOOLEAN")
+
     private boolean adminStatus;
 
 

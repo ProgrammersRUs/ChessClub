@@ -1,6 +1,7 @@
 package com.example.backend.Service;
 
 import com.example.backend.Entity.Member;
+import com.example.backend.Entity.User;
 import com.example.backend.Exception.ResourceNotFoundException;
 import com.example.backend.Repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,10 @@ public class MemberService {
         }
         return member;
 
+    }
+
+    public Optional<Member> getMemberByUser(User user){
+        return memberRepository.findByUser(user);
     }
 
     public Member getMemberById(int id) {
