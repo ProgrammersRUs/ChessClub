@@ -2,10 +2,11 @@ import Component from "../lib/Component.js";
 
 class NextEventComponent extends Component{
     constructor(event) {
+        console.log(event)
         let state = {
             title: event.title,
             location: event.location,
-            date: event.date,
+            date: event.localDate,
             body: event.description,
             link: event.href,
             img: event.imgSrc
@@ -31,8 +32,7 @@ class NextEventComponent extends Component{
          </div>
                      <div class="row h-25">
                 <div class="col-md-8">
-                    <p>${state.location.name}</p>
-                    <p>${state.location.address}</p>                
+                    <p>${state.location}</p>           
                 </div>
                 <div class="col-md-4">
                     <div class="w-100 h-100 btn"><a href="${state.link}" class=" btn-primary btn-sm">Læs mere</a>
