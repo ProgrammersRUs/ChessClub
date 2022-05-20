@@ -65,7 +65,7 @@ public class EventController {
 
     @PostMapping("/join/{eventId}")
     public ResponseEntity<Registration> joinEvent(@PathVariable int eventId, @RequestBody UserJoinDataWrapper userJoinDateWrapper) {
-        Optional<Event> optionalEvent = eventService.getEventById(eventId);
+        Optional<Event> optionalEvent = eventService.getEventByCmsId(eventId);
         System.out.println(optionalEvent.isPresent());
         if (optionalEvent.isPresent()) {
             Event event = optionalEvent.get();

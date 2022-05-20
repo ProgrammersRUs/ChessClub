@@ -16,6 +16,8 @@ export class Component{
 
     }
 
+    addEventListenersToMe(){};
+
 }
 
 export default Component;
