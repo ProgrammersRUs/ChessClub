@@ -19,7 +19,7 @@ public class Event {
     private String location;
     private String title;
     private String description;
-    @JsonFormat(pattern = "HH:mm:ss")
+    @JsonFormat(pattern = "HH:mm")
     private LocalTime meetingTime;
 
     public int getEventId() {

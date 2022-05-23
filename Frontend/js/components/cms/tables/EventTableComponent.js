@@ -44,7 +44,7 @@ class EventTableComponent extends Component {
                                 <td id="eventId${event.eventId}"class="d-none">${event.eventId}</td>
                                 <td>${event.title}</td>
                                 <td>${event.localDate}</td>
-                                <td>${event.localDate}</td>
+                                <td>${event.meetingTime}</td>
                                 <td>${event.location}</td>
                                 <td>${event.url}</td>
                                 <td class="accordion-item col-2">

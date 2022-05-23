@@ -19,7 +19,7 @@ class AddEventComponent extends Component {
                                aria-describedby="basic-addon1">
                                <div class="input-group mb-2">
                         <span class="input-group-text">Møde tid: </span>
-                        <input id="eventTime" type="text" class="form-control" placeholder="" aria-label=""
+                        <input id="eventTime" type="time" class="form-control" placeholder="" aria-label=""
                                aria-describedby="basic-addon1">
                     </div>
                     </div>
@@ -71,6 +71,7 @@ class AddEventComponent extends Component {
             const eventBody = document.getElementById('eventBody').value
             const eventTime = document.getElementById('eventTime').value
 
+            console.log(eventTime);
 
             let body = {
                 localDate: new Date().toLocaleDateString('en-CA'),
