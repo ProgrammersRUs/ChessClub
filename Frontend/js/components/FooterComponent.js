@@ -9,8 +9,8 @@ class FooterComponent extends Component {
             location: config.locations
         }
         super("footer", state, (state) => `
-<div class="container">
-<div class="row">
+<div class="container mt-4">
+<div class="row featurette-divider">
     <div class="col-lg-6 order-last order-lg-first">
         <p class="float-right"><a href="#">Tilbage til toppen</a></p>
         <p>© ${state.year} ${state.name}· <a href="/privatliv.html">Privacy</a> · <a
@@ -32,6 +32,7 @@ class FooterComponent extends Component {
             </div>
         </div>
     </div>
+</div>
 </div>
 </div>
 `);
