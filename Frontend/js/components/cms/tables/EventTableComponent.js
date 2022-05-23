@@ -1,5 +1,5 @@
-import Component from "../../lib/Component.js";
-import AddEventComponent from "./AddEventComponent.js";
+import Component from "../../../lib/Component.js";
+import AddEventComponent from "../forms/AddEventComponent.js";
 
 class EventTableComponent extends Component {
 

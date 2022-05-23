@@ -1,7 +1,7 @@
-import TwoRowComponent from "../TwoRowComponent.js";
-import ElementObject from "../../lib/ElementObject.js";
-import Component from "../../lib/Component.js";
-import EventTableComponent from "./EventTableComponent.js";
+import TwoRowComponent from "../../TwoRowComponent.js";
+import ElementObject from "../../../lib/ElementObject.js";
+import Component from "../../../lib/Component.js";
+import EventTableComponent from "../tables/EventTableComponent.js";
 
 
 class AddEventComponent extends Component {
