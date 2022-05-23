@@ -12,7 +12,7 @@ const config = {
             },
             {
                 name: 'Online Skak',
-                href: '../html/ClubSite.html'
+                href: '../html/club-site.html'
             },
 
             {
