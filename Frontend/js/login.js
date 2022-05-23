@@ -34,7 +34,7 @@ async function postUserValidationAsJson(formData) {
     const plainFormData = Object.fromEntries(formData.entries());
 
 
-    const url = 'http://localhost:8080/login/login/' + plainFormData.email + '+' + plainFormData.password
+    const url = config.endpoints.member.root +'login/login/' + plainFormData.email + '+' + plainFormData.password
 
 
     const response = await fetch(url);
