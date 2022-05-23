@@ -9,12 +9,26 @@ class FooterComponent extends Component {
             location: config.locations
         }
         super("footer", state, (state) => `
+
+<style>
+
+.link-custom {
+color: #8D9D90 !important;
+}
+
+
+</style>
+
 <div class="container mt-4">
 <div class="row featurette-divider">
     <div class="col-lg-6 order-last order-lg-first">
-        <p class="float-right"><a href="#">Tilbage til toppen</a></p>
-        <p>© ${state.year} ${state.name}· <a href="/privatliv.html">Privacy</a> · <a
-            href="/legal.html">Terms</a></p>
+        <p class="float-right"><a class="link-custom" href="#">Tilbage til toppen</a></p>
+        <p>© ${state.year} ${state.name} 
+        <!--vi skal ikke have privacy and terms link, hvis ikke der er noget i dem
+         <a class="link-custom" href="/privatliv.html">Privacy</a> · <a class="link-custom"
+            href="/legal.html">Terms</a>·  --> 
+            </p>
+    
     </div>
     <div class="col-lg-6 order-first order-lg-last">
         <div class="row">
