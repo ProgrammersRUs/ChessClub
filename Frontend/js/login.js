@@ -24,6 +24,7 @@ async function handleFormSubmit(event) { //AUGUST OG SILKE VIL GERNE HAVE DEN FO
         const user = await postUserValidationAsJson(formData).then(response => response.json());
         console.log(user)
         setSessionUser(user)
+        location.href='/'
     } catch (err) {
         alert(err.message);
     }
