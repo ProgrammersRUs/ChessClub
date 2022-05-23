@@ -55,7 +55,7 @@ class EventTableComponent extends Component {
                                 </td>
                                 <td class="col-md-2">
                                 <button id="deleteEvent${event.eventId}" type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i class="fa fa-trash"></i> </button>
-                                <button  type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i class="fa fa-edit"></i> </button>
+                                <button  type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i class="fa fa-save"></i> </button>
                                 <button id="updateEventStatus${event.eventId}"  type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i ${this.isActiveEvent(event)}></i> </button>
                             </td>
                             </tr>
