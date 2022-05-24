@@ -5,13 +5,13 @@ class MemberOverviewComponent extends Component {
         let state = {
             members: members
         }
-        super("memberOverview", state, (state) => `
+        super("Medlemsoversigt", state, (state) => `
 <div class="container" style="min-height: 100vh">
     <div class="row">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title text-uppercase mb-0">Manage Users</h5>
+                    <h5 class="card-title text-uppercase mb-0"></h5>
                 </div>
                 <div class="table-responsive">
                     <table class="table no-wrap user-table mb-0" id="parent">

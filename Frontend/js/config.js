@@ -1,7 +1,7 @@
 const config = {
     club: {
         name: 'Haslev og Faxe skakklubber',
-        logoSrc: '../img/Haslev og Faxe Skakklubber-logos_black.png',
+        logoSrc: '../img/Udklip2-hvid-removebg-preview.png',
         copyrightYear: 2022
     },
     navbarData: {
@@ -52,13 +52,13 @@ const config = {
     ],
     endpoints: {
         member: {
-            root: 'http://localhost:8080/',
+            root: 'https://hofsk.azurewebsites.net/',
             subPoint: {
                 getAll: 'member/all-members'
             }
         },
         cms: {
-            root: 'http://localhost:8089/',
+            root: 'https://cmsbackend420.azurewebsites.net/',
             subPoint: {
                 allNews: 'news/all-news',
                 allSponsers: 'sponsor/get-all',

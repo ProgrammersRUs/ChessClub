@@ -5,8 +5,6 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="icon" href="../img/favicon2.png">
-
     <!-- Custom styles for this template -->
     <link rel="preconnect" href="https://fonts.googleapis.com/">
     <link rel="preconnect" href="https://fonts.gstatic.com/">
@@ -16,42 +14,32 @@
 
     <script src="../js/config.js"></script>
     <script type="module" src="../js/screens/contact/main.js"></script>
-    <link rel="icon" href="/img/favicon-32x32.png">
+    <link rel="icon" href="../img/favicon-32x32.png">
+    <link rel="stylesheet" href="../css/generel.css">
 
 </head>
 <body>
 
-
-
 <nav id="navbar"></nav>
+
 
 <div style="margin-top: 5px">
     <h2 class="toast-header" style="font-size: xxx-large">Kontakt Os</h2>
 </div>
 
-<!-- Marketing messaging and featurettes
-================================================== -->
-<!-- Wrap the rest of the page in another container to center all the content. -->
-
 <div class="container marketing mt-3">
-
-
-    <!-- START THE FEATURETTES -->
     <br>
-    <br>
-    <br>
-
     <div class="row featurette">
         <div class="col-md-7">
             <h2 class="featurette-heading">Haslev Skakklub <span class="text-muted"></span></h2>
             <p class="lead">Du er velkommen til at møde fysisk op til en prøvetime. Vi spiller i Haslev gl. seminarum
                 Bygning A. Se hvornår vi spiller, i vores kalender
-                <a href="/index.html" class="link-dark">her</a>.
-                <!--TILFØJ LINK TIL KALENDEREN -->
+                <a href="/HTML/events.html" class="link-custom">her</a>.
+
                 <br><br>
                 Derudover kan du kontakte formand Henrik Sten Jensen. <br>
                 Tlf: +45 56 38 04 05 <br>
-                Mail: <a href="mailto:hstj@smilemail.dk" onclick="window.open('mailto:hstj@smilemail.dk', 'popup', 'width=600,height=600'); return false">hstj@smilemail.dk</a></p>
+                Mail: <a class="link-custom" href="mailto:hstj@smilemail.dk" onclick="window.open('mailto:hstj@smilemail.dk', 'popup', 'width=600,height=600'); return false">hstj@smilemail.dk</a></p>
             <!--SKIFT UD MED DEN OFFICIELLE SKAKKLUB MAIL?-->
 
         </div>
@@ -60,7 +48,7 @@
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2269.8809451927664!2d11.954166316033758!3d55.325165032359074!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4652eb157ff42261%3A0xeab11265ae3961c8!2sS%C3%B8ndergade%2012%2C%204690%20Haslev!5e0!3m2!1sen!2sdk!4v1651577427301!5m2!1sen!2sdk"
                     alt="500x500" style="width: 500px; height: 500px;"
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2273.8687522008936!2d12.116361916031716!3d55.255501337702924!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4652e822d4f4cee1%3A0x6b527d9461d73cf5!2zUHLDpnN0w7h2ZWogMkEsIDQ2NDAgRmF4ZQ!5e0!3m2!1sen!2sdk!4v1651577497266!5m2!1sen!2sdk"
-                    data-holder-rendered="true">
+                    data-holder-rendered="true"
                 width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy"
                 referrerpolicy="no-referrer-when-downgrade">
             </iframe>
@@ -68,13 +56,13 @@
     </div>
 
     <hr class="featurette-divider">
-
+    <br>
     <div class="row featurette">
         <div class="col-md-7 order-md-2">
             <h2 class="featurette-heading">Faxe Skakklub <span class="text-muted"></span></h2>
             <p class="lead">Har du lyst til at spille skak, er du meget velkommen til at kigge forbi. Vi spiller hver
                 Mandag fra kl. 19.30, men vi kan dog være ude og spille holdkamp. Se kalenderen
-                <a href="/index.html" class="link-dark">her</a> for flere detaljer.
+                <a href="/index.html" class="link-custom">her</a> for flere detaljer.
                 <!--TILFØJ LINK TIL KALENDEREN -->
                 <br><br>
                 Vi holder til på Præstøvej 2A, kælder, 4640 Faxe. Det er over for den gamle biograf, nu Faxe Sognehus.
@@ -83,7 +71,6 @@
 
                 Ønsker du flere oplysninger, kan du ringe til Svend-Erik Wehlast. <br>
                 Tlf: +45 56 73 06 36 <br>
-
             </p>
         </div>
         <div class="col-md-5 order-md-1">
@@ -97,65 +84,12 @@
             </iframe>
         </div>
     </div>
-
-
     <hr class="featurette-divider">
-
-    <!-- DISKUTER: er det virkelig en kontaktformular vi skal have? risiko for spam + hvordan sætter vi den op med en mail?
-
-    <div class="row featurette">
-        <div class="col-md-12">
-            <h2 class="featurette-heading">Kontakt os <br> <span class="text-muted"></span></h2>
-
-            <p class="lead">Du er velkommen til at sende os en mail via vores kontaktform, så vender vi tilbage til dig snarest muligt.</p>
-            <form onsubmit="return false">
-                <div class="row">
-                    <div class="col">
-                        <input type="text" id="firstName" class="form-control" placeholder="Fornavn">
-                    </div>
-                    <div class="col">
-                        <input type="text" id="lastName" class="form-control" placeholder="Efternavn">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <br>
-                        <input type="text" id="email" class="form-control" placeholder="Email">
-                    </div>
-                    <div class="col">
-                        <br>
-                        <input type="text" id="telephone" class="form-control" placeholder="Telefon">
-                    </div>
-
-                </div>
-
-                <div class="form-group">
-                    <label for="exampleFormControlTextarea1"></label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Besked"></textarea>
-                </div>
-                <br>
-
-                <button onclick="sendContact();">Send</button>
-
-
-                <button type="submit" class="btn btn-secondary">Send</button>
-
-            </form>
-        </div>
-
-    </div>
-
-    <hr class="featurette-divider"> -->
-
-    <!-- /END THE FEATURETTES -->
-
-</div><!-- /.container -->
-
+</div>
 
 <!-- FOOTER -->
 <footer id="footer">
 </footer>
 
-<!-- JavaScript herunder -->
 </body>
 </html>
