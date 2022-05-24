@@ -19,9 +19,22 @@
     <script defer src="../js/login.js"></script>
 
     <title>Log ind</title>
+    <link rel="stylesheet" href="../css/generel.css">
 </head>
 <body>
 <nav id="navbar"></nav>
+
+<style>
+    .button-custom {
+        background-color: #8D9D90;
+        border-color: #ABC4A1;
+    }
+
+    .button-custom:hover {
+        background-color: #ABC4A1;
+        border-color: #ABC4A1;
+    }
+</style>
 
 <div class="container marketing mt-3">
 
@@ -33,17 +46,19 @@
     <div class="row featurette">
 
             <div class="row d-flex justify-content-center align-items-center h-100">
-            <h2 class="featurette-heading text-center">Log ind<span class="text-muted"></span></h2>
+
                 <p class="lead"> </p>
 
-                <section class="fit bg-image"
-                >
+                <section class="fit bg-image">
                     <div class="mask d-flex align-items-center h-100 gradient-custom-3">
                         <div class="container h-100">
+
                             <div class="row d-flex justify-content-center align-items-center">
                                 <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+
                                     <div class="card" style="border-radius: 15px">
                                         <div class="card-body" style="border-radius: 15px">
+                                            <h2 class="featurette-heading text-center">LOG IND<span class="text-muted"></span></h2>
                                             <div class="card-body p-5">
 
             <form action="http://localhost:8080/login/login" method="GET" id="userLogin">
@@ -61,9 +76,10 @@
                 </div>
 
 
+                <!-- hverken Husk Mig eller Glemt Password virker, så det er underligt at have dem
                 <div class="row mb-4">
                     <div class="col d-flex justify-content-center">
-                        <!-- Checkbox -->
+
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="" id="form2Example31" checked />
                             <label class="form-check-label" for="form2Example31">Husk mig</label>
@@ -71,21 +87,28 @@
                     </div>
 
                     <div class="col">
-                        <!-- Simple link -->
+
                         <a href="#!">Glemt password?</a>
                     </div>
-                </div>
+                </div> -->
 
                 <!-- Submit button -->
                 <div class="d-flex justify-content-center">
 
-                    <button type="submit" class="btn btn-primary btn-block mb-4">Log ind</button>
+                    <button type="submit" class="btn btn-primary btn-block mb-4 button-custom">Log ind</button>
                 </div>
 
                 <!-- Register buttons -->
 
+
+
             </form>
                 </div>
+                                            <div class="row mb-4">
+                                                <div class="col d-flex justify-content-center">
+                                                    <a class="link-custom" href="../HTML/register.html">Registrér dig som medlem her</a>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

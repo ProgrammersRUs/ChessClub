@@ -3,3 +3,12 @@
     color: #8D9D90 !important;
 }
 
+.button-custom {
+    background-color: #8D9D90;
+    border-color: #ABC4A1;
+}
+
+.button-custom:hover {
+    background-color: #ABC4A1;
+    border-color: #ABC4A1;
+}
