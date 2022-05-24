@@ -12,3 +12,8 @@
     background-color: #ABC4A1;
     border-color: #ABC4A1;
 }
+
+.button-custom:active {
+    background-color: #ABC4A1;
+    border-color: #ABC4A1;
+}
