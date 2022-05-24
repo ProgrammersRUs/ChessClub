@@ -1,4 +1,5 @@
 import Component from '../lib/Component.js'
+import ElementObject from "../lib/ElementObject.js";
 
 class MemberOverviewComponent extends Component {
     constructor(members) {
@@ -56,21 +57,22 @@ class MemberOverviewComponent extends Component {
                                 <span class="text-muted">${member.memberAddress}</span><br>
                             </td>
                             <td>
-                                <select class="form-control category-select" onchange="postUserStatus(${member.memberId}, this)">
+                                <select id="updateMemberStatus${member.memberId}" class="form-control category-select">
                                     <option>User</option>
                                     <option>Admin</option>
                                 </select>
                             </td>
                             <td>
-                                <button type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i class="fa fa-trash"></i> </button>
-                                <button type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i class="fa fa-edit"></i> </button>
+                                <button id="deleteMember${member.memberId}" type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i class="fa fa-trash"></i> </button>
+                                <button id="updateMember${member.memberId}" type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i class="fa fa-save"></i> </button>
                             </td>
                         </tr>`).join('');
     }
 
     addEventListenersMemberTable() {
 
-        const url = config.endpoints.cms.root + config.endpoints.cms.subPoint.deleteMember;
+        const urlDelete = config.endpoints.member.root + config.endpoints.member.subPoint.deleteMember;
+        const urlUpdate = config.endpoints.member.root + config.endpoints.member.subPoint.updateMember;
         this.state.members.forEach(member => {
 
             const buttonDelete = document.getElementById('deleteMember' + member.memberId)
@@ -83,7 +85,7 @@ class MemberOverviewComponent extends Component {
                 //await new this.refreshPage()
             })
 
-            buttonUpdateStatus.addEventListener("click", async () => {
+            buttonUpdateStatus.addEventListener('onchange', async () => {
                 await updateMemberStatus(member)
                 //await new this.refreshPage()
             })
@@ -111,7 +113,7 @@ class MemberOverviewComponent extends Component {
                 }
             ;
 
-            const response = await fetch(url + member.memberId, fetchOptions);
+            const response = await fetch(urlDelete + member.memberId, fetchOptions);
 
             if (!response) {
                 const errorMessage = await response.text();
@@ -150,7 +152,7 @@ class MemberOverviewComponent extends Component {
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(body)
             };
-            const response = await fetch(url + member.memberId, fetchOptions);
+            const response = await fetch(urlUpdate + member.memberId, fetchOptions);
 
             if (!response) {
                 const errorMessage = await response.text();
@@ -183,7 +185,7 @@ class MemberOverviewComponent extends Component {
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(body)
             };
-            const response = await fetch(url + member.memberId, fetchOptions);
+            const response = await fetch(urlUpdate + member.memberId, fetchOptions);
 
             if (!response) {
                 const errorMessage = await response.text();
@@ -191,6 +193,18 @@ class MemberOverviewComponent extends Component {
                 throw new Error(errorMessage);
             }
         }
+    }
+
+    async refreshPage() {
+        const memberForm = new ElementObject('cms-content');
+
+        const memberOverview = new ElementObject('overview');
+        memberOverview.addComponent(new MemberOverviewComponent(await
+            fetch(config.endpoints.member.root+config.endpoints.member.subPoint.getAll).then(response => response.json())));
+
+        memberForm.addComponent(memberOverview)
+        memberForm.updateDOM();
+        this.addEventListenersMemberTable()
     }
 }
 

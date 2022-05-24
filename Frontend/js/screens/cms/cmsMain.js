@@ -45,6 +45,7 @@ document.getElementById('members-link').addEventListener('click', async () => {
             fetch(config.endpoints.member.root + config.endpoints.member.subPoint.getAll).then(response => response.json()));
         document.getElementById('cms-content-header').innerText = memberOverviewComponent.name;
         memberOverview.addComponent(memberOverviewComponent);
+        await memberOverviewComponent.refreshPage();
         memberOverview.updateDOM();
     }
 )
