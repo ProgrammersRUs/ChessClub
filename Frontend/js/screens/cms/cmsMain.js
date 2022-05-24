@@ -5,7 +5,7 @@ import CmsComponent from "../../components/cms/CmsComponent.js";
 import AddNewsComponent from "../../components/cms/forms/AddNewsComponent.js";
 import MemberOverviewComponent from "../../components/MemberOverviewComponent.js";
 import SponsorTableComponent from "../../components/cms/tables/SponsorTableComponent.js";
-import AddEventComponent from "../../components/cms/AddEventComponent.js";
+import AddEventComponent from "../../components/cms/forms/AddEventComponent.js";
 import AddSponsorComponent from "../../components/cms/forms/AddSponsorComponent.js";
 import AddAboutUsComponent from "../../components/cms/forms/AddAboutUsComponent.js";
 import AddContactUsComponent from "../../components/cms/forms/AddContactUsComponent.js";
@@ -45,6 +45,7 @@ document.getElementById('members-link').addEventListener('click', async () => {
             fetch(config.endpoints.member.root + config.endpoints.member.subPoint.getAll).then(response => response.json()));
         document.getElementById('cms-content-header').innerText = memberOverviewComponent.name;
         memberOverview.addComponent(memberOverviewComponent);
+        await memberOverviewComponent.refreshPage();
         memberOverview.updateDOM();
     }
 )

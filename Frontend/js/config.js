@@ -54,7 +54,9 @@ const config = {
         member: {
             root: 'http://localhost:8080/',
             subPoint: {
-                getAll: 'member/all-members'
+                getAll: 'member/all-members',
+                deleteMember: 'member/delete',
+                updateMember: 'member/update'
             }
         },
         cms: {
@@ -67,7 +69,7 @@ const config = {
                 postSponsor: 'sponsor/new',
                 postEvent: 'event/createEvent',
                 deleteNews: 'news/',
-                deleteEvent: 'event',
+                deleteEvent: 'event/',
                 postAboutUs:'about-page/new',
                 allAboutUs: 'about-page/all-about-pages',
                 deleteAboutUs: 'about-page/',

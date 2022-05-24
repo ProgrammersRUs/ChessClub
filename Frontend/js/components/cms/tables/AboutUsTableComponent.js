@@ -41,8 +41,8 @@ class AboutUsTableComponent extends Component {
 
         return aboutUsList.map(aboutUs => `
                             <tr>
-                                <td id="postId${aboutUs.id}"class="d-none">${aboutUs.id}</td>
-                                <td>${aboutUs.header}</td>
+                                <td id="postId${aboutUs.id}" class="d-none">${aboutUs.id}</td>
+                                <td id="aboutUspageHeader${aboutUs.id}" contenteditable="true">${aboutUs.header}</td>
                                 <td>${aboutUs.creationDate}</td>
                                 <td class="accordion-item col-2">
                                 
@@ -53,13 +53,13 @@ class AboutUsTableComponent extends Component {
                                 </td>
                                 <td class="col-md-2">
                                 <button id="deletePost${aboutUs.id}" type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i class="fa fa-trash"></i> </button>
-                                <button  type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i class="fa fa-edit"></i> </button>
+                                <button id="updatePostInformation${aboutUs.id}" type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i class="fa fa-save"></i> </button>
                                 <button id="updatePostStatus${aboutUs.id}"  type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i ${this.isActivePost(aboutUs)}></i> </button>
                             </td>
                             </tr>
                             <tr id="collapse${aboutUs.id}" class="accordion-collapse collapse"
                                 aria-labelledby="headingOne1" data-bs-parent="#accordionExample">
-                                <td class="accordion-body" colspan="3">
+                                <td id="aboutUspageBody${aboutUs.id}" class="accordion-body" contenteditable="true" colspan="3">
                                     ${aboutUs.body}
                                 </td>
                             </tr>
@@ -86,6 +86,7 @@ class AboutUsTableComponent extends Component {
 
             const buttonDelete = document.getElementById('deletePost' + about.id)
             const buttonUpdateStatus = document.getElementById('updatePostStatus' + about.id)
+            const buttonUpdateInformation = document.getElementById('updatePostInformation' + about.id)
             console.log(buttonUpdateStatus)
 
             buttonDelete.addEventListener("click", async () => {
@@ -95,6 +96,11 @@ class AboutUsTableComponent extends Component {
 
             buttonUpdateStatus.addEventListener("click", async () => {
                 await updateStatusPost(about)
+                await new AddAboutUsComponent().refreshPage()
+            })
+
+            buttonUpdateInformation.addEventListener("click", async () => {
+                await updatePostInformation(about)
                 await new AddAboutUsComponent().refreshPage()
             })
         })
@@ -143,6 +149,39 @@ class AboutUsTableComponent extends Component {
                     creationDate: post.creationDate,
                     header: post.header,
                     body: post.body,
+                    imgUrl: post.imgUrl,
+                    isActive: post.isActive
+                }
+            }
+
+            console.log(body)
+            const fetchOptions = {
+                method: "PUT",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(body)
+            };
+            const response = await fetch(url + post.id, fetchOptions);
+
+            if (!response) {
+                const errorMessage = await response.text();
+                console.log(errorMessage)
+                throw new Error(errorMessage);
+
+            }
+        }
+
+        async function updatePostInformation(post) {
+
+            const postHeader = document.getElementById('aboutUspageHeader' + post.id).innerText
+            const postBody = document.getElementById('aboutUspageBody' + post.id).innerText
+
+            let body = {
+                user: JSON.parse(sessionStorage.getItem('user')),
+                aboutPage: {
+                    id: post.id,
+                    creationDate: post.creationDate,
+                    header: postHeader,
+                    body: postBody,
                     imgUrl: post.imgUrl,
                     isActive: post.isActive
                 }

@@ -2,15 +2,18 @@ package com.example.cms.controller;
 
 
 import com.example.cms.entity.Event;
+import com.example.cms.entity.News;
 import com.example.cms.service.EventService;
 import com.example.cms.service.UserService;
 import com.example.cms.wrapper.UserEventWrapper;
+import com.example.cms.wrapper.UserNewsWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @CrossOrigin
@@ -63,4 +66,22 @@ public class EventController {
         return new ResponseEntity<>(eventService.getAllEventsById(eventIds), HttpStatus.OK);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<Event> updateEvent(@PathVariable int id, @RequestBody UserEventWrapper userEventWrapper) {
+        if (userEventWrapper.getUser() != null) {
+            if (!userService.validateAdmin(userEventWrapper.getUser())) {
+                return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+            }
+            Optional<Event> optEvent = eventService.findByIdOpt(id);
+            if (optEvent.isPresent()) {
+                eventService.saveEvent(userEventWrapper.getEvent());
+                return new ResponseEntity<>(userEventWrapper.getEvent(), HttpStatus.OK);
+            } else {
+                Event eventNotFound = new Event();
+                eventNotFound.setTitle("No event with id: " + id);
+                return new ResponseEntity<>(eventNotFound, HttpStatus.NOT_FOUND);
+            }
+        }
+        return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+    }
 }
