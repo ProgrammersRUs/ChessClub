@@ -1,5 +1,6 @@
 import Component from "../../../lib/Component.js";
 import AddEventComponent from "../forms/AddEventComponent.js";
+import addEventComponent from "../forms/AddEventComponent.js";
 
 class EventTableComponent extends Component {
 
@@ -16,10 +17,9 @@ class EventTableComponent extends Component {
                         <thead>
                         <tr>
                             <th scope="col">Title</th>
-                            <th scope="col">Dato oprettet:</th>
                             <th scope="col">Møde tid</th>
+                            <th scope="col">Møde dato</th>
                             <th scope="col">Lokation</th>
-                            <th scope="col">URL</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -42,11 +42,10 @@ class EventTableComponent extends Component {
         return event.map(event => `
                             <tr>
                                 <td id="eventId${event.eventId}"class="d-none">${event.eventId}</td>
-                                <td>${event.title}</td>
-                                <td>${event.localDate}</td>
-                                <td>${event.meetingTime}</td>
-                                <td>${event.location}</td>
-                                <td>${event.url}</td>
+                                <td id="eventHeader${event.eventId}" contenteditable="true">${event.title}</td>
+                                <td id="eventMeetingTime${event.eventId}"contenteditable="true">${event.meetingTime}</td>
+                                <td id="eventMeetingDate${event.eventId}" contenteditable="true">${event.localDate}</td>
+                                <td id="eventLocation${event.eventId}" contenteditable="true">${event.location}</td>
                                 <td class="accordion-item col-2">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                             data-bs-target="#collapse${event.eventId}" aria-expanded="true"
@@ -55,14 +54,14 @@ class EventTableComponent extends Component {
                                 </td>
                                 <td class="col-md-2">
                                 <button id="deleteEvent${event.eventId}" type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i class="fa fa-trash"></i> </button>
-                                <button  type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i class="fa fa-save"></i> </button>
+                                <button id="updatePostInformation${event.eventId}" type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i class="fa fa-save"></i> </button>
                                 <button id="updateEventStatus${event.eventId}"  type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i ${this.isActiveEvent(event)}></i> </button>
                             </td>
                             </tr>
                             <tr id="collapse${event.eventId}" class="accordion-collapse collapse"
                                 aria-labelledby="headingOne1" data-bs-parent="#accordionExample">
-                                <td class="accordion-body" colspan="3">
-                                    ${event.description}<
+                                <td id="eventBody${event.eventId}" class="accordion-body" colspan="3">
+                                    ${event.description}
                                 </td>
                             </tr>
 
@@ -88,6 +87,8 @@ class EventTableComponent extends Component {
 
             const buttonDelete = document.getElementById('deleteEvent' + event.eventId)
             const buttonUpdateStatus = document.getElementById('updateEventStatus' + event.eventId)
+            const buttonUpdateInformation = document.getElementById('updatePostInformation' + event.eventId)
+
             console.log(buttonUpdateStatus)
 
             buttonDelete.addEventListener("click", async () => {
@@ -98,6 +99,11 @@ class EventTableComponent extends Component {
             buttonUpdateStatus.addEventListener("click", async () => {
                 await updateEventStatus(event)
                 await new AddEventComponent().refreshPage()
+            })
+
+            buttonUpdateInformation.addEventListener("click", async () => {
+                await updatePostInformation(event)
+                await new addEventComponent().refreshPage()
             })
         })
 
@@ -118,6 +124,43 @@ class EventTableComponent extends Component {
                 }
             ;
 
+            const response = await fetch(url + event.eventId, fetchOptions);
+
+            if (!response) {
+                const errorMessage = await response.text();
+                console.log(errorMessage)
+                throw new Error(errorMessage);
+
+            }
+        }
+
+        async function updatePostInformation(event) {
+
+            const postHeader = document.getElementById('eventHeader' + event.eventId).innerText
+            const postBody = document.getElementById('eventBody' + event.eventId).innerText
+            const postMeetingTime = document.getElementById('eventMeetingTime' + event.eventId).innerText
+            const postMeetingDate = document.getElementById('eventMeetingDate' + event.eventId).innerText
+            const postLocation = document.getElementById('eventLocation' + event.eventId).innerText
+
+
+            let body = {
+                user: JSON.parse(sessionStorage.getItem('user')),
+                event: {
+                    eventId: event.eventId,
+                    title: postHeader,
+                    description: postBody,
+                    meetingTime: postMeetingTime,
+                    localDate: postMeetingDate,
+                    location: postLocation
+                }
+            }
+
+            console.log(body)
+            const fetchOptions = {
+                method: "PUT",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(body)
+            };
             const response = await fetch(url + event.eventId, fetchOptions);
 
             if (!response) {

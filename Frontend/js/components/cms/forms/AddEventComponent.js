@@ -14,18 +14,30 @@ class AddEventComponent extends Component {
             <div class="card col-sm m-1" style="background-color: rgba(217, 226, 249, 0.3);">
                 <div class="card-body">
                     <div class="input-group mb-3">
+                    
                         <span class="input-group-text" id="basic-addon1">Titel: </span>
-                        <input id="eventHeader" type="text" class="form-control" placeholder="" aria-label=""
-                               aria-describedby="basic-addon1">
-                               <div class="input-group mb-2">
-                        <span class="input-group-text">Møde tid: </span>
-                        <input id="eventTime" type="time" class="form-control" placeholder="" aria-label=""
+                        <input id="eventHeader" type="text" class="form-control" aria-label=""
                                aria-describedby="basic-addon1">
                     </div>
+                   <div class="input-group mb-3">
+                    <span class="input-group-text">Møde tid: </span>
+                        <input id="eventTime" type="time" class="form-control" aria-label=""
+                               aria-describedby="basic-addon1">
+                               
+                     <span class="input-group-text">Dato: </span>
+                        <input id="eventDate" type="date" class="form-control" placeholder="" aria-label=""
+                               aria-describedby="basic-addon1">
                     </div>
+                    <div class="input-group mb-3">
+                    
+                    <span class="input-group-text">Lokation: </span>
+                        <input id="eventLocation" type="text" class="form-control" placeholder="" aria-label=""
+                               aria-describedby="basic-addon1">
+                    
                     <div class="input-group h-50">
                         <span class="input-group-text ">Event beskrivelse: </span>
                         <textarea id="eventBody" class="form-control" aria-label="With textarea"></textarea>
+                    </div>
                     </div>
                     
                     
@@ -70,14 +82,16 @@ class AddEventComponent extends Component {
             const eventHeader = document.getElementById('eventHeader').value
             const eventBody = document.getElementById('eventBody').value
             const eventTime = document.getElementById('eventTime').value
+            const eventDate = document.getElementById('eventDate').value
+            const eventLocation = document.getElementById('eventLocation').value
 
             console.log(eventTime);
 
             let body = {
-                localDate: new Date().toLocaleDateString('en-CA'),
+                localDate: eventDate,
                 title: eventHeader,
                 description: eventBody,
-                location: "",
+                location: eventLocation,
                 url: "",
                 meetingTime: eventTime
 
