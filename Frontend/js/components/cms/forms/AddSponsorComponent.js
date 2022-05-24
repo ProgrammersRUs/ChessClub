@@ -18,14 +18,17 @@ class AddNewSponsorComponent extends Component {
                         <input id="sponsor-header" type="text" class="form-control" placeholder="" aria-label=""
                                aria-describedby="basic-addon1">
                     </div>
-                    <div class="input-group h-50">
+                    <div class="input-group h-50 mb-3">
                         <span class="input-group-text ">Sponsor tekst: </span>
                         <textarea id="sponsor-body" class="form-control" aria-label="With textarea"></textarea>
                     </div>
-                               <div class="row">
-                    <div class="container">
-                    <button type="button" class="btn btn-primary" id="submitSponsor">Opret Sponsor</button>
-                              <div class="form-check form-switch float-end">
+                    <div class="input-group mb-3">
+                       <input type="file" class="form-control" id="imageForm">
+</div>
+                    <div class="row">
+                        <div class="container">
+                            <button type="button" class="btn btn-primary" id="submitSponsor">Opret Sponsor</button>
+                            <div class="form-check form-switch float-end">
                             </div>
                            
                     </div>
@@ -43,11 +46,35 @@ class AddNewSponsorComponent extends Component {
         const button = document.getElementById('submitSponsor')
 
         button.addEventListener("click", async () => {
-            await postSponsor(url)
+            let imgSrc = await uploadPicture()
+            await postSponsor(url, imgSrc)
             await this.refreshPage()
         })
 
-        async function postSponsor(url) {
+        async function uploadPicture() {
+            const input = document.getElementById('imageForm');
+            let data = new FormData();
+
+            data.append('file', input.files[0]);
+            let user = sessionStorage.getItem('user');
+            console.log(user)
+
+            data.append('user', new Blob([user],{type : "application/json"}));
+
+            console.log(data.get('user'))
+
+            let response = await fetch(config.endpoints.cms.root + "blob/upload", {
+                method:'POST',
+                body:data
+            }).then(response => response.text());
+
+
+            console.log(response);
+            return response;
+
+        }
+
+        async function postSponsor(url, imgSrc) {
             const sponsorHeader = document.getElementById('sponsor-header').value
             const sponsorBody = document.getElementById('sponsor-body').value
 
@@ -57,7 +84,8 @@ class AddNewSponsorComponent extends Component {
                 user: JSON.parse(sessionStorage.getItem('user')),
                 sponsor: {
                     name: sponsorHeader,
-                    description: sponsorBody
+                    description: sponsorBody,
+                    imgSrc: await imgSrc
                 }
             }
             console.log(body)
@@ -67,6 +95,7 @@ class AddNewSponsorComponent extends Component {
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(body)
             };
+
             const response = await fetch(url, fetchOptions);
             if (!response) {
                 const errorMessage = await response.text();
@@ -77,6 +106,8 @@ class AddNewSponsorComponent extends Component {
             return response;
 
         }
+
+
     }
 
     async refreshPage() {

@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 
 @RestController
+@CrossOrigin
 @RequestMapping("blob")
 public class BlobController {
 
@@ -28,6 +29,7 @@ public class BlobController {
     }
 
     @PostMapping("/upload")
+    @ResponseBody
     public ResponseEntity<String> writeBlobFile(@RequestPart("file") MultipartFile file, @RequestPart("user") User user) throws IOException {
         if(user != null){
             if(!userService.validateUser(user)){
