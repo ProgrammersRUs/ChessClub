@@ -10,7 +10,7 @@ class AddNewSponsorComponent extends Component {
 
         super('Sponsor', state, (state) =>
             `<div class="row mx-w-100 h-100">
-            <div class="card col-sm m-1" style="background-color: rgba(217, 226, 249, 0.3);">
+            <div class="card col-sm m-1 d-block" style="background-color: rgba(217, 226, 249, 0.3);">
                 <div class="card-body">
                   
                     <div class="input-group mb-3">
@@ -22,20 +22,17 @@ class AddNewSponsorComponent extends Component {
                         <span class="input-group-text ">Sponsor tekst: </span>
                         <textarea id="sponsor-body" class="form-control" aria-label="With textarea"></textarea>
                     </div>
-                    <div class="input-group mb-3">
-                       <input type="file" class="form-control" id="imageForm">
-</div>
-                    <div class="row">
-                        <div class="container">
+                    <div class="mb-3">
+                       <input type="file" class="visually-hidden" id="imageForm">
+                       <label for="imageForm" class="btn btn-primary">Vælg Billede</label>
+                    </div>
                             <button type="button" class="btn btn-primary" id="submitSponsor">Opret Sponsor</button>
                             <div class="form-check form-switch float-end">
                             </div>
                            
                     </div>
-                    </div>
             
                   
-                </div>
             </div>
         </div>
 `);
@@ -121,6 +118,10 @@ class AddNewSponsorComponent extends Component {
         sponsorForm.addComponent(cmsBody)
         sponsorForm.updateDOM();
         this.addEventlisenterToContent()
+    }
+
+    addEventListenersToMe() {
+
     }
 }
 
