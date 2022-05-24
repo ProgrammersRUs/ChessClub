@@ -68,6 +68,130 @@ class MemberOverviewComponent extends Component {
                         </tr>`).join('');
     }
 
+    addEventListenersMemberTable() {
+
+        const url = config.endpoints.cms.root + config.endpoints.cms.subPoint.deleteMember;
+        this.state.members.forEach(member => {
+
+            const buttonDelete = document.getElementById('deleteMember' + member.memberId)
+            const buttonUpdateStatus = document.getElementById('updateMemberStatus' + member.memberId)
+            const buttonUpdateMember = document.getElementById('updateMember' + member.memberId)
+
+
+            buttonDelete.addEventListener("click", async () => {
+                await deleteMember(member)
+                //await new this.refreshPage()
+            })
+
+            buttonUpdateStatus.addEventListener("click", async () => {
+                await updateMemberStatus(member)
+                //await new this.refreshPage()
+            })
+
+            buttonUpdateMember.addEventListener("click", async () => {
+                await updateMemberInformation(member)
+                //await new this.refreshPage()
+            })
+        })
+
+
+        async function deleteMember(member) {
+
+            let body = {
+                user: JSON.parse(sessionStorage.getItem('user')),
+                member: {
+                    memberId: member.memberId
+                }
+            }
+
+            const fetchOptions = {
+                    method: "DELETE",
+                    headers: {"Content-Type": "application/json"},
+                    body: JSON.stringify(body)
+                }
+            ;
+
+            const response = await fetch(url + member.memberId, fetchOptions);
+
+            if (!response) {
+                const errorMessage = await response.text();
+                console.log(errorMessage)
+                throw new Error(errorMessage);
+
+            }
+        }
+
+        async function updateMemberStatus(member) {
+
+            if (member.isActive == 1) {
+                member.isActive = 0
+            } else if (member.isActive == 0) {
+                member.isActive = 1
+            }
+
+            console.log(member.isActive)
+
+            let body = {
+                user: JSON.parse(sessionStorage.getItem('user')),
+                member: {
+                    memberId: member.memberId,
+                    memberAddress: member.memberAddress,
+                    memberAge: member.memberAge,
+                    memberFirstName: member.memberFirstName,
+                    memberLastName: member.memberLastName,
+                    memberPhoneNr: member.memberPhoneNr,
+                    userId: member.userId
+                }
+            }
+
+
+            const fetchOptions = {
+                method: "PUT",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(body)
+            };
+            const response = await fetch(url + member.memberId, fetchOptions);
+
+            if (!response) {
+                const errorMessage = await response.text();
+                console.log(errorMessage)
+                throw new Error(errorMessage);
+
+            }
+        }
+
+        async function updateMemberInformation(member) {
+
+            const memberHeader = document.getElementById('memberHeader' + member.memberId).innerText
+            const memberBody = document.getElementById('memberBody' + member.memberId).innerText
+
+            let body = {
+                user: JSON.parse(sessionStorage.getItem('user')),
+                member: {
+                    memberId: member.memberId,
+                    memberAddress: member.memberAddress,
+                    memberAge: member.memberAge,
+                    memberFirstName: member.memberFirstName,
+                    memberLastName: member.memberLastName,
+                    memberPhoneNr: member.memberPhoneNr,
+                    userId: member.userId
+                }
+            }
+
+            const fetchOptions = {
+                method: "PUT",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(body)
+            };
+            const response = await fetch(url + member.memberId, fetchOptions);
+
+            if (!response) {
+                const errorMessage = await response.text();
+                console.log(errorMessage)
+                throw new Error(errorMessage);
+            }
+        }
+    }
 }
 
 export default MemberOverviewComponent;
