@@ -8,7 +8,13 @@ class NavbarComponent extends Component {
             links: config.navbarData.navItems
         }
         super("navbar", state, (state) => `
-<div class="navbar sticky-top navbar-expand-lg navbar-dark bg-primary">
+
+<style>
+.navbar-custom {
+background-color: #8D9D90;
+}
+</style>
+<div class="navbar sticky-top navbar-expand-lg navbar-dark navbar-custom">
     <div class="container-fluid">
         <a class="navbar-brand" href="/">
             <img style="max-height: 50px; max-width: 50px" src="${state.logoSrc}"
