@@ -1,5 +1,5 @@
 const member = 'http://localhost:8080/member/all-members';
-const memberOverview = document.getElementById('bview-table')
+const Medlemsoversigt = document.getElementById('bview-table')
 
 function fetchMember() {
     return fetch(member).then(response => response.json());
