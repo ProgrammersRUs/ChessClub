@@ -82,7 +82,7 @@ class MemberOverviewComponent extends Component {
 
             buttonDelete.addEventListener("click", async () => {
                 await deleteMember(member)
-                //await new this.refreshPage()
+                await this.refreshPage()
             })
 
             buttonUpdateStatus.addEventListener('onchange', async () => {
@@ -196,14 +196,14 @@ class MemberOverviewComponent extends Component {
     }
 
     async refreshPage() {
+
         const memberForm = new ElementObject('cms-content');
+        const memberOver = new MemberOverviewComponent(await
+            fetch(config.endpoints.member.root+config.endpoints.member.subPoint.getAll).then(response => response.json()));
 
-        const memberOverview = new ElementObject('overview');
-        memberOverview.addComponent(new MemberOverviewComponent(await
-            fetch(config.endpoints.member.root+config.endpoints.member.subPoint.getAll).then(response => response.json())));
-
-        memberForm.addComponent(memberOverview)
+        memberForm.addComponent(memberOver);
         memberForm.updateDOM();
+        memberOver.addEventListenersMemberTable()
         this.addEventListenersMemberTable()
     }
 }

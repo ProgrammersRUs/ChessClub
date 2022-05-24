@@ -55,8 +55,8 @@ const config = {
             root: 'http://localhost:8080/',
             subPoint: {
                 getAll: 'member/all-members',
-                deleteMember: 'member/delete',
-                updateMember: 'member/update'
+                deleteMember: 'member/delete/',
+                updateMember: 'member/update/'
             }
         },
         cms: {

@@ -40,13 +40,13 @@ document.getElementById('news-link').addEventListener('click', async () => {
 )
 
 document.getElementById('members-link').addEventListener('click', async () => {
-        const memberOverview = new ElementObject('cms-content');
-        let memberOverviewComponent = new MemberOverviewComponent(await
-            fetch(config.endpoints.member.root + config.endpoints.member.subPoint.getAll).then(response => response.json()));
-        document.getElementById('cms-content-header').innerText = memberOverviewComponent.name;
-        memberOverview.addComponent(memberOverviewComponent);
-        await memberOverviewComponent.refreshPage();
-        memberOverview.updateDOM();
+    const memberForm = new ElementObject('cms-content');
+    const memberOver = new MemberOverviewComponent(await
+        fetch(config.endpoints.member.root+config.endpoints.member.subPoint.getAll).then(response => response.json()));
+
+    memberForm.addComponent(memberOver);
+    memberForm.updateDOM();
+    memberOver.addEventListenersMemberTable()
     }
 )
 
