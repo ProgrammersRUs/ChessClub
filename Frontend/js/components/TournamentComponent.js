@@ -11,6 +11,17 @@ class TournamentComponent extends Component {
 
         super('nextEvent', state, (state) =>
             `
+
+
+
+
+
+
+
+
+
+
+
 <div class="border" style="margin-top: 100px">
 
 <table class="table">

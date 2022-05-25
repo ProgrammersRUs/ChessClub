@@ -21,32 +21,31 @@ class ClubSiteComponent extends Component {
 
         super('nextEvent', state, (state) =>
             `
-      <div class="mb-2 border">
-         <div class="row">
-             <div class="container">
-                <div class="row ">
-                     <div class="col-sm-8">
-                        <div class="col-sm-8 h-100">
-                        <strong><h2>Haslev og Faxe: Online Skakklub</h2></strong>
-                        <p>I Faxe og Haslev Online skakklub spiller vi regulært turneringer og kampe mod hindanen. Vi leder altid efter nye der har lyst til at deltage.
-                        <br>
-                        Lyder det som noget for dig? Klik på linket herunder for at ansøge om at være af vores online fælleskab.
-                        </p>
-                        <a href="${state.link}"><button type="button" class="btn btn-primary">Bliv medlem af klubben på Chess.com</button></a>
-                 
-                        <p>Nuværende antal medlemmer: ${state.membersCount}</p>
-                        <p>Dato oprettet på Chess.com: ${formatedTime}</p>
-                        <p>Genemsnittelig rating i klubben på Chess.com: ${state.avgRating}</p>
-                
-                         <p>BEMÆRK: Ratingen af klubbensmedlemmer er blot ledende og ikke afgørende for om du kan ansøge i klubben!</p>
-                     </div>
-                </div>
-   
- 
-      </div>
-      </div>
-      </div></div>
-         `
+
+<div class="container marketing mt-3" id="myContent">
+ <div class="mb-2 border"> <!-- border -->
+  <div class="container"> <!--original -->
+   <div class="col-md-12">
+    <div style="margin-top: 5px">
+     <h2 class="featurette-heading">Haslev og Faxe: Online Skakklub <span class="text-muted"></span></h2>
+    </div>
+    <p class="lead">I Faxe og Haslev Online skakklub spiller vi regulært turneringer og kampe mod hindanen. Vi leder altid efter nye der har lyst til at deltage.</p>
+    <br>
+    <p>Lyder det som noget for dig? Klik på linket herunder for at ansøge om at være af vores online fælleskab.</p>
+    <div class="d-flex justify-content-center"> <!-- centrerer knappen i midten af boksen -->
+     <a href="${state.link}"><button type="button" class="btn btn-primary button-custom">Bliv medlem af klubben på Chess.com</button></a>
+     </div>
+     <p>Nuværende antal medlemmer: ${state.membersCount}</p>
+     <p>Dato oprettet på Chess.com: ${formatedTime}</p>
+     <p>Genemsnittelig rating i klubben på Chess.com: ${state.avgRating}</p>
+     <p>BEMÆRK: Ratingen af klubbensmedlemmer er blot ledende og ikke afgørende for om du kan ansøge i klubben!</p>
+
+   </div>
+  </div>
+ </div>
+</div>
+
+ `
         );
     }
 
