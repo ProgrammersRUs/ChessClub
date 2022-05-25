@@ -2,14 +2,24 @@ import Component from "../lib/Component.js";
 
 class NextEventComponent extends Component{
     constructor(event) {
-        console.log(event)
-        let state = {
+        let state;
+        if(event != undefined){
+        state = {
             title: event.title,
             location: event.location,
             date: event.localDate,
             body: event.description,
             link: event.href,
             img: event.imgSrc
+        }
+        }
+        else {
+            state = {
+                title: 'Intet at vise',
+                date: new Date().toLocaleDateString(),
+                body: "",
+                location: ""
+            }
         }
         super('nextEvent', state, (state) =>
             `
