@@ -141,6 +141,7 @@ class EventTableComponent extends Component {
             const postMeetingTime = document.getElementById('eventMeetingTime' + event.eventId).innerText
             const postMeetingDate = document.getElementById('eventMeetingDate' + event.eventId).innerText
             const postLocation = document.getElementById('eventLocation' + event.eventId).innerText
+            const postUrl = document.getElementById('eventUrl' + event.eventId).innerText
 
 
             let body = {
@@ -151,7 +152,8 @@ class EventTableComponent extends Component {
                     description: postBody,
                     meetingTime: postMeetingTime,
                     localDate: postMeetingDate,
-                    location: postLocation
+                    location: postLocation,
+                    url: postUrl
                 }
             }
 

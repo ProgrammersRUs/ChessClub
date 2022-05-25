@@ -19,6 +19,7 @@ public class Event {
     private String location;
     private String title;
     private String description;
+    private String url;
     @JsonFormat(pattern = "HH:mm")
     private LocalTime meetingTime;
 
@@ -74,5 +75,13 @@ public class Event {
 
     public void setMeetingTime(LocalTime meetingTime) {
         this.meetingTime = meetingTime;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }

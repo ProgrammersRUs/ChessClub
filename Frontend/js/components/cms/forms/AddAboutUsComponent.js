@@ -8,7 +8,7 @@ class AddAboutUsComponent extends Component {
     constructor() {
         let state = {}
 
-        super('Om os', state, (state) =>
+        super('Historie', state, (state) =>
             `<div class="row mx-w-100 h-100">
             <div class="card col-sm m-1 d-block" style="background-color: rgba(217, 226, 249, 0.3);">
                 <div class="card-body">
