@@ -47,7 +47,7 @@ background-color: #8D9D90;
         ).join('');
 
     }
-
+//Hej
     renderLogin() {
         console.log(sessionStorage.getItem('user'));
         if (sessionStorage.getItem('user') != null) {
