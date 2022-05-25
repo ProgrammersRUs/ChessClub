@@ -34,10 +34,6 @@ const config = {
                 name: 'Klubbernes historie',
                 href: '../html/history.html'
             },
-            {
-                name: 'Admin',
-                href: '../html/cms-page.html'
-            }
         ]
     },
     locations: [
@@ -53,7 +49,7 @@ const config = {
     endpoints: {
         member: {
             //root: 'https://hofsk.azurewebsites.net/',
-            root:'http:localhost:8080/',
+            root:'http://localhost:8080/',
             subPoint: {
                 getAll: 'member/all-members',
                 deleteMember: 'member/delete/',
