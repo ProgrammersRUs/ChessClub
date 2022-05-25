@@ -10,7 +10,7 @@ class AddFrontPageComponent extends Component {
 
         super('Forside', state, (state) =>
             `<div class="row mx-w-100 h-100">
-            <div class="card col-sm m-1" style="background-color: rgba(217, 226, 249, 0.3);">
+            <div class="card col-sm m-1 d-block" style="background-color: rgba(217, 226, 249, 0.3);">
                 <div class="card-body">
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1">Overskrift: </span>
@@ -18,17 +18,27 @@ class AddFrontPageComponent extends Component {
                                aria-describedby="basic-addon1">
                     </div>
           
-                    <div class="input-group h-50">
+                    <div class="input-group h-50 mb-3">
                         <span class="input-group-text ">Indlæg tekst: </span>
                         <textarea id="postBody" class="form-control" aria-label="With textarea"></textarea>
                     </div>
                     <div class="row">
-                    <div class="container">
-                    <button type="button" class="btn btn-primary" id="submitPost">Opret nyt indlæg</button>
-                              <div class="form-check form-switch float-end">
+                     <div class="col-6">
+                     
+                     <div class="mb-3">
+                       <input type="file" class="visually-hidden" id="imageForm">
+                       <label for="imageForm" class="btn btn-primary">Vælg Billede</label>
+                    </div>
+                    </div>
+                     <div class="col-6">
+                     
+                    <div class="form-check form-switch float-end">
                         <label class="form-check-label" for="flexSwitchCheckChecked">Publicer indlæg</label>
                         <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
                     </div>
+                    </div>
+                    </div>
+                    <button type="button" class="btn btn-primary" id="submitPost">Opret nyt indlæg</button>
                            
                     </div>
                     </div>
@@ -47,11 +57,34 @@ class AddFrontPageComponent extends Component {
 
 
         button.addEventListener("click", async () => {
-            await postFrontPage(url)
-            await this.refreshPage()
+            let imgUrl = await uploadPicture();
+            await postFrontPage(url, imgUrl);
+            await this.refreshPage();
         })
 
-        async function postFrontPage(url) {
+
+        async function uploadPicture() {
+            const input = document.getElementById('imageForm');
+            let data = new FormData();
+
+            data.append('file', input.files[0]);
+            let user = sessionStorage.getItem('user');
+
+            data.append('user', new Blob([user],{type : "application/json"}));
+
+
+            let response = await fetch(config.endpoints.cms.root + "blob/upload", {
+                method:'POST',
+                body:data
+            }).then(response => response.text());
+
+
+            console.log(response);
+            return response;
+
+        }
+
+        async function postFrontPage(url, imgSrc) {
             const frontPageHeader = document.getElementById('postHeader').value
             const frontPageBody = document.getElementById('postBody').value
             //const postImage = document.getElementById('postImage').value
@@ -68,7 +101,7 @@ class AddFrontPageComponent extends Component {
                     creationDate: new Date().toLocaleDateString('en-CA'),
                     header: frontPageHeader,
                     body: frontPageBody,
-                    imageUrl: './img/Haslev%20og%20Faxe%20Skakklub%20-logos_black.png',
+                    imgUrl: imgSrc,
                     isActive: isActive
                 }
             }
