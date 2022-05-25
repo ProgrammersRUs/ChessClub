@@ -26,7 +26,7 @@ class NextEventComponent extends Component{
             </div>
             <div class="col-4">
                <picture class="d-none d-sm-block mw-100 position-relative overflow-hidden w-auto" style="max-height: 240px;">
-                  <img style="max-height: 100%; max-width: 100%;" src="https://via.placeholder.com/400x400/FFB6C1/000000" alt="https://via.placeholder.com/400x400/FFB6C1/000000">
+                  <img style="max-height: 100%; max-width: 100%;" src="${this.imageFallback(state.img)}" alt="">
                </picture>
             </div>
          </div>
@@ -35,8 +35,7 @@ class NextEventComponent extends Component{
                     <p>${state.location}</p>           
                 </div>
                 <div class="col-md-4">
-                    <div class="w-100 h-100 btn"><a href="${state.link}" class=" btn-primary btn-sm">Læs mere</a>
-               </div>
+                    <button class="btn btn-primary">Tilmeld </button>
                 </div>
             </div>
       </div>
