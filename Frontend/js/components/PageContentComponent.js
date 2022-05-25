@@ -24,7 +24,7 @@ class PageContentComponent extends Component{
    </div>
    <div class="row featurette">
     <div class="col-md-7">
-     <p class="lead">${post.body}</p>
+     <p>${post.body}</p>
     </div>
     <div class="col-md-5">
      <img class="featurette-image img-fluid mx-auto" alt="500x500" style="width: 500px; height: 500px;" src="${post.imgUrl}"
