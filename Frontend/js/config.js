@@ -52,13 +52,15 @@ const config = {
     ],
     endpoints: {
         member: {
-            root: 'https://hofsk.azurewebsites.net/',
+            //root: 'https://hofsk.azurewebsites.net/',
+            root:'http:localhost:8080/',
             subPoint: {
                 getAll: 'member/all-members'
             }
         },
         cms: {
-            root: 'https://cmsbackend420.azurewebsites.net/',
+            //root: 'https://cmsbackend420.azurewebsites.net/',
+            root:'http://localhost:8089/',
             subPoint: {
                 allNews: 'news/all-news',
                 allSponsers: 'sponsor/get-all',
