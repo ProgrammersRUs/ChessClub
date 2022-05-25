@@ -33,6 +33,10 @@ class AddEventComponent extends Component {
                     <span class="input-group-text">Lokation: </span>
                         <input id="eventLocation" type="text" class="form-control" placeholder="" aria-label=""
                                aria-describedby="basic-addon1">
+                               
+                               <span class="input-group-text">URL: </span>
+                        <input id="eventUrl" type="text" class="form-control" placeholder="" aria-label=""
+                               aria-describedby="basic-addon1">
                     
                     <div class="input-group h-50">
                         <span class="input-group-text ">Event beskrivelse: </span>
@@ -84,6 +88,7 @@ class AddEventComponent extends Component {
             const eventTime = document.getElementById('eventTime').value
             const eventDate = document.getElementById('eventDate').value
             const eventLocation = document.getElementById('eventLocation').value
+            const eventUrl = document.getElementById('eventUrl').value
 
             console.log(eventTime);
 
@@ -92,7 +97,7 @@ class AddEventComponent extends Component {
                 title: eventHeader,
                 description: eventBody,
                 location: eventLocation,
-                url: "",
+                url: eventUrl,
                 meetingTime: eventTime
 
             }
