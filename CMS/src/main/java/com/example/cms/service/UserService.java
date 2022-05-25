@@ -2,7 +2,6 @@ package com.example.cms.service;
 
 import com.example.cms.model.User;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.WebClientException;
 

@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', createFormEventListener)
 
 
 function createFormEventListener() {
-    loginEvent = document.getElementById('userLogin')
+    let loginEvent = document.getElementById('userLogin')
     loginEvent.addEventListener('submit', handleFormSubmit)
 }
 
@@ -24,6 +24,7 @@ async function handleFormSubmit(event) { //AUGUST OG SILKE VIL GERNE HAVE DEN FO
         const user = await postUserValidationAsJson(formData).then(response => response.json());
         console.log(user)
         setSessionUser(user)
+        location.href='/'
     } catch (err) {
         alert(err.message);
     }
@@ -34,7 +35,7 @@ async function postUserValidationAsJson(formData) {
     const plainFormData = Object.fromEntries(formData.entries());
 
 
-    const url = 'http://localhost:8080/login/login/' + plainFormData.email + '+' + plainFormData.password
+    const url = config.endpoints.member.root +'login/login/' + plainFormData.email + '+' + plainFormData.password
 
 
     const response = await fetch(url);

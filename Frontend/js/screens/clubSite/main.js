@@ -1,10 +1,10 @@
 import ElementObject from "../../lib/ElementObject.js";
 import NavbarComponent from "../../components/NavbarComponent.js";
 import FooterComponent from "../../components/FooterComponent.js";
-import TwoColumnComponent from "../../components/TwoColumnComponent.js";
 import ClubSiteComponent from "../../components/ClubSiteComponent.js";
 import TournamentComponent from "../../components/TournamentComponent.js";
 import MemberComponent from "../../components/MemberComponent.js";
+import TwoRowComponent from "../../components/TwoRowComponent.js";
 
 const navbar = new ElementObject('navbar');
 const footer = new ElementObject('footer');
@@ -12,9 +12,7 @@ const body = new ElementObject('body');
 navbar.addComponent(new NavbarComponent());
 footer.addComponent(new FooterComponent());
 
-//document.getElementById("myInput").addEventListener("click", getInputValue, false)
 const ChessWebAPI = "https://api.chess.com/pub/club/skak-faxe-kommune"
-/*const Tournaments = "https://api.chess.com/pub/tournament/testisdabest/1/1"*/
 const Tournaments = urlMending()
 const TournamentsFacts = "https://api.chess.com/pub/tournament/testisdabest/"
 const Members = "https://api.chess.com/pub/club/skak-faxe-kommune/members"
@@ -59,22 +57,6 @@ const matches = new ElementObject('matches');
 matches.addComponent(new TournamentComponent(await
     fetch(Tournaments).then(response => response.json()).then()));
 
-
-
-/*
-https://www.chess.com/tournament/62nd-chess-com-tournament-under-1000
- */
-
-/*
-const MemberInfo = "https://api.chess.com/pub/player/{username}"
- */
-
-/*
-async function fetchMemberInfoApi() {
-return await fetch(MemberInfo).then(response => response.json());
-}
- */
-
 async function fetchTournamentsFacts() {
     return await fetch(TournamentsFacts).then(response => response.json());
 }
@@ -111,20 +93,6 @@ const matchData = await fetchMatches()
 const data = await fetchChessApi()
 const memberData = await fetchMembers()
 const tournamentData = await fetchTournamentsFacts()
-/*
-const memberInfoData = await fetchMemberInfo()
- */
-
-//Skal nok refaktoreres
-
-/*
-let memberInfoBody = {
-avatar: memberInfoData.avatar,
-name: memberInfoData.name,
-lastOnline: memberInfoData.last_online,
-}
- */
-
 
 let clubBody = {
     title: data.name,
@@ -148,7 +116,7 @@ let memberBody = {
 let clubComponent = new ClubSiteComponent(clubBody);
 let tournamentComponent = new TournamentComponent(tournamentBody);
 let memberComponent = new MemberComponent(memberBody)
-let top = new TwoColumnComponent('top', clubComponent, tournamentComponent);
+let top = new TwoRowComponent('top', clubComponent, tournamentComponent);
 
 body.addComponent(top);
 body.addComponent(memberComponent);

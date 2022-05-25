@@ -1,6 +1,6 @@
 import Component from '../lib/Component.js'
 
-class NavbarComponent extends Component{
+class NavbarComponent extends Component {
     constructor() {
         let state = {
             name: config.club.name,
@@ -8,7 +8,13 @@ class NavbarComponent extends Component{
             links: config.navbarData.navItems
         }
         super("navbar", state, (state) => `
-<div class="navbar sticky-top navbar-expand-lg navbar-dark bg-primary">
+
+<style>
+.navbar-custom {
+background-color: #8D9D90;
+}
+</style>
+<div class="navbar sticky-top navbar-expand-lg navbar-dark navbar-custom">
     <div class="container-fluid">
         <a class="navbar-brand" href="/">
             <img style="max-height: 50px; max-width: 50px" src="${state.logoSrc}"
@@ -22,6 +28,7 @@ class NavbarComponent extends Component{
         <div class="collapse navbar-collapse" id="navbarContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-2">
                 ${this.renderLinks(state.links)}
+                ${this.renderLogin()}
             </ul>
         </div>
     </div>
@@ -37,6 +44,23 @@ class NavbarComponent extends Component{
                     </li>
                 `
         ).join('');
+
+    }
+
+    renderLogin() {
+        console.log(sessionStorage.getItem('user'));
+        if (sessionStorage.getItem('user') != null) {
+            return `
+            <li class="nav-item">       
+                <a class="nav-link" href="#">Log ud</a>                                        
+            </li>
+            `
+        }
+        return `
+        <li class="nav-item">
+            <a class="nav-link" href="../html/login.html">Log ind</a>
+</li>
+        `
 
     }
 }
