@@ -11,7 +11,7 @@ class AddEventComponent extends Component {
 
         super('Events', state, (state) =>
             `<div class="row mx-w-100 h-100">
-            <div class="card col-sm m-1" style="background-color: rgba(217, 226, 249, 0.3);">
+            <div class="card col-sm m-1 d-block" style="background-color: rgba(217, 226, 249, 0.3);">
                 <div class="card-body">
                     <div class="input-group mb-3">
                     
@@ -39,18 +39,25 @@ class AddEventComponent extends Component {
                         <textarea id="eventBody" class="form-control" aria-label="With textarea"></textarea>
                     </div>
                     </div>
-                    
-                    
-                    
                     <div class="row">
-                    <div class="container">
-                    <button type="button" class="btn btn-primary" id="createEvent">Opret Event</button>
+                     <div class="col-6">
+                     
+                     <div class="mb-3">
+                       <input type="file" class="visually-hidden" id="imageForm">
+                       <label for="imageForm" class="btn btn-primary">Vælg Billede</label>
+                    </div>
+                    </div>
+                     <div class="col-6">                  
+                        
                               <div class="form-check form-switch float-end">
                         <label class="form-check-label" for="flexSwitchCheckChecked">Kun for Medlemmer</label>
                         <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked">
                     </div>
-                           
                     </div>
+                    <div>
+                    <button type="button" class="btn btn-primary" id="createEvent">Opret Event</button>
+                    </div>
+                           
                     </div>
                 </div>
             </div>
@@ -66,7 +73,8 @@ class AddEventComponent extends Component {
 
 
         button.addEventListener("click", async () => {
-            let cmsResponse = await postEventCms(url).then(response => response.json());
+            let imgSrc = await uploadPicture();
+            let cmsResponse = await postEventCms(url, imgSrc).then(response => response.json());
 
             const eventIsActive = document.getElementById('flexSwitchCheckChecked')
             let isActive = false
@@ -78,7 +86,29 @@ class AddEventComponent extends Component {
             await this.refreshPage()
         })
 
-        async function postEventCms(url) {
+        async function uploadPicture() {
+            const input = document.getElementById('imageForm');
+            let data = new FormData();
+
+            data.append('file', input.files[0]);
+            let user = sessionStorage.getItem('user');
+
+            data.append('user', new Blob([user],{type : "application/json"}));
+
+
+            let response = await fetch(config.endpoints.cms.root + "blob/upload", {
+                method:'POST',
+                body:data
+            }).then(response => response.text());
+
+
+            console.log(response);
+            return response;
+
+        }
+
+
+        async function postEventCms(url, imgSrc) {
             const eventHeader = document.getElementById('eventHeader').value
             const eventBody = document.getElementById('eventBody').value
             const eventTime = document.getElementById('eventTime').value
@@ -92,7 +122,7 @@ class AddEventComponent extends Component {
                 title: eventHeader,
                 description: eventBody,
                 location: eventLocation,
-                url: "",
+                imgSrc: imgSrc,
                 meetingTime: eventTime
 
             }
