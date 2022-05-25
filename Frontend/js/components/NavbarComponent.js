@@ -52,7 +52,7 @@ background-color: #8D9D90;
         if (sessionStorage.getItem('user') != null) {
             return `
             <li class="nav-item">       
-                <a class="nav-link" href="#">Log ud</a>                                        
+                <a class="nav-link" href="/index.html" onclick="sessionStorage.removeItem('user')">Log ud</a>                                        
             </li>
             `
         }
