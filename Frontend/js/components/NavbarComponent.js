@@ -38,6 +38,7 @@ background-color: #8D9D90;
 
     renderLinks(links) {
         return links.map(link =>
+
             `
                     <li class="nav-item">
                         <a class="nav-link" href="${link.href}">${link.name}</a>
@@ -51,6 +52,9 @@ background-color: #8D9D90;
         console.log(sessionStorage.getItem('user'));
         if (sessionStorage.getItem('user') != null) {
             return `
+            <li class="nav-item">
+                <a class="nav-link" href="../html/cms-page.html">Admin</a>
+            </li>
             <li class="nav-item">       
                 <a class="nav-link" href="/index.html" onclick="sessionStorage.removeItem('user')">Log ud</a>                                        
             </li>
