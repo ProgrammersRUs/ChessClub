@@ -42,7 +42,7 @@ class NewsTableComponent extends Component {
         return news.map(news => `
                             <tr>
                                 <td id="newsId${news.newsId}"class="d-none">${news.newsId}</td>
-                                <td>${news.newsHeader}</td>
+                                <td id="newsHeader${news.newsId}" contenteditable="true">${news.newsHeader}</td>
                                 <td>${news.creationDate}</td>
                                 <td class="accordion-item col-2">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
@@ -52,13 +52,13 @@ class NewsTableComponent extends Component {
                                 </td>
                                 <td class="col-md-2">
                                 <button id="deleteNews${news.newsId}" type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i class="fa fa-trash"></i> </button>
-                                <button  type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i class="fa fa-edit"></i> </button>
+                                <button id="updateNews${news.newsId}" type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i class="fa fa-save"></i> </button>
                                 <button id="updateNewsStatus${news.newsId}"  type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i ${this.isActiveNews(news)}></i> </button>
                             </td>
                             </tr>
                             <tr id="collapse${news.newsId}" class="accordion-collapse collapse"
                                 aria-labelledby="headingOne1" data-bs-parent="#accordionExample">
-                                <td class="accordion-body" colspan="3">
+                                <td id="newsBody${news.newsId}"  class="accordion-body" colspan="3" contenteditable="true">
                                     ${news.newsBody}
                                 </td>
                             </tr>
@@ -85,7 +85,8 @@ class NewsTableComponent extends Component {
 
             const buttonDelete = document.getElementById('deleteNews' + news.newsId)
             const buttonUpdateStatus = document.getElementById('updateNewsStatus' + news.newsId)
-            console.log(buttonUpdateStatus)
+            const buttonUpdateNews = document.getElementById('updateNews' + news.newsId)
+
 
             buttonDelete.addEventListener("click", async () => {
                 await deleteNews(news)
@@ -94,6 +95,11 @@ class NewsTableComponent extends Component {
 
             buttonUpdateStatus.addEventListener("click", async () => {
                 await updateNewsStatus(news)
+                await new AddNewsComponent().refreshPage()
+            })
+
+            buttonUpdateNews.addEventListener("click", async () => {
+                await updateNewsInformation(news)
                 await new AddNewsComponent().refreshPage()
             })
         })
@@ -148,7 +154,7 @@ class NewsTableComponent extends Component {
                 }
             }
 
-            console.log(body)
+
             const fetchOptions = {
                 method: "PUT",
                 headers: {"Content-Type": "application/json"},
@@ -163,6 +169,44 @@ class NewsTableComponent extends Component {
 
             }
         }
+
+        async function updateNewsInformation(news) {
+
+            const newsHeader = document.getElementById('newsHeader' + news.newsId).innerText
+            const newsBody = document.getElementById('newsBody' + news.newsId).innerText
+
+            console.log(newsHeader)
+
+
+            let body = {
+                user: JSON.parse(sessionStorage.getItem('user')),
+                news: {
+                    newsId: news.newsId,
+                    newsHeader: newsHeader,
+                    newsBody: newsBody,
+                    creationDate: news.creationDate,
+                    href: news.href,
+                    imageUrl: news.imageUrl,
+                    isActive: news.isActive
+                }
+            }
+
+
+            const fetchOptions = {
+                method: "PUT",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(body)
+            };
+            const response = await fetch(url + news.newsId, fetchOptions);
+
+            if (!response) {
+                const errorMessage = await response.text();
+                console.log(errorMessage)
+                throw new Error(errorMessage);
+
+            }
+        }
+
 
 
     }
