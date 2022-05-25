@@ -30,8 +30,7 @@ class AddFrontPageComponent extends Component {
                        <label for="imageForm" class="btn btn-primary">Vælg Billede</label>
                     </div>
                     </div>
-                     <div class="col-6">
-                     
+                     <div class="col-6">                  
                     <div class="form-check form-switch float-end">
                         <label class="form-check-label" for="flexSwitchCheckChecked">Publicer indlæg</label>
                         <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
