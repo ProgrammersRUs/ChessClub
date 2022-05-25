@@ -30,7 +30,7 @@ class ClubSiteComponent extends Component {
      <h2 class="featurette-heading">Haslev og Faxe: Online Skakklub <span class="text-muted"></span></h2>
     </div>
     <p class="lead">I Faxe og Haslev Online skakklub spiller vi regulært turneringer og kampe mod hindanen. Vi leder altid efter nye der har lyst til at deltage.</p>
-    <br>
+
     <p>Lyder det som noget for dig? Klik på linket herunder for at ansøge om at være af vores online fælleskab.</p>
     <div class="d-flex justify-content-center"> <!-- centrerer knappen i midten af boksen -->
      <a href="${state.link}"><button type="button" class="btn btn-primary button-custom">Bliv medlem af klubben på Chess.com</button></a>

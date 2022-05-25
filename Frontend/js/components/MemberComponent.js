@@ -32,13 +32,13 @@ class MemberComponent extends Component {
  <div class="col-lg-12 pt-4 pt-lg-0 ">
   <div class="d-flex justify-content-center">
    <div class="container">
-    <div style="height: 100px; width: 100px; background-color: green; border-radius: 25rem">
+    <div style="height: 100px; width: 100px; background-color: #9DB4AB; border-radius: 25rem">
     </div>
    </div> <!-- ryk det her div tag ned under det nederste divtag for at få den grønne
           boks over navn og dato i stedet for ved siden af -->
     <div class="container">
     <br>
-    <a href="https://www.chess.com/member/${month.username}">
+    <a class="link-custom" href="https://www.chess.com/member/${month.username}">
      <h5>${month.username}</h5>
     </a>
     <!-- <p>Rating: 1253</p>-->
