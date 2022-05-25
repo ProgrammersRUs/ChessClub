@@ -37,7 +37,7 @@ class NewsServiceTest {
         newsService.addNew(news);
 
         //act
-        News savedNews = newsService.getNewsById(2);
+        News savedNews = newsService.getNewsById(3);
 
         //assert
         assertEquals("test", savedNews.getNewsHeader());
@@ -52,7 +52,7 @@ class NewsServiceTest {
         newsService.addNew(news);
 
         //act
-        News savedNews = newsService.getNewsById(1);
+        News savedNews = newsService.getNewsById(2);
 
         //assert
         assertNotEquals("test-fail", savedNews.getNewsHeader());
