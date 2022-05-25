@@ -1,7 +1,7 @@
 import ElementObject from '../../lib/ElementObject.js';
 import NavbarComponent from '../../components/NavbarComponent.js';
 import FooterComponent from "../../components/FooterComponent.js";
-import PageContentComponent from "../../components/PageContentComponent.js";
+import PageContentiFrameComponent from "../../components/PageContentiFrameComponent.js";
 
 const navbar = new ElementObject('navbar');
 navbar.addComponent(new NavbarComponent());
@@ -9,7 +9,7 @@ navbar.addComponent(new NavbarComponent());
 const body = new ElementObject('myContent');
 
 
-let content = new PageContentComponent(await
+let content = new PageContentiFrameComponent(await
     fetch(config.endpoints.cms.root+config.endpoints.cms.subPoint.allContactUsPages).then(response => response.json()))
 
 body.addComponent(content)

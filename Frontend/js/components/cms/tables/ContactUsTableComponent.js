@@ -42,7 +42,7 @@ class ContactUsTableComponent extends Component {
         return contactUsPage.map(contactuspage => `
                             <tr>
                                 <td id="contactus-id${contactuspage.id}"class="d-none">${contactuspage.id}</td>
-                                <td>${contactuspage.header}</td>
+                                <td id="contactUsHeader${contactuspage.id}" contenteditable="true">${contactuspage.header}</td>
                                 <td>${contactuspage.creationDate}</td>
                                 <td class="accordion-item col-2">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
@@ -52,13 +52,13 @@ class ContactUsTableComponent extends Component {
                                 </td>
                                 <td class="col-md-2">
                                 <button id="deletePost${contactuspage.id}" type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i class="fa fa-trash"></i> </button>
-                                <button  type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i class="fa fa-edit"></i> </button>
+                                <button id="updatePostInformation${contactuspage.id}" type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i class="fa fa-save"></i> </button>
                                 <button id="updatePostStatus${contactuspage.id}"  type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i ${this.isActivePost(contactuspage)}></i> </button>
                             </td>
                             </tr>
                             <tr id="collapse${contactuspage.id}" class="accordion-collapse collapse"
                                 aria-labelledby="headingOne1" data-bs-parent="#accordionExample">
-                                <td class="accordion-body" colspan="3">
+                                <td id="contactUsBody${contactuspage.id}" contenteditable="true" class="accordion-body" colspan="3">
                                     ${contactuspage.body}
                                 </td>
                             </tr>
@@ -85,6 +85,7 @@ class ContactUsTableComponent extends Component {
 
             const buttonDelete = document.getElementById('deletePost' + contactUs.id)
             const buttonUpdateStatus = document.getElementById('updatePostStatus' + contactUs.id)
+            const buttonUpdateInformation = document.getElementById('updatePostInformation' + contactUs.id)
             console.log(buttonUpdateStatus)
 
             buttonDelete.addEventListener("click", async () => {
@@ -94,6 +95,11 @@ class ContactUsTableComponent extends Component {
 
             buttonUpdateStatus.addEventListener("click", async () => {
                 await updatePostStatus(contactUs)
+                await new AddContactUsComponent().refreshPage()
+            })
+
+            buttonUpdateInformation.addEventListener("click", async () => {
+                await updatePostInformation(contactUs)
                 await new AddContactUsComponent().refreshPage()
             })
         })
@@ -115,6 +121,39 @@ class ContactUsTableComponent extends Component {
                 }
             ;
 
+            const response = await fetch(url + contactUs.id, fetchOptions);
+
+            if (!response) {
+                const errorMessage = await response.text();
+                console.log(errorMessage)
+                throw new Error(errorMessage);
+
+            }
+        }
+
+        async function updatePostInformation(contactUs) {
+
+            const postHeader = document.getElementById('contactUsHeader' + contactUs.id).innerText
+            const postBody = document.getElementById('contactUsBody' + contactUs.id).innerText
+
+            let body = {
+                user: JSON.parse(sessionStorage.getItem('user')),
+                contactUsPage: {
+                    id: contactUs.id,
+                    header: postHeader,
+                    body: postBody,
+                    creationDate: contactUs.creationDate,
+                    imgUrl: contactUs.imgUrl,
+                    isActive: contactUs.isActive
+                }
+            }
+
+            console.log(body)
+            const fetchOptions = {
+                method: "PUT",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(body)
+            };
             const response = await fetch(url + contactUs.id, fetchOptions);
 
             if (!response) {
