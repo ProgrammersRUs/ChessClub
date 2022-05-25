@@ -65,6 +65,7 @@ const config = {
                 allEvents: 'event/all-events',
                 postNews: 'news/new',
                 postSponsor: 'sponsor/new',
+                deleteSponsor: 'sponsor/',
                 postEvent: 'event/createEvent',
                 deleteNews: 'news/',
                 deleteEvent: 'event/',

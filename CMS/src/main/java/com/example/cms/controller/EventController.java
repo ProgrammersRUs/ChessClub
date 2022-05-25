@@ -2,11 +2,9 @@ package com.example.cms.controller;
 
 
 import com.example.cms.entity.Event;
-import com.example.cms.entity.News;
 import com.example.cms.service.EventService;
 import com.example.cms.service.UserService;
 import com.example.cms.wrapper.UserEventWrapper;
-import com.example.cms.wrapper.UserNewsWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
