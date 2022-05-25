@@ -22,6 +22,16 @@ public class Event {
     @JsonFormat(pattern = "HH:mm")
     private LocalTime meetingTime;
 
+    private String imgSrc;
+
+    public String getImgSrc() {
+        return imgSrc;
+    }
+
+    public void setImgSrc(String imgSrc) {
+        this.imgSrc = imgSrc;
+    }
+
     public int getEventId() {
         return eventId;
     }
