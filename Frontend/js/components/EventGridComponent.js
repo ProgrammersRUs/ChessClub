@@ -47,7 +47,7 @@ class EventGridComponent extends Component {
        <div class="col-md-3 mb-1 h-100">
             <div class="border border-primary rounded h-100 shadow container">
                 <div class="row d-none d-md-flex">
-                    <img class="img-fluid" src="${this.imageFallback(state.img)}" alt="Club Logo">                    
+                    <img class="img-fluid" src="${this.imageFallback(state.imgSrc)}" alt="Club Logo">                    
                 </div>
                 <div class="row">
                     <div class="col-6 text-start" >
@@ -69,7 +69,7 @@ class EventGridComponent extends Component {
              
         </div>
        `;
-
+        console.log(events)
         return events.map(event => eventTemplate(event)).join('')
     }
 

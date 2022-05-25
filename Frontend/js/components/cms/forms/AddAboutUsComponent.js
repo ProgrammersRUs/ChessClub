@@ -10,26 +10,34 @@ class AddAboutUsComponent extends Component {
 
         super('Historie', state, (state) =>
             `<div class="row mx-w-100 h-100">
-            <div class="card col-sm m-1" style="background-color: rgba(217, 226, 249, 0.3);">
+            <div class="card col-sm m-1 d-block" style="background-color: rgba(217, 226, 249, 0.3);">
                 <div class="card-body">
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1">Overskrift: </span>
                         <input id="postHeader" type="text" class="form-control" placeholder="" aria-label=""
                                aria-describedby="basic-addon1">
                     </div>
-                    <div class="input-group h-50">
+                    <div class="input-group h-50 mb-3">
                         <span class="input-group-text ">Om os tekst: </span>
                         <textarea id="postBody" class="form-control" aria-label="With textarea"></textarea>
                     </div>
                     <div class="row">
-                    <div class="container">
-                    <button type="button" class="btn btn-primary" id="submitPost">Opret nyt indlæg</button>
-                              <div class="form-check form-switch float-end">
+                    <div class="col-6">
+                     
+                     <div class="mb-3">
+                       <input type="file" class="visually-hidden" id="imageForm">
+                       <label for="imageForm" class="btn btn-primary">Vælg Billede</label>
+                    </div>
+                    </div>
+                     <div class="col-6">                  
+                    <div class="form-check form-switch float-end">
                         <label class="form-check-label" for="flexSwitchCheckChecked">Publicer indlæg</label>
                         <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
                     </div>
-                           
                     </div>
+                    </div>
+                    <div>
+                    <button type="button" class="btn btn-primary" id="submitPost">Opret nyt indlæg</button>
                     </div>
             
                   
@@ -46,11 +54,33 @@ class AddAboutUsComponent extends Component {
 
 
         button.addEventListener("click", async () => {
-            await postAboutUs(url)
+            let imgSrc = await uploadPicture();
+            await postAboutUs(url, imgSrc)
             await this.refreshPage()
         })
 
-        async function postAboutUs(url) {
+        async function uploadPicture() {
+            const input = document.getElementById('imageForm');
+            let data = new FormData();
+
+            data.append('file', input.files[0]);
+            let user = sessionStorage.getItem('user');
+
+            data.append('user', new Blob([user],{type : "application/json"}));
+
+
+            let response = await fetch(config.endpoints.cms.root + "blob/upload", {
+                method:'POST',
+                body:data
+            }).then(response => response.text());
+
+
+            console.log(response);
+            return response;
+
+        }
+
+        async function postAboutUs(url, imgSrc) {
             const aboutUsHeader = document.getElementById('postHeader').value
             const aboutUsBody = document.getElementById('postBody').value
             const aboutUsIsActive = document.getElementById('flexSwitchCheckChecked')
@@ -66,7 +96,7 @@ class AddAboutUsComponent extends Component {
                     creationDate: new Date().toLocaleDateString('en-CA'),
                     header: aboutUsHeader,
                     body: aboutUsBody,
-                    imgUrl: "wrfwrg",
+                    imgUrl: imgSrc,
                     isActive: isActive
                 }
             }

@@ -27,7 +27,6 @@ class PageContentComponent extends Component{
                    data-holder-rendered="true"
                 width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy"
                 referrerpolicy="no-referrer-when-downgrade">
-            </img>
         </div>
     </div>
         <hr class="featurette-divider">

@@ -34,10 +34,6 @@ const config = {
                 name: 'Klubbernes historie',
                 href: '../html/history.html'
             },
-            {
-                name: 'Admin',
-                href: '../html/cms-page.html'
-            }
         ]
     },
     locations: [
