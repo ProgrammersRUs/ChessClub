@@ -25,7 +25,9 @@
   <li>JDBC_USER is the user you want to connect the database with</li>
   <li>JDBC_PASSWORD is your user password</li>
   <li>For CMS_PORT choose 8089</li>
-  <li> AZURE_ACCOUNT_KEY</li>
+  <li>Make a storage account in Azure.</li>
+  <li>In your storage account, get your access key, name, and endpoint. These should be matches with the following variable names in evironmental variables:</li>
+  <li>AZURE_ACCOUNT_KEY</li>
   <li>AZURE_ACCOUNT_NAME</li>
   <li>AZURE_ENDPOINT</li>
   <li>USER_SERVICE set it up as http://localhost:8080/user/ </li>
