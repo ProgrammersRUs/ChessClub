@@ -12,12 +12,9 @@ class TournamentComponent extends Component {
         super('nextEvent', state, (state) =>
             `
 
-
-
-
 <div class="container marketing mt-3" id="myContent">
- <div class="mb-2 border"> <!-- border -->
-  <div class="container"> <!--original -->
+ <div class="mb-2 border">
+  <div class="container">
    <div class="col-md-12">
     <div style="margin-top: 5px">    
       <table class="table">
@@ -54,23 +51,13 @@ class TournamentComponent extends Component {
         <td class="col-md-3 col-sm-3 col-3">${games.white.username}</td>
         <td class="col-md-3 col-sm-3 col-3">vs</td>
         <td class="col-md-3 col-sm-3 col-3">${games.black.username}</td>
-    </tr>
-       
+       </tr>
     </thead>
 </table>
 
-
-
-
-
- 
             `
         ).join('')
-
     }
-
-
 }
-
 
 export default TournamentComponent

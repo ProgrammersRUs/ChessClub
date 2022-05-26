@@ -14,8 +14,7 @@ class MemberComponent extends Component {
  
         <div class="d-flex justify-content-center mb-3">
                  <h3 class="mb-2">Mød medlemmerne</h3>
-        </div> <!-- flyt den her linje ned under renderMembers og slet den næste linje, for at 
-        få "Mød medlemmerne" tilbage ud i venstre side-->
+        </div>
          <div class="d-flex justify-content-center">
 
         </div>
@@ -90,7 +89,6 @@ class MemberComponent extends Component {
     <a class="link-custom" href="https://www.chess.com/member/${month.username}">
      <h5>${month.username}</h5>
     </a>
-    <!-- <p>Rating: 1253</p>-->
     <p>${month.joined}</p>
    </div>
   </div>

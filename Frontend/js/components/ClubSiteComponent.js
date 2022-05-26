@@ -1,6 +1,5 @@
 import Component from "../lib/Component.js";
 
-
 class ClubSiteComponent extends Component {
     constructor(event) {
         let state = {

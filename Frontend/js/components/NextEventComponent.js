@@ -23,15 +23,15 @@ class NextEventComponent extends Component{
         }
         super('nextEvent', state, (state) =>
             `
-      <div class="mb-2 border border-primary rounded h-100">
+      <div class="mb-2 border rounded h-100">
          <div class="row h-75">
             <div class="col-sm-8 h-100">
-               <p>
+               <p class="m-2">
                   <span class="text-lg">${state.date}</span></p>
-               <p>
+               <p class="m-2">
                   <strong>${state.title}</strong>
                </p>
-               <p>${state.body}</p>
+               <p class="m-2">${state.body}</p>
 
             </div>
             <div class="col-4">
@@ -45,7 +45,7 @@ class NextEventComponent extends Component{
                     <p>${state.location}</p>           
                 </div>
                 <div class="col-md-4">
-                    <button class="btn btn-primary">Tilmeld </button>
+                    <button class="btn button-custom">Tilmeld </button>
                 </div>
             </div>
       </div>
