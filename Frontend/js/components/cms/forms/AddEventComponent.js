@@ -123,6 +123,8 @@ class AddEventComponent extends Component {
             console.log(eventTime);
 
             let body = {
+                user: JSON.parse(sessionStorage.getItem("user")),
+                event:{
                 localDate: eventDate,
                 title: eventHeader,
                 description: eventBody,
@@ -130,7 +132,7 @@ class AddEventComponent extends Component {
                 url: eventUrl,
                 imgSrc: imgSrc,
                 meetingTime: eventTime
-
+                }
             }
             const fetchOptions = {
                 method: "POST",
