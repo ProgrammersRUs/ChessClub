@@ -2,11 +2,9 @@ package com.example.cms.controller;
 
 
 import com.example.cms.entity.Event;
-import com.example.cms.entity.News;
 import com.example.cms.service.EventService;
 import com.example.cms.service.UserService;
 import com.example.cms.wrapper.UserEventWrapper;
-import com.example.cms.wrapper.UserNewsWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,9 +25,15 @@ public class EventController {
     UserService userService;
 
     @PostMapping("/createEvent")
-    @ResponseStatus(HttpStatus.CREATED)
-    public Event postEvent(@RequestBody Event event) {
-        return eventService.saveEvent(event);
+    public ResponseEntity<Event> postEvent(@RequestBody UserEventWrapper userEventWrapper) {
+        if(userEventWrapper.getUser() != null){
+            if(!userService.validateUser(userEventWrapper.getUser())){
+                return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+            }
+            Event response = eventService.saveEvent(userEventWrapper.getEvent());
+            return new ResponseEntity<>(response, HttpStatus.CREATED);
+
+        }return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
     }
 
     @GetMapping("/{id}")

@@ -117,6 +117,7 @@ class AddNewSponsorComponent extends Component {
         let cmsBody = new TwoRowComponent('what this name for', this, cmsBottom);
         sponsorForm.addComponent(cmsBody)
         sponsorForm.updateDOM();
+        cmsBottom.addEventListenersSponsorTable()
         this.addEventlisenterToContent()
     }
 

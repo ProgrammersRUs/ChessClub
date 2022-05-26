@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SponsorService {
@@ -25,4 +26,11 @@ public class SponsorService {
         return sponsorRepository.save(sponsor);
     }
 
+    public Optional<Sponsor> findByisOpt(int id) {
+        return sponsorRepository.findById(id);
+    }
+
+    public void deleteSponsor(int id) {
+        sponsorRepository.deleteById(id);
+    }
 }

@@ -1,10 +1,11 @@
 import Component from "../../../lib/Component.js";
+import AddSponsorComponent from "../forms/AddSponsorComponent.js";
 
 class SponsorTableComponent extends Component {
 
     constructor(sponsor) {
         let state = {
-            sponor: sponsor
+            sponsor: sponsor
         }
         super('sponsor', state, (state) =>
             `
@@ -19,7 +20,7 @@ class SponsorTableComponent extends Component {
                         </tr>
                         </thead>
                         <tbody>
-            ${this.renderSponsor(state.sponor)}
+            ${this.renderSponsor(state.sponsor)}
                         </tbody>
                     </table>
                 </div>
@@ -33,7 +34,7 @@ class SponsorTableComponent extends Component {
     renderSponsor(sponsor) {
         return sponsor.map(s => `
                             <tr>
-                                <td>${s.name}</td>
+                                <td id="sponsorHeader${s.id}" contenteditable="true">${s.name}</td>
                                 <td class="accordion-item col-3">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                             data-bs-target="#collapse${s.id}" aria-expanded="true"
@@ -41,14 +42,14 @@ class SponsorTableComponent extends Component {
                                     </button>
                                 </td>
                                 <td class="col-md-2">
-                                    <button type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i class="fa fa-trash"></i> </button>
-                                    <button type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i class="fa fa-save"></i> </button>
+                                    <button id="deleteSponsor${s.id}" type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i class="fa fa-trash"></i> </button>
+                                    <button id="updatePostInformation${s.id}" type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i class="fa fa-save"></i> </button>
        
                                 </td>
                             </tr>
                             <tr id="collapse${s.id}" class="accordion-collapse collapse"
                                 aria-labelledby="headingOne1" data-bs-parent="#accordionExample">
-                                <td class="accordion-body" colspan="3">
+                                <td id="sponsorBody${s.id}" class="accordion-body" contenteditable="true" colspan="3">
                                     ${s.description}
                                 </td>
                             </tr>
@@ -58,10 +59,86 @@ class SponsorTableComponent extends Component {
         ).join('')
     }
 
+    addEventListenersSponsorTable() {
+
+        const url = config.endpoints.cms.root + config.endpoints.cms.subPoint.deleteSponsor;
+        this.state.sponsor.forEach(sponsor => {
+
+            const buttonDelete = document.getElementById('deleteSponsor' + sponsor.id)
+            const buttonUpdateInformation = document.getElementById('updatePostInformation' + sponsor.id)
+
+            buttonDelete.addEventListener("click", async () => {
+                await deleteSponsor(sponsor)
+                await new AddSponsorComponent().refreshPage()
+            })
+
+            buttonUpdateInformation.addEventListener("click", async () => {
+                await updatePostInformation(sponsor)
+                await new AddSponsorComponent().refreshPage()
+            })
+        })
+
+
+        async function deleteSponsor(sponsor) {
+
+            let body = {
+                user: JSON.parse(sessionStorage.getItem('user')),
+                sponsor: {
+                    id:sponsor.id
+                }
+            }
+
+            const fetchOptions = {
+                    method: "DELETE",
+                    headers: {"Content-Type": "application/json"},
+                    body: JSON.stringify(body)
+                }
+            ;
+
+            const response = await fetch(url + sponsor.id, fetchOptions);
+
+            if (!response) {
+                const errorMessage = await response.text();
+                console.log(errorMessage)
+                throw new Error(errorMessage);
+
+            }
+        }
+
+        async function updatePostInformation(sponsor) {
+
+            const postHeader = document.getElementById('sponsorHeader' + sponsor.id).innerText
+            const postBody = document.getElementById('sponsorBody' + sponsor.id).innerText
+
+
+
+            let body = {
+                user: JSON.parse(sessionStorage.getItem('user')),
+                sponsor: {
+                    id: sponsor.id,
+                    name: postHeader,
+                    description: postBody,
+                    imgSrc: sponsor.imgSrc
+                }
+            }
+
+            console.log(body)
+            const fetchOptions = {
+                method: "PUT",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(body)
+            };
+            const response = await fetch(url + sponsor.id, fetchOptions);
+
+            if (!response) {
+                const errorMessage = await response.text();
+                console.log(errorMessage)
+                throw new Error(errorMessage);
+
+            }
+        }
+    }
+
 }
-
-
-
-//document.getElementById('flexSwitchCheckChecked').addEventListener("change", () => console.log(document.getElementById('flexSwitchCheckChecked').checked) )
 
 export default SponsorTableComponent;
