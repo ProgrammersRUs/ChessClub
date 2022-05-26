@@ -81,14 +81,13 @@ class MemberComponent extends Component {
         return month.map(month => `
  <div class="col-lg-3 text-center mb-2 ">
   <div class="d-flex justify-content-center">
-   <div >
-    <div style="height: 100px; width: 100px; background-color: green; border-radius: 25rem">
+   <div>
+    <div style="height: 100px; width: 100px; background-color: #9DB4AB; border-radius: 25rem">
     </div>
-   </div> <!-- ryk det her div tag ned under det nederste divtag for at få den grønne
-          boks over navn og dato i stedet for ved siden af -->
+   </div>
     <div>
     <br>
-    <a href="https://www.chess.com/member/${month.username}">
+    <a class="link-custom" href="https://www.chess.com/member/${month.username}">
      <h5>${month.username}</h5>
     </a>
     <!-- <p>Rating: 1253</p>-->
