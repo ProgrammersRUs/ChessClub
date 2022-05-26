@@ -14,8 +14,11 @@
 
 <p>To use this program, follow these steps:</p>
 <ul>
+  You should have two schemas set up in a database. One for the backend and one for the CMS. 
   <li> Set up your environmental variables to connect to your database. Do this with both the backend end the CMS.
-  <li>Use this setup for the CMS:
+    <li> To set up your environmental variable, choose "Edit configurations.." under the "Run"-tab.
+      
+  Use this setup for the CMS:
     <li>JDBC_URL is the JDBC-database link
     <li>JDBC_USER is the user you want to connect the database with
       <li>JDBC_PASSWORD is your user password
@@ -24,6 +27,11 @@
     <li>AZURE_ACCOUNT_NAME
       <li>AZURE_ENDPOINT
         <li>USER_SERVICE set it up as http://localhost:8080/user/
+          
+          Use this setup for the Backend:
+  <li>JDBC_USER is the user you want to connect the database with</li>
+ <li>JDBC_PASSWORD is your user password
+  <li>JDBC_URL is the JDBC-database link
     
 <h2>Contributing to the project</h2>
 <p>To contribute to the project, follow these steps:</p>
