@@ -26,7 +26,7 @@
         <li>USER_SERVICE set it up as http://localhost:8080/user/
     
 <h2>Contributing to the project</h2>
-<p>To contribute to TSA, follow these steps:</p>
+<p>To contribute to the project, follow these steps:</p>
 <ol>
   <li>Fork this repository.</li>
   <li>Create a branch: <code>git checkout -b branch_name</code>.</li>
