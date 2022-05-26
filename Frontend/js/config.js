@@ -1,7 +1,7 @@
 const config = {
     club: {
         name: 'Haslev og Faxe skakklubber',
-        logoSrc: '../img/Haslev og Faxe Skakklubber-logos_black.png',
+        logoSrc: '../img/Udklip2-hvid-removebg-preview.png',
         copyrightYear: 2022
     },
     navbarData: {
@@ -12,7 +12,7 @@ const config = {
             },
             {
                 name: 'Online Skak',
-                href: '../html/ClubSite.html'
+                href: '../html/club-site.html'
             },
 
             {
@@ -34,10 +34,6 @@ const config = {
                 name: 'Klubbernes historie',
                 href: '../html/history.html'
             },
-            {
-                name: 'Admin',
-                href: '../html/cms-page.html'
-            }
         ]
     },
     locations: [
@@ -54,7 +50,9 @@ const config = {
         member: {
             root: 'https://hofsk.azurewebsites.net/',
             subPoint: {
-                getAll: 'member/all-members'
+                getAll: 'member/all-members',
+                deleteMember: 'member/delete/',
+                updateMember: 'member/update/'
             }
         },
         cms: {
@@ -65,9 +63,10 @@ const config = {
                 allEvents: 'event/all-events',
                 postNews: 'news/new',
                 postSponsor: 'sponsor/new',
+                deleteSponsor: 'sponsor/',
                 postEvent: 'event/createEvent',
                 deleteNews: 'news/',
-                deleteEvent: 'event',
+                deleteEvent: 'event/',
                 postAboutUs:'about-page/new',
                 allAboutUs: 'about-page/all-about-pages',
                 deleteAboutUs: 'about-page/',

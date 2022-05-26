@@ -43,7 +43,7 @@ class FrontPageTableComponent extends Component {
         return frontpage.map(frontPage => `
                             <tr>
                                 <td id="fp-id${frontPage.id}"class="d-none">${frontPage.id}</td>
-                                <td>${frontPage.header}</td>
+                                <td id="frontpageHeader${frontPage.id}" contenteditable="true">${frontPage.header}</td>
                                 <td>${frontPage.creationDate}</td>
                                 <td class="accordion-item col-2">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
@@ -53,13 +53,13 @@ class FrontPageTableComponent extends Component {
                                 </td>
                                 <td class="col-md-2">
                                 <button id="deletePost${frontPage.id}" type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i class="fa fa-trash"></i> </button>
-                                <button  type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i class="fa fa-edit"></i> </button>
+                                <button id="updatePostInformation${frontPage.id}" type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i class="fa fa-save"></i> </button>
                                 <button id="updatePostStatus${frontPage.id}"  type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i ${this.isActivePost(frontPage)}></i> </button>
                             </td>
                             </tr>
                             <tr id="collapse${frontPage.id}" class="accordion-collapse collapse"
                                 aria-labelledby="headingOne1" data-bs-parent="#accordionExample">
-                                <td class="accordion-body" colspan="3">
+                                <td id="frontpageBody${frontPage.id}" contenteditable="true" class="accordion-body" colspan="3">
                                     ${frontPage.body}
                                 </td>
                             </tr>
@@ -86,6 +86,7 @@ class FrontPageTableComponent extends Component {
 
             const buttonDelete = document.getElementById('deletePost' + frontpage.id)
             const buttonUpdateStatus = document.getElementById('updatePostStatus' + frontpage.id)
+            const buttonUpdateInformation = document.getElementById('updatePostInformation' + frontpage.id)
             console.log(buttonUpdateStatus)
 
             buttonDelete.addEventListener("click", async () => {
@@ -95,6 +96,11 @@ class FrontPageTableComponent extends Component {
 
             buttonUpdateStatus.addEventListener("click", async () => {
                 await updatePostStatus(frontpage)
+                await new addFrontPageComponent().refreshPage()
+            })
+
+            buttonUpdateInformation.addEventListener("click", async () => {
+                await updatePostInformation(frontpage)
                 await new addFrontPageComponent().refreshPage()
             })
         })
@@ -116,6 +122,39 @@ class FrontPageTableComponent extends Component {
                 }
             ;
 
+            const response = await fetch(url + frontPage.id, fetchOptions);
+
+            if (!response) {
+                const errorMessage = await response.text();
+                console.log(errorMessage)
+                throw new Error(errorMessage);
+
+            }
+        }
+
+        async function updatePostInformation(frontPage) {
+
+            const postHeader = document.getElementById('frontpageHeader' + frontPage.id).innerText
+            const postBody = document.getElementById('frontpageBody' + frontPage.id).innerText
+
+            let body = {
+                user: JSON.parse(sessionStorage.getItem('user')),
+                frontPage: {
+                    id: frontPage.id,
+                    header: postHeader,
+                    body: postBody,
+                    creationDate: frontPage.creationDate,
+                    imgUrl: frontPage.imgUrl,
+                    isActive: frontPage.isActive
+                }
+            }
+
+            console.log(body)
+            const fetchOptions = {
+                method: "PUT",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(body)
+            };
             const response = await fetch(url + frontPage.id, fetchOptions);
 
             if (!response) {

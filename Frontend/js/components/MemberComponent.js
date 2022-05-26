@@ -10,43 +10,89 @@ class MemberComponent extends Component {
 
         super('nextEvent', state, (state) =>
             `
-            <section id="members" class="mb-1 mt-1">
+            <section id="members" class="mb-1 mt-1 d-none d-lg-block">
  
-        <div class="d-flex justify-content-center">
-        <h3 class="mb-2">Mød medlemmerne</h3>
-        <br>
-        <br>
-        </div> <!-- flyt den her linje ned under renderMembers og slet den næste linje, for at 
-        få "Mød medlemmerne" tilbage ud i venstre side-->
+        <div class="d-flex justify-content-center mb-3">
+                 <h3 class="mb-2">Mød medlemmerne</h3>
+        </div>
          <div class="d-flex justify-content-center">
-   ${this.renderMembers(state.month)}
-   
 
-</section>
+        </div>
+        <div class="container">
+        
+        <div class="carousel slide" id="TESTWOW" data-bs-ride="carousel">
+            <div class="carousel-inner">  
+                ${this.renderCarrousel(state.month)}
+             </div>
+            </div>
+        </div>
+
+           </section>
       `)
+    }
+
+    addEventListenersToMe() {
+        let myCarousel = document.getElementById('TESTWOW');
+        let carousel = new bootstrap.Carousel(myCarousel);
+        let config = {interval: 1000}
+
+        console.log(carousel._getConfig(config))
+
+    }
+
+    renderCarrousel(state) {
+        console.log(state)
+        let rowSize = 4;
+
+        let split = [];
+        for (let i = 0; i < state.length; i += rowSize) {
+            let endpoint = i + rowSize
+            if (endpoint > state.length) {
+                endpoint = state.length;
+            }
+            console.log(endpoint)
+            split.push(state.slice(i, endpoint));
+        }
+
+        let template = `
+            <div class="carousel-item active">
+                <div class="row">
+                            ${this.renderMembers(split[0])}
+                </div>
+            </div>
+            ${this.renderAdditionalCarouselItem(split.splice(1,split.length))}        
+        `
+        return template;
+    }
+
+
+    renderAdditionalCarouselItem(array){
+        return  array.map(array => `
+            <div class="carousel-item">
+                <div class="row">
+                    ${this.renderMembers(array)}
+                </div>
+            </div>
+            `).join("")
     }
 
     renderMembers(month) {
         return month.map(month => `
-<div style="display: inline-block">
- <div class="col-lg-12 pt-4 pt-lg-0 ">
+ <div class="col-lg-3 text-center mb-2 ">
   <div class="d-flex justify-content-center">
-   <div class="container">
-    <div style="height: 100px; width: 100px; background-color: green; border-radius: 25rem">
+   <div>
+    <div style="height: 100px; width: 100px; background-color: #9DB4AB; border-radius: 25rem">
     </div>
-   </div> <!-- ryk det her div tag ned under det nederste divtag for at få den grønne
-          boks over navn og dato i stedet for ved siden af -->
-    <div class="container">
+   </div>
+    <div>
     <br>
-    <a href="https://www.chess.com/member/${month.username}">
+    <a class="link-custom" href="https://www.chess.com/member/${month.username}">
      <h5>${month.username}</h5>
     </a>
-    <!-- <p>Rating: 1253</p>-->
     <p>${month.joined}</p>
    </div>
   </div>
  </div>
-</div>
 `
         ).join('');
     }
