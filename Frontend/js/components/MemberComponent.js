@@ -89,7 +89,6 @@ class MemberComponent extends Component {
     <a class="link-custom" href="https://www.chess.com/member/${month.username}">
      <h5>${month.username}</h5>
     </a>
-    <!-- <p>Rating: 1253</p>-->
     <p>${month.joined}</p>
    </div>
   </div>
