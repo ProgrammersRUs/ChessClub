@@ -11,14 +11,20 @@ class AddContactUsComponent extends Component {
 
         super('Kontakt os', state, (state) =>
             `<div class="row mx-w-100 h-100">
-            <div class="card col-sm m-1" style="background-color: rgba(217, 226, 249, 0.3);">
+            <div class="card col-sm m-1 d-block" style="background-color: rgba(217, 226, 249, 0.3);">
                 <div class="card-body">
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1">Klub navn: </span>
                         <input id="postHeader" type="text" class="form-control" placeholder="" aria-label=""
                                aria-describedby="basic-addon1">
                     </div>
-                    <div class="input-group h-50">
+                    
+                         <div class="input-group mb-3 ">
+                        <span class="input-group-text" id="basic-addon1">Link til kort: </span>
+                        <input id="iFrameLink" type="text" class="form-control" placeholder="" aria-label=""
+                               aria-describedby="basic-addon1">
+                    </div>
+                    <div class="input-group h-50 mb-3">
                         <span class="input-group-text ">Tekst: </span>
                         <textarea id="postBody" class="form-control" aria-label="With textarea"></textarea>
                     </div>
@@ -54,6 +60,7 @@ class AddContactUsComponent extends Component {
         async function postContactUs(url) {
             const contactUsHeader = document.getElementById('postHeader').value
             const contactUsBody = document.getElementById('postBody').value
+            const iFrameLink = document.getElementById('iFrameLink').value
             const contactUsIsActive = document.getElementById('flexSwitchCheckChecked')
             let isActive = 0
 
@@ -67,7 +74,7 @@ class AddContactUsComponent extends Component {
                     creationDate: new Date().toLocaleDateString('en-CA'),
                     header: contactUsHeader,
                     body: contactUsBody,
-                    iFrame: "wrfwrg",
+                    iFrame: iFrameLink,
                     isActive: isActive
                 }
             }

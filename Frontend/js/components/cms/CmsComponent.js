@@ -20,7 +20,7 @@ class CmsComponent extends Component {
                     oversigt</a>
                 <a class="list-group-item list-group-item-action list-group-item-light p-3" id="sponsor-link">Sponsorer</a>
                 <a class="list-group-item list-group-item-action list-group-item-light p-3" id="frontpage-link">Forside</a>
-                <a class="list-group-item list-group-item-action list-group-item-light p-3" id="about-us-link">Om os</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" id="about-us-link">Historie</a>
                 <a class="list-group-item list-group-item-action list-group-item-light p-3" id="contact-us-link">Kontakt os</a>
             </div>
         </div>

@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', createFormEventListener)
 
 
 function createFormEventListener() {
-    loginEvent = document.getElementById('userLogin')
+    let loginEvent = document.getElementById('userLogin')
     loginEvent.addEventListener('submit', handleFormSubmit)
 }
 

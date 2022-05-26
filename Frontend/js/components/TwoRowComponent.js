@@ -9,7 +9,7 @@ class TwoRowComponent extends Component{
         super(name, state, (state) => `
         <section class="mb-1 mt-1" >
              <div class="container h-100">
-                 <div class="row d-block d-md-flex" style="height: 18rem">
+                 <div class="row d-block d-md-flex">
                       <div class="container-fluid"> ${state.top}
                       </div> 
                   </div>

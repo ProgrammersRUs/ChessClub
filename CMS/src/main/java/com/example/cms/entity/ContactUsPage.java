@@ -16,6 +16,7 @@ public class ContactUsPage {
   private String header;
   @Column(length = 2000)
   private String body;
+  @Column(length = 2000)
   private String iFrame;
   @Column(columnDefinition="tinyint(1) default 1")
   private String isActive;

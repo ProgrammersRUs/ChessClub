@@ -46,9 +46,9 @@ async function postFormDataAsJson(url, formData) {
         },
         member:{
             memberFirstName: plainFormData.memberFirstName,
-            memberLastName: plainFormData.memberFirstName,
+            memberLastName: plainFormData.memberLastName,
             memberPhoneNr: plainFormData.memberPhoneNr,
-            memberAddress: plainFormData.memberAdress,
+            memberAddress: plainFormData.memberAddress,
             memberAge: plainFormData.memberAge
         }
 
