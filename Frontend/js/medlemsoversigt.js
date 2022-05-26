@@ -1,4 +1,4 @@
-const member = 'http://localhost:8080/member/all-members';
+const member = config.endpoints.member.root +'/member/all-members';
 const Medlemsoversigt = document.getElementById('bview-table')
 
 function fetchMember() {
@@ -7,7 +7,7 @@ function fetchMember() {
 
 async function postUserStatus(user, userStatus) {
     console.log(user, userStatus.value)
-    const url = 'http://localhost:8080/user/update-status'
+    const url = config.endpoints.member.root+'user/update-status'
 
     let status = userStatus.value == 'Admin' ? true : false;
 

@@ -48,8 +48,7 @@ const config = {
     ],
     endpoints: {
         member: {
-            //root: 'https://hofsk.azurewebsites.net/',
-            root:'http://localhost:8080/',
+            root: 'https://hofsk.azurewebsites.net/',
             subPoint: {
                 getAll: 'member/all-members',
                 deleteMember: 'member/delete/',
@@ -57,8 +56,7 @@ const config = {
             }
         },
         cms: {
-            //root: 'https://cmsbackend420.azurewebsites.net/',
-            root:'http://localhost:8089/',
+            root: 'https://cmsbackend420.azurewebsites.net/',
             subPoint: {
                 allNews: 'news/all-news',
                 allSponsers: 'sponsor/get-all',
