@@ -70,9 +70,9 @@ async function fetchChessApi() {
 
 async function fetchMembers() {
     const memberList = await fetch(Members).then(response => response.json());
+    console.log(memberList)
 
-
-    for (const member of memberList.monthly) {
+    for (const member of memberList.all_time) {
         let timestamp = member.joined;
         if (!timestamp) {
             break;
@@ -108,7 +108,7 @@ let tournamentBody = {
 }
 
 let memberBody = {
-    month: memberData.monthly,
+    month: memberData.all_time,
     userName: memberData.username,
     memberJoined: memberData.joined
 }
