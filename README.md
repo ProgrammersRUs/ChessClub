@@ -18,7 +18,9 @@
   <li> Set up your environmental variables to connect to your database. Do this with both the backend end the CMS.</li>
     <li> To set up your environmental variable, choose "Edit configurations.." under the "Run"-tab.</li>
       
+  
   Use this setup for the CMS:
+  
   <li>JDBC_URL is the JDBC-database link</li>
   <li>JDBC_USER is the user you want to connect the database with</li>
   <li>JDBC_PASSWORD is your user password</li>
