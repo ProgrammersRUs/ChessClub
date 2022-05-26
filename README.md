@@ -17,7 +17,7 @@
   You should have two schemas set up in a database. One for the backend and one for the CMS. 
   <li> Set up your environmental variables to connect to your database. Do this with both the backend end the CMS.</li>
     <li> To set up your environmental variable, choose "Edit configurations.." under the "Run"-tab.</li>
-      
+      <br>
   
   Use this setup for the CMS:
   
