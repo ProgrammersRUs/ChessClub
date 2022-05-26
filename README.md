@@ -19,9 +19,13 @@
     <li>JDBC_URL is the JDBC-database link
     <li>JDBC_USER is the user you want to connect the database with
       <li>JDBC_PASSWORD is your user password
-<li>
+<li>For CMS_PORT choose 8089
+  <li> AZURE_ACCOUNT_KEY
+    <li>AZURE_ACCOUNT_NAME
+      <li>AZURE_ENDPOINT
+        <li>USER_SERVICE set it up as http://localhost:8080/user/
     
-<h2>Contributing to TSA</h2>
+<h2>Contributing to the project</h2>
 <p>To contribute to TSA, follow these steps:</p>
 <ol>
   <li>Fork this repository.</li>
@@ -40,13 +44,16 @@
   <li>
     <a href="https://github.com/silkemarie/">@silkemarie</li>
   <li>
-    <a href="https://github.com/Jens-k-m-m">@Jens-k-m-m</a>
+    <a href="https://github.com/Andreassim">@Andreassim</a>
   </li>
   <li>
-    <a href="https://github.com/Alex-shadow1005">@Alex-shadow1005</a>
+    <a href="https://github.com/Moshizzl3">@Moshizzl3</a>
   </li>
   <li>
     <a href="https://github.com/Krogs420">@Krogs420</a>
+  </li>
+   <li>
+    <a href="https://github.com/TheeCapain">@TheeCapain</a>
   </li>
 </ul>
 
@@ -54,7 +61,8 @@
 <p>If you want to contact me you can reach me at</p>
 <ul>
   <li>silk2918@stud.kea.dk</li>
-  <li>jens8592@stud.kea.dk</li>
-  <li>alex688u@stud.kea.dk</li>
+  <li>andr74h3@stud.kea.dk</li>
+  <li>moha3341@stud.kea.dk</li>
+  <li>augu5303@stud.kea.dk</li>
   <li>kris135f@stud.kea.dk</li>
 </ul>
