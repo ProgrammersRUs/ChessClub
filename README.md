@@ -27,9 +27,11 @@
   <li>AZURE_ACCOUNT_NAME</li>
   <li>AZURE_ENDPOINT</li>
   <li>USER_SERVICE set it up as http://localhost:8080/user/ </li>
+  </ul>
           
           Use this setup for the Backend:
-  <li>JDBC_USER is the user you want to connect the database with</li>
+ <ul>
+ <li>JDBC_USER is the user you want to connect the database with</li>
   <li>JDBC_PASSWORD is your user password</li>
   <li>JDBC_URL is the JDBC-database link</li>
     </ul>
